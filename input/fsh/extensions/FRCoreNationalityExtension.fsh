@@ -6,14 +6,6 @@ Description: "The nationality of the patient."
 * ^extension[=].valueCode = #pa
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
 * ^extension[=].valueInteger = 1
-* ^version = "1.1.0"
-* ^status = #draft
-* ^date = "2022-12-23"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * ^context.type = #element
 * ^context.expression = "Patient"
 * . ^short = "Nationality"
@@ -35,4 +27,3 @@ Description: "The nationality of the patient."
 * extension[period].url only uri
 * extension[period].value[x] 1..
 * extension[period].value[x] only Period
-* url = "http://hl7.org/fhir/StructureDefinition/patient-nationality" (exactly)
