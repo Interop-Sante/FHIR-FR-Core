@@ -6,8 +6,8 @@ publisher:
   name: Interop'Santé
   url: http://interopsante.org/
 status: draft
-version: 0.1.0
+version: 2.0.0
 fhirVersion: 4.0.1
-copyrightYear: 2020+
+copyrightYear: 2023+
 releaseLabel: ci-build
 

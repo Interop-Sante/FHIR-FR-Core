@@ -11,6 +11,7 @@ Description: "This extension specifies a list of periods of time (recurrent or n
 * ^contact.telecom.use = #work
 * ^context.type = #element
 * ^context.expression = "Schedule"
+
 * extension ^slicing.discriminator.type = #value
 * extension ^slicing.discriminator.path = "url"
 * extension ^slicing.rules = #open
@@ -23,9 +24,10 @@ Description: "This extension specifies a list of periods of time (recurrent or n
     unavailabilityReason 0..1 and
     created 0..1 and
     priority 0..1
+
 * extension[type].value[x] only Coding
 * extension[type].valueCoding from FRCoreValueSetScheduleType (extensible)
-* extension[type].value[x].system = "http://interopsante.org/fhir/CodeSystem/fr-core-schedule-type" (exactly) 
+// * extension[type].value[x].system = "http://interopsante.org/fhir/CodeSystem/fr-core-schedule-type" (exactly) 
 // TODO : supprimer le fixed system (défini dans le binding des VS - expliquer que c'est bien le système du CodeSystem qu'il faut mettre et pas le système du ValueSet) 
 
 * extension[rrule] ^short = "Recurrent caracteristic of the Schedule | Caractère récurrent du Schedule"
@@ -47,7 +49,7 @@ Description: "This extension specifies a list of periods of time (recurrent or n
     byWeekNo 0..* and
     byMonth 0..* and
     wkst 0..*
-* extension[rrule].extension[freq] from FRCoreValueSetAvailabilityTimeRule (required)
+
 * extension[rrule].extension[freq] ^short = "The value set comes from iCalendar | Le jeu de valeur est issu de iCalendar"
 * extension[rrule].extension[freq] ^definition = "Identifies the type of recurrence rule (year, month, day, hour, minute, seconde) | Identifie le type de récurrence\r\nThe value set comes from iCalendar | Le jeu de valeur est issu de iCalendar"
 * extension[rrule].extension[freq].value[x] only Coding
@@ -89,11 +91,13 @@ Description: "This extension specifies a list of periods of time (recurrent or n
 * extension[rrule].extension[byMonth] ^definition = "List of months of the year. Valid values are 1 to 12. | Liste des mois de l'année (valeurs de 1 à 12)."
 * extension[rrule].extension[byMonth] ^min = 0
 * extension[rrule].extension[byMonth].value[x] only positiveInt
-* extension[rrule].extension[wkst] from DaysOfWeek (required)
+
 * extension[rrule].extension[wkst] ^short = "First day of the workweek | Premier jour de la semaine de travail"
 * extension[rrule].extension[wkst] ^min = 0
 * extension[rrule].extension[wkst] ^binding.description = "The value set comes from iCalendar | Le jeu de valeur est issu de iCalendar"
 * extension[rrule].extension[wkst].value[x] only code
+* extension[rrule].extension[wkst].value[x] from DaysOfWeek (required)
+
 * extension[start] ^short = "Start of the period | Début de la période"
 * extension[start].value[x] only dateTime
 * extension[end] ^short = "End of the period | Fin de la période"
@@ -101,7 +105,7 @@ Description: "This extension specifies a list of periods of time (recurrent or n
 * extension[identifier] ^short = "Availability/non-availabilty identifier | Identifiant des disponibilités/non disponibilités"
 * extension[identifier] ^definition = "non-availabilty identifier used to update this information | Identifiant des non disponibilités, permettant de modifier cette information par la suite"
 * extension[identifier].value[x] only Identifier
-* extension[unavailabilityReason] from $fr-core-schedule-unavailability-reason (extensible)
+
 * extension[unavailabilityReason] ^short = "Non-availability resaon | Raison de l'indisponibilité"
 * extension[unavailabilityReason].value[x] only CodeableConcept
 * extension[unavailabilityReason].value[x] from $fr-core-schedule-unavailability-reason (extensible)

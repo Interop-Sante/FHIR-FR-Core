@@ -10,7 +10,6 @@ Title: "FR Core CodeSystem Mode Validation Identite"
 * ^contact.telecom.value = "fhir@interopsante.org"
 * ^contact.telecom.use = #work
 * ^caseSensitive = true
-* ^_caseSensitive.fhir_comments = "it's often unstated - are codes case sensitive or not. And\n       it can be the cause of operational or clinical safety problems. \n       So FHIR requires that it always be specified."
 * ^content = #complete
 * #AN "Extrait d'acte de naissance"
 * #CC "Carnet de circulation"
