@@ -1,15 +1,7 @@
 Profile: FRCoreObservationBodyHeightProfile
-Parent: $bodyheight
+Parent: http://hl7.org/fhir/StructureDefinition/bodyheight
 Id: fr-core-observation-body-height
 Title: "FR Core Observation Body Height Profile"
-* ^version = "1.1.0"
-* ^status = #active
-* ^date = "2022-10-18"
-* ^publisher = "Interop'Santé"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * . ^short = "French Body Height Profile based on FHIR Body height profile"
 * extension ^slicing.discriminator.type = #value
 * extension ^slicing.discriminator.path = "url"
@@ -27,3 +19,6 @@ Title: "FR Core Observation Body Height Profile"
 * method from $ValueSet-heightLengthMeasMethodVS (example)
 * method ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
 * method ^binding.extension.valueString = "ObservationMethod"
+
+
+* value[x] ^slicing.rules = #open

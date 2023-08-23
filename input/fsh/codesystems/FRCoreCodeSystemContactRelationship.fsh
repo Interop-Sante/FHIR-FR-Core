@@ -2,16 +2,8 @@ CodeSystem: FRCoreCodeSystemContactRelationship
 Id: fr-core-contact-relationship
 Title: "FR Core CodeSystem Contact Relationship"
 Description: "Relationship"
-* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
-* ^version = "1.1.0"
 * ^status = #draft
 * ^experimental = true
-* ^date = "2023-01-02"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * ^caseSensitive = true
 * ^content = #complete
 * #WRD "Dépositaire de la tutelle judiciare"

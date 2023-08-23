@@ -32,3 +32,6 @@ Description: "Oxygen saturation in Arterial blood  | Saturation en oxygène du s
 * bodySite from $ValueSet-sPO2BodyLocationVS.html (example)
 * bodySite ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
 * bodySite ^binding.extension.valueString = "BodySite"
+
+
+* value[x] ^slicing.rules = #open

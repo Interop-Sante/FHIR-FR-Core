@@ -2,18 +2,9 @@ CodeSystem: FRCoreCodeSystemReliabilityIdentity
 Id: fr-core-fiabilite-identite
 Title: "FR Core CodeSystem Fiabilité Identité"
 Description: "This code system  includes all the French Identity reliabilty codes (InteropSanté)."
-* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
-* ^identifier.system = "http://terminology.hl7.org/Codesystem"
-* ^identifier.value = "urn:oid:2.16.840.1.113883.12.0445"
-* ^version = "1.1.0"
+* ^identifier.system = "http://terminology.hl7.org/CodeSystem/v2-tables"
+* ^identifier.value = "urn:oid:2.16.840.1.113883.12.445"
 * ^status = #draft
-* ^experimental = true
-* ^date = "2020-03-12"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * ^caseSensitive = true
 * ^content = #complete
 * #VIDE "Identité non encore qualifiée"

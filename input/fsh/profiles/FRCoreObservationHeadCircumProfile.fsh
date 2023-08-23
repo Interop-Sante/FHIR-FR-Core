@@ -22,3 +22,6 @@ Description: "HL7 Vital Signs Head Occipital-frontal circumference profil | Prof
 * interpretation from $fr-core-obervation-interpretation (extensible)
 * interpretation ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
 * interpretation ^binding.extension.valueString = "ObservationInterpretation"
+
+
+* value[x] ^slicing.rules = #open

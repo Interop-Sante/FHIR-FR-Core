@@ -1,4 +1,4 @@
-Profile: FRCoreOservationRespRateProfile
+Profile: FRCoreObservationRespRateProfile
 Parent: $resprate
 Id: fr-core-observation-resp-rate
 Title: "FR Core Oservation Resp Rate Profile"
@@ -29,3 +29,5 @@ This profile specifies the patient's identifiers for France. It uses internation
 * method from $ValueSet-respiratoryRateMeasMethodVS.html (example)
 * method ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
 * method ^binding.extension.valueString = "ObservationMethod"
+
+* value[x] ^slicing.rules = #open
