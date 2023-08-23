@@ -2,14 +2,6 @@ Extension: FRCorePatientIdentityMethodCollectionExtension
 Id: fr-core-patient-identity-method-collection
 Title: "FR Core Patient Identity Method Collection Extension"
 Description: "This french extension specifies the way the identity is collected | Cette extension française spécifie la façon dont l'identité est obtenue"
-* ^version = "1.1.0"
-* ^status = #draft
-* ^date = "2022-12-23"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * ^context.type = #element
 * ^context.expression = "Patient"
 * extension ^slicing.discriminator.type = #value
@@ -21,7 +13,7 @@ Description: "This french extension specifies the way the identity is collected 
     collectionDate 0..1
 * extension[methodCollection] ^short = "The way the INS identity is collected| Mode d'obtention de l'INS"
 * extension[methodCollection].value[x] only Coding
-* extension[methodCollection].value[x] from FRCoreValueSetIdentityMethodCollection (extensible)
+* extension[methodCollection].valueCoding from FRCoreValueSetIdentityMethodCollection (extensible)
 * extension[collectionDate] ^short = "INS collection date| date d'interrogation du téléservice INSi"
 * extension[collectionDate] ^definition = "INS collection date| date d'interrogation du téléservice INSi"
 * extension[collectionDate].value[x] only date
