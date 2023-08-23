@@ -25,3 +25,5 @@ Description: "French profil Body weight based on the FHIR profil BodyWeightMeas.
 * method from $fr-core-weight-measurement-method (example)
 * method ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
 * method ^binding.extension.valueString = "ObservationMethod"
+
+* value[x] ^slicing.rules = #open

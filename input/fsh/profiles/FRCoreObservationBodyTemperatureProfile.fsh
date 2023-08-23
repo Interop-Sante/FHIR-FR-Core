@@ -26,3 +26,6 @@ Description: "French profil body temperature | Profil français de la mesure de 
 * bodySite from $ValueSet-bodyTempMeasBodyLocationPrecoordVS.html (example)
 * bodySite ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
 * bodySite ^binding.extension.valueString = "BodySite"
+
+
+* value[x] ^slicing.rules = #open

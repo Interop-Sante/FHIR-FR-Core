@@ -35,3 +35,6 @@ Description: "French profiling of the FHIR Vital Sign Heart Rate Profile | Profi
 * method ^binding.extension.valueString = "ObservationMethod"
 * method ^binding.description = "Methods for heartrate observations."
 * method.coding from $fr-core-heart-rate-method (example)
+
+
+* value[x] ^slicing.rules = #open
