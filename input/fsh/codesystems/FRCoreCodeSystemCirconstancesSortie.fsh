@@ -3,7 +3,6 @@ Id: fr-core-circonstances-sortie
 Title: "FR Core CodeSystem Circonstances Sortie"
 Description: "Discharge Disposition"
 * ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
-* ^version = "1.1.0"
 * ^status = #draft
 * ^experimental = false
 * ^date = "2023-01-02"
