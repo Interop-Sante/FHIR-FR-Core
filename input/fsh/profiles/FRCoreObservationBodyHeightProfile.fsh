@@ -1,5 +1,5 @@
 Profile: FRCoreObservationBodyHeightProfile
-Parent: $bodyheight
+Parent: http://hl7.org/fhir/StructureDefinition/bodyheight
 Id: fr-core-observation-body-height
 Title: "FR Core Observation Body Height Profile"
 * ^version = "1.1.0"

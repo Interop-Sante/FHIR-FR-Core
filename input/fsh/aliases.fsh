@@ -41,7 +41,6 @@ Alias: $TRE-R11-CiviliteExercice = https://mos.esante.gouv.fr/NOS/TRE_R11-Civili
 Alias: $fr-core-v2-0203 = http://interopsante.org/CodeSystem/fr-core-v2-0203
 Alias: $shareablevalueset = http://hl7.org/fhir/StructureDefinition/shareablevalueset
 Alias: $bmi = http://hl7.org/fhir/StructureDefinition/bmi
-Alias: $bodyheight = http://hl7.org/fhir/StructureDefinition/bodyheight
 Alias: $bodytemp = http://hl7.org/fhir/StructureDefinition/bodytemp
 Alias: $bodyweight = http://hl7.org/fhir/StructureDefinition/bodyweight
 Alias: $headcircum = http://hl7.org/fhir/StructureDefinition/headcircum
