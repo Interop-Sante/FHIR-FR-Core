@@ -8,7 +8,6 @@ Description: "A code that represents the preferred display order of the componen
 * ^extension[=].valueInteger = 1
 * ^context.type = #element
 * ^context.expression = "HumanName"
-* . ..1
 * . ^short = "Preferred display order of name parts"
 * . ^definition = "A code that represents the preferred display order of the components of this human name."
 * value[x] 1..
