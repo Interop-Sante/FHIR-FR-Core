@@ -1,17 +1,8 @@
-CodeSystem: FRCoreCodeSystemv2-0203
+CodeSystem: FRCoreCodeSystemv2_0203
 Id: fr-core-v2-0203
 Title: "FR Core CodeSystem v2-0203"
 Description: "HL7 v2 - Identifier type"
-* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"
-* ^version = "1.1.0"
 * ^status = #draft
-* ^experimental = false
-* ^date = "2023-01-02"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * ^caseSensitive = true
 * ^content = #complete
 * #ADELI "N° ADELI"
