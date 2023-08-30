@@ -1,0 +1,103 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "fr-core-type-organisation",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+  },
+  "url" : "http://hl7.fr/ig/fhir/core/CodeSystem/fr-core-type-organisation",
+  "version" : "2.0.0",
+  "name" : "FRCoreCodeSystemTypesOrganisations",
+  "title" : "FR Core CodeSystem Types d'Organisations",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2023-08-30T12:46:17+00:00",
+  "publisher" : "Interop'Santé",
+  "contact" : [{
+    "name" : "Interop'Santé",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://interopsante.org/"
+    }]
+  },
+  {
+    "name" : "InteropSanté",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "fhir@interopsante.org",
+      "use" : "work"
+    }]
+  }],
+  "description" : "This is an example code system that includes all the InteropSanté Organizations types codes.",
+  "caseSensitive" : true,
+  "content" : "complete",
+  "count" : 17,
+  "concept" : [{
+    "code" : "LEGAL-ENTITY",
+    "display" : "Entité légale"
+  },
+  {
+    "code" : "GHT",
+    "display" : "Groupement hospitalier de territoire"
+  },
+  {
+    "code" : "GEOGRAPHICAL-ENTITY",
+    "display" : "Entité géographique"
+  },
+  {
+    "code" : "GROUP",
+    "display" : "Groupe privé/hospitalier"
+  },
+  {
+    "code" : "HEBERGEMENT",
+    "display" : "Hébergement"
+  },
+  {
+    "code" : "SOIN",
+    "display" : "Soin"
+  },
+  {
+    "code" : "ADMINISTRATIF",
+    "display" : "Administration"
+  },
+  {
+    "code" : "MEDICAL",
+    "display" : "Médical"
+  },
+  {
+    "code" : "TECHNIQUE",
+    "display" : "Technique"
+  },
+  {
+    "code" : "MEDICOTEC",
+    "display" : "medico technique (radio, scanner …)"
+  },
+  {
+    "code" : "UF",
+    "display" : "Unité fonctionnelle"
+  },
+  {
+    "code" : "SERVICE",
+    "display" : "Service"
+  },
+  {
+    "code" : "UM",
+    "display" : "Unité médicale"
+  },
+  {
+    "code" : "UAC",
+    "display" : "Unité d'activité"
+  },
+  {
+    "code" : "POLE",
+    "display" : "Pôle"
+  },
+  {
+    "code" : "CENTRE-RESP",
+    "display" : "Centre de responsabilité"
+  },
+  {
+    "code" : "CENTRE-ACTIVITE",
+    "display" : "Centre d'activité"
+  }]
+}
