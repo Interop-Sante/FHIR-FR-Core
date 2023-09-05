@@ -1,0 +1,75 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fr-core-identifier-type-v1-0",
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+  },
+  "url" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-identifier-type-v1-0",
+  "version" : "2.0.0",
+  "name" : "FRCoreValueSetPatientIdentifierType",
+  "title" : "FR Core ValueSet Patient identifier type",
+  "status" : "draft",
+  "date" : "2023-09-05T09:07:49+00:00",
+  "publisher" : "Interop'Santé",
+  "contact" : [{
+    "name" : "Interop'Santé",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://interopsante.org/"
+    }]
+  },
+  {
+    "name" : "InteropSanté",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "fhir@interopsante.org",
+      "use" : "work"
+    }]
+  }],
+  "description" : "A coded type for an identifier that can be used to determine which identifier to use for a specific purpose (identification of a patient).",
+  "compose" : {
+    "include" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+      "concept" : [{
+        "code" : "PPN",
+        "display" : "Passport Number"
+      },
+      {
+        "code" : "PN",
+        "display" : "Person Number"
+      },
+      {
+        "code" : "PI",
+        "display" : "Patient Identifier"
+      },
+      {
+        "code" : "RRI",
+        "display" : "Regional Registry ID"
+      }]
+    },
+    {
+      "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-0203",
+      "concept" : [{
+        "code" : "NNFRA",
+        "display" : "National Person Identifier where the FRA is the ISO table 3166 3-character (alphabetic) country code"
+      },
+      {
+        "code" : "NDP",
+        "display" : "Identifiant du patient au Dossier Pharmaceutique"
+      },
+      {
+        "code" : "INS-C",
+        "display" : "Identifiant National de Santé Calculé"
+      },
+      {
+        "code" : "INS-NIA",
+        "display" : "NIR temporaire"
+      },
+      {
+        "code" : "INS-NIR",
+        "display" : "NIR définitif"
+      }]
+    }]
+  }
+}

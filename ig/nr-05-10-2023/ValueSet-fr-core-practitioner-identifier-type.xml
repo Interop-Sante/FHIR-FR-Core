@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="fr-core-practitioner-identifier-type"/>
+  <text>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml">Placeholder</div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/valueset-warning">
+    <valueMarkdown value="Types are for general categories of identifiers. See [the identifier registry](identifier-registry.h     tml) for a list of common identifier systems"/>
+  </extension>
+  <url value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-practitioner-identifier-type"/>
+  <version value="2.0.0"/>
+  <name value="FRCoreValueSetPractionerIdentifierType"/>
+  <title value="FR Core ValueSet Practioner identifier type"/>
+  <status value="draft"/>
+  <date value="2023-09-05T09:07:49+00:00"/>
+  <publisher value="Interop'Santé"/>
+  <contact>
+    <name value="Interop'Santé"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://interopsante.org/"/>
+    </telecom>
+  </contact>
+  <contact>
+    <name value="InteropSanté"/>
+    <telecom>
+      <system value="email"/>
+      <value value="fhir@interopsante.org"/>
+      <use value="work"/>
+    </telecom>
+  </contact>
+  <description value="A coded type for an identifier that can be used to determine which identifier to use for    a specific purpose (providers identification)"/>
+  <compose>
+    <include>
+      <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+      <concept>
+        <code value="EI"/>
+        <display value="Identifiant d'employé"/>
+      </concept>
+    </include>
+    <include>
+      <system value="http://interopsante.org/fhir/CodeSystem/fr-v2-0203"/>
+      <concept>
+        <code value="ADELI"/>
+        <display value="N° ADELI"/>
+      </concept>
+      <concept>
+        <code value="RPPS"/>
+        <display value="N° RPPS"/>
+      </concept>
+      <concept>
+        <code value="IDNPS"/>
+        <display value="Identifiant National de Professionnel de Santé"/>
+      </concept>
+      <concept>
+        <code value="INTRN"/>
+        <display value="Identifiant interne"/>
+      </concept>
+    </include>
+    <include>
+      <system value="https://mos.esante.gouv.fr/NOS/TRE_G08-TypeIdentifiantPersonne/FHIR/TRE-G08-TypeIdentifiantPersonne"/>
+      <concept>
+        <code value="1"/>
+        <display value="Id cabinet ADELI/n° registre"/>
+      </concept>
+      <concept>
+        <code value="3"/>
+        <display value="FINESS/n° de registre"/>
+      </concept>
+      <concept>
+        <code value="4"/>
+        <display value="SIREN/n° de registre"/>
+      </concept>
+      <concept>
+        <code value="5"/>
+        <display value="SIRET/n° de registre"/>
+      </concept>
+      <concept>
+        <code value="6"/>
+        <display value="Id cabinet RPPS/n° de registre"/>
+      </concept>
+    </include>
+  </compose>
+</ValueSet>
