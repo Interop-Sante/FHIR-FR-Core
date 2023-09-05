@@ -10,18 +10,6 @@ Description: "A set of codes that can be used to indicate the relationship betwe
 * ^extension[=].valueInteger = 1
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
 * ^extension[=].valueCode = #fhir
-* ^identifier.system = "http://interopsante.org/fhir/fr-valuset"
-* ^identifier.value = "urn:oid:2.16.840.1.113883.2.8.1.1"
-* ^version = "1.1.0"
-* ^status = #active
-* ^experimental = false
-* ^date = "2023-01-02"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
-* ^immutable = false
 * $0131#O "Other"
 * $0131#U "Unknown"
 * $0131#N "Next of kin"

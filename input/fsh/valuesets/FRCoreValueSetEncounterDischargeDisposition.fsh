@@ -10,17 +10,7 @@ Description: "This value set defines a set of codes that can be used to where th
 * ^extension[=].valueInteger = 1
 * ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
 * ^extension[=].valueCode = #fhir
-* ^identifier.system = "2.16.840.1.113883.2.8.1.3"
-* ^identifier.value = "urn:oid:2.16.840.1.113883.2.8.1.3.15"
-* ^version = "1.1.0"
-* ^status = #active
-* ^experimental = true
-* ^date = "2023-01-02"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
+
 * ^immutable = true
 * $fr-circonstances-sortie#2 "Mesure disciplinaire"
 * $fr-circonstances-sortie#3 "Décision médicale"

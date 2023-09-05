@@ -2,19 +2,6 @@ ValueSet: FRCoreValueSetOrganizationType
 Id: fr-core-organization-type
 Title: "FR Core ValueSet Organization type"
 Description: "Organization types | Types de structures"
-* ^meta.profile = "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
-* ^identifier.system = "2.16.840.1.113883.2.8.1.3"
-* ^identifier.value = "urn:oid:2.16.840.1.113883.2.8.1.3.22"
-* ^version = "1.1.0"
-* ^status = #active
-* ^experimental = false
-* ^date = "2023-01-02"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
-* ^immutable = false
 * $fr-v2-3307#GHT "Groupement hospitalier de territoire"
 * $fr-v2-3307#LEGAL-ENTITY "Entité juridique"
 * $fr-v2-3307#GEOGRAPHICAL-ENTITY "Entité géographique"
