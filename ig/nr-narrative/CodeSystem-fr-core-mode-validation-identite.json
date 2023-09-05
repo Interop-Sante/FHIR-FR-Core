@@ -1,0 +1,69 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "fr-core-mode-validation-identite",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+  },
+  "url" : "http://hl7.fr/ig/fhir/core/CodeSystem/fr-core-mode-validation-identite",
+  "version" : "2.0.0",
+  "name" : "FRCoreCodeSystemModeValidationIdentite",
+  "title" : "FR Core CodeSystem Mode Validation Identite",
+  "status" : "draft",
+  "date" : "2023-09-05T09:02:09+00:00",
+  "publisher" : "Interop'Santé",
+  "contact" : [{
+    "name" : "Interop'Santé",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://interopsante.org/"
+    }]
+  },
+  {
+    "name" : "InteropSanté",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "fhir@interopsante.org",
+      "use" : "work"
+    }]
+  }],
+  "caseSensitive" : true,
+  "content" : "complete",
+  "count" : 9,
+  "concept" : [{
+    "code" : "AN",
+    "display" : "Extrait d'acte de naissance"
+  },
+  {
+    "code" : "CC",
+    "display" : "Carnet de circulation"
+  },
+  {
+    "code" : "CE",
+    "display" : "Carte Européenne"
+  },
+  {
+    "code" : "CM",
+    "display" : "Carte militaire"
+  },
+  {
+    "code" : "CN",
+    "display" : "Carte nationale d'identité"
+  },
+  {
+    "code" : "CS",
+    "display" : "Carte de séjour"
+  },
+  {
+    "code" : "LE",
+    "display" : "Livret de famille"
+  },
+  {
+    "code" : "PA",
+    "display" : "Passeport"
+  },
+  {
+    "code" : "PC",
+    "display" : "Permis de conduire"
+  }]
+}

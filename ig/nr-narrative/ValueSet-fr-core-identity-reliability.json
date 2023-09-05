@@ -1,0 +1,112 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fr-core-identity-reliability",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+  },
+  "url" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-identity-reliability",
+  "version" : "2.0.0",
+  "name" : "FRCoreValueSetIdentityReliability",
+  "title" : "FR Core ValueSet Identity reliability",
+  "status" : "draft",
+  "date" : "2023-09-05T09:02:09+00:00",
+  "publisher" : "Interop'Santé",
+  "contact" : [{
+    "name" : "Interop'Santé",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://interopsante.org/"
+    }]
+  },
+  {
+    "name" : "InteropSanté",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "fhir@interopsante.org",
+      "use" : "work"
+    }]
+  }],
+  "description" : "The reliability of the identity.",
+  "compose" : {
+    "include" : [{
+      "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-0445",
+      "concept" : [{
+        "code" : "VIDE",
+        "display" : "Identité non encore qualifiée"
+      },
+      {
+        "code" : "PROV",
+        "display" : "Identité provisoire"
+      },
+      {
+        "code" : "VALI",
+        "display" : "Identité validée"
+      },
+      {
+        "code" : "DOUB",
+        "display" : "Doublon"
+      },
+      {
+        "code" : "DESA",
+        "display" : "Identité ndésactivée"
+      },
+      {
+        "code" : "DPOT",
+        "display" : "Doublon potentiel"
+      },
+      {
+        "code" : "DOUA",
+        "display" : "Doublon avéré"
+      },
+      {
+        "code" : "COLP",
+        "display" : "Collision potentielle"
+      },
+      {
+        "code" : "COLV",
+        "display" : "Collision avérée"
+      },
+      {
+        "code" : "FILI",
+        "display" : "Filiation"
+      },
+      {
+        "code" : "CACH",
+        "display" : "Identité cachée"
+      },
+      {
+        "code" : "ANOM",
+        "display" : "Anonyme"
+      },
+      {
+        "code" : "IDVER",
+        "display" : "Identité vérifiée par le patient"
+      },
+      {
+        "code" : "RECD",
+        "display" : "Identité reçue d'un autre domaine"
+      },
+      {
+        "code" : "IDRA",
+        "display" : "Identité rapprochée dans un autre domaine"
+      },
+      {
+        "code" : "USUR",
+        "display" : "Identité usurpée"
+      },
+      {
+        "code" : "HOMD",
+        "display" : "Homonyme détecté"
+      },
+      {
+        "code" : "HOMA",
+        "display" : "Homonyme avéré"
+      },
+      {
+        "code" : "INVA",
+        "display" : "Identité invalidée"
+      }]
+    }]
+  }
+}
