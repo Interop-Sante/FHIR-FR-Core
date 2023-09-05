@@ -1,0 +1,104 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "fr-core-organization-type",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+  },
+  "url" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-organization-type",
+  "version" : "2.0.0",
+  "name" : "FRCoreValueSetOrganizationType",
+  "title" : "FR Core ValueSet Organization type",
+  "status" : "draft",
+  "date" : "2023-09-05T08:16:49+00:00",
+  "publisher" : "Interop'Santé",
+  "contact" : [{
+    "name" : "Interop'Santé",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://interopsante.org/"
+    }]
+  },
+  {
+    "name" : "InteropSanté",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "fhir@interopsante.org",
+      "use" : "work"
+    }]
+  }],
+  "description" : "Organization types | Types de structures",
+  "compose" : {
+    "include" : [{
+      "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-3307",
+      "concept" : [{
+        "code" : "GHT",
+        "display" : "Groupement hospitalier de territoire"
+      },
+      {
+        "code" : "LEGAL-ENTITY",
+        "display" : "Entité juridique"
+      },
+      {
+        "code" : "GEOGRAPHICAL-ENTITY",
+        "display" : "Entité géographique"
+      },
+      {
+        "code" : "GROUP",
+        "display" : "Groupe privé / hospitalier"
+      },
+      {
+        "code" : "HEBERGEMENT",
+        "display" : "Hébergement"
+      },
+      {
+        "code" : "SOIN",
+        "display" : "Soin"
+      },
+      {
+        "code" : "ADMINISTRATIF",
+        "display" : "Administration"
+      },
+      {
+        "code" : "MEDICAL",
+        "display" : "Médical"
+      },
+      {
+        "code" : "TECHNIQUE",
+        "display" : "Technique"
+      },
+      {
+        "code" : "MEDICOTEC",
+        "display" : "medico technique (radio, scanner …)"
+      },
+      {
+        "code" : "UF",
+        "display" : "Unité fonctionnelle"
+      },
+      {
+        "code" : "SERVICE",
+        "display" : "Service"
+      },
+      {
+        "code" : "UM",
+        "display" : "Unité médicale"
+      },
+      {
+        "code" : "UAC",
+        "display" : "Unité d'activité"
+      },
+      {
+        "code" : "POLE",
+        "display" : "Pole"
+      },
+      {
+        "code" : "CENTRE-RESP",
+        "display" : "Centre de responsabilité"
+      },
+      {
+        "code" : "CENTRE-ACTIVITE",
+        "display" : "Centre d'activité"
+      }]
+    }]
+  }
+}

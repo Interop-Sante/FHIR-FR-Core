@@ -1,0 +1,46 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "fr-core-location-type",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+  },
+  "url" : "http://hl7.fr/ig/fhir/core/CodeSystem/fr-core-location-type",
+  "version" : "2.0.0",
+  "name" : "FRCoreCodeSystemLocationType",
+  "title" : "FR Core CodeSystem Location Type",
+  "status" : "draft",
+  "date" : "2023-09-05T08:16:49+00:00",
+  "publisher" : "Interop'Santé",
+  "contact" : [{
+    "name" : "Interop'Santé",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://interopsante.org/"
+    }]
+  },
+  {
+    "name" : "InteropSanté",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "fhir@interopsante.org",
+      "use" : "work"
+    }]
+  }],
+  "description" : "Location type",
+  "caseSensitive" : true,
+  "content" : "complete",
+  "count" : 3,
+  "concept" : [{
+    "code" : "FNTR",
+    "display" : "Coté fenetre"
+  },
+  {
+    "code" : "CLR",
+    "display" : "coté couloir"
+  },
+  {
+    "code" : "ML",
+    "display" : "au mileu de la chambre"
+  }]
+}
