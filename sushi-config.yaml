@@ -1,7 +1,7 @@
 id: hl7.fhir.fr.core
 canonical: http://hl7.fr/ig/fhir/core
-name: ExampleIG
-title: Exemple d'IG Français
+name: Guide d'implémentation Fr Core
+title: Guide d'implémentation Fr Core
 publisher:
   name: Interop'Santé
   url: http://interopsante.org/
@@ -17,3 +17,27 @@ fhirVersion: 4.0.1
 copyrightYear: 2023+
 releaseLabel: ci-build
 
+parameters:
+    shownav: 'true'
+
+
+pages:
+    index.md:
+        title: Accueil
+    autres_ressources.md:
+        title: Autres Ressources
+        downloads.md:
+            title: Téléchargements et usages
+
+menu:
+    Accueil: index.html
+    Description des flux:
+        Construction des flux: construction_des_flux.html
+        Flux 01: st_flux1.html
+        Flux 02: st_flux2.html
+    Ressources de conformité: artifacts.html
+    Autres ressources:
+        Sécurité: securite.html
+        Téléchargements et usage: downloads.html
+        "Spécifications FHIR ": new-tab {{site.data.fhir.path}}index.html
+        "Site de l'ANS ": new-tab https://esante.gouv.fr/
