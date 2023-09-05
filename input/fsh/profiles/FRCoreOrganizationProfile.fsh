@@ -39,7 +39,7 @@ This profile specifies the types of identifiers for organizations in France, and
 * type[organizationType].coding.system ^example.valueUri = "http://interopsante.org/fhir/CodeSystem/fr-core-v2-3307"
 
 * type[secteurActiviteRASS] from $JDV-J101-SecteurActivite-RASS (required)
-* type[secteurActiviteRASS] ^binding.extension[=].valueString = "OrganizationType"
+* type[secteurActiviteRASS] ^binding.extension[+].valueString = "OrganizationType"
 * type[secteurActiviteRASS] ^binding.description = "Secteurs d'activité des établissements avec la même activité dans le RASS"
 * type[secteurActiviteRASS].coding 1..1
 * type[secteurActiviteRASS].coding.system 1..
