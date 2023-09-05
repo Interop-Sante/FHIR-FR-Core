@@ -1,16 +1,11 @@
+// A supprimer au profit de ceux de l'IG annuaire ?
+
 Profile: FrCorePractionerRoleProfession
 Parent: PractitionerRole
 Id: fr-core-practitioner-role-profession
 Title: "FR Core Practitioner Role Profession"
 Description: "Profile of the PractitionerRole resource. This profile specifies the professions of the practitioner authorized for France| Spécification du profil de la ressource PractitionerRole permettant de spécifier la ou les professions du PS autorisées pour un exercice en France."
-* ^version = "1.1.0"
 * ^status = #draft
-* ^date = "2023-02-20"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * practitioner only Reference(FRCorePractitionerProfile)
 * organization only Reference(FRCoreOrganizationProfile)
 * code from $fr-practioner-role-profession (required)

@@ -1,16 +1,11 @@
+// A supprimer au profit de ceux de l'IG annuaire ?
+
 Profile: FrCorePractitionerRoleExercice
 Parent: PractitionerRole
 Id: fr-core-practitioner-role-exercice
 Title: "FR Core Practitioner Role Exercice"
 Description: "Profil of the PractitionerRole resource for France. This profil specifies the role of the practitioner for the organization | Spécification du profil de la ressource PractitionerRole pour un usage en France. Ce profil permet de spécifier le rôle (la situation d'exercice) du PS dans le contexte d'une organisation."
-* ^version = "1.1.0"
 * ^status = #draft
-* ^date = "2023-02-20"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * extension ^slicing.discriminator.type = #value
 * extension ^slicing.discriminator.path = "url"
 * extension ^slicing.rules = #open

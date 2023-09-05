@@ -2,14 +2,6 @@ Profile: FRCoreMedicationAdministrationInhaledOxygenProfile
 Parent: MedicationAdministration
 Id: fr-core-medication-administration-inhaled-oxygen
 Title: "FR Core Medication Administration Inhaled Oxygen Profile"
-* ^version = "1.1.0"
-* ^status = #active
-* ^date = "2022-10-18"
-* ^publisher = "Interop'Santé"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * medication[x] only CodeableConcept
 * medication[x].coding 1..1
 * medication[x].coding.system 1..

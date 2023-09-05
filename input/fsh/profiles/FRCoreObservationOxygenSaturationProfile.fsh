@@ -3,35 +3,27 @@ Parent: $oxygensat
 Id: fr-core-observation-saturation-oxygen
 Title: "FR Core Observation Oxygen Saturation Profile"
 Description: "Oxygen saturation in Arterial blood  | Saturation en oxygène du sang artériel"
-* ^version = "1.1.0"
-* ^status = #active
-* ^date = "2022-10-18"
-* ^publisher = "InteropSanté"
-* ^contact.name = "InteropSanté"
-* ^contact.telecom.system = #email
-* ^contact.telecom.value = "fhir@interopsante.org"
-* ^contact.telecom.use = #work
 * ^purpose = "Measurement of the oxygen saturation in the arterial blood | Mesure de la saturation en oxygène du sang artériel"
 * . ^short = "French FHIR Oxygen Saturation Profile"
 * . ^definition = "This french profile defines  how to represent Oxygen Saturation observations in FHIR using a standard LOINC code and UCUM units of measure | Ce profil français définit comment représenter la mesure de la saturation en oxygène au niveau su sang artériel, en utilisant LOINC et UCUM"
+
 * extension ^slicing.discriminator.type = #value
 * extension ^slicing.discriminator.path = "url"
 * extension ^slicing.rules = #open
-* extension ^min = 0
+
 * extension contains $workflow-supportingInfo named supportingInfoAdministrationOxygen 0..1
+
 * partOf ..1 MS
 * partOf only Reference(FRCoreMedicationAdministrationInhaledOxygenProfile)
 * partOf ^definition = "A larger event of which this particular Observation is a component or step.  For example,  an observation as part of a MedicationAdministration. This observation can be related to a inhaled oxygen administration. The mesaurement of the oxygen satuation can't be done without knowing the administration of oxygen. [ Dans le cas où la mesure de la saturation en oxygène intervient en même temps que l'administration d'oxygène, cette mesure est liée dans un évènement plus large qui est l'administration de l'oxygène, via la relation partOf. Cet élément partOf doit être supporté par les implémentations."
+
 * partOf.reference ^mustSupport = false
 * subject only Reference(Patient or FRCorePatientProfile)
 * encounter only Reference(Encounter or FRCoreEncounterProfile)
 * performer only Reference(CareTeam or RelatedPerson or FRCorePatientProfile or FRCorePractitionerProfile or PractitionerRole or FRCoreOrganizationProfile)
 * interpretation from $fr-core-obervation-interpretation (extensible)
-* interpretation ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-* interpretation ^binding.extension.valueString = "ObservationInterpretation"
 * bodySite from $ValueSet-sPO2BodyLocationVS.html (example)
 * bodySite ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
 * bodySite ^binding.extension.valueString = "BodySite"
-
 
 * value[x] ^slicing.rules = #open
