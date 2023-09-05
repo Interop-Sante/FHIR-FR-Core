@@ -16,6 +16,8 @@ Description: "French profil Blood pressure panel with all children optional - Th
 * effective[x] ^short = "Often just a dateTime for Vital Signs"
 * effective[x] ^definition = "Often just a dateTime for Vital Signs"
 * performer only Reference(CareTeam or FRCorePatientProfile or FRCorePractitionerProfile or PractitionerRole or FRCoreOrganizationProfile or FRCoreRelatedPersonProfile)
+
+* value[x] ^slicing.rules = #open // Added to resolve "error Observation.value[x] ^slicing.rules: Missing required value"
 * value[x] ..0
 
 * interpretation from $fr-core-obervation-interpretation (extensible)
@@ -35,13 +37,14 @@ Description: "French profil Blood pressure panel with all children optional - Th
 
 * component[SystolicBP].interpretation from $fr-core-obervation-interpretation (extensible)
 * component[SystolicBP].referenceRange ^contentReference = "http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange"
+* component[SystolicBP].value[x] ^slicing.rules = #open // Added to resolve "error Observation.value[x] ^slicing.rules: Missing required value"
 
 
 * component[DiastolicBP] ^short = "Used when reporting diastolic blood pressure."
 * component[DiastolicBP] ^definition = "Used when reporting diastolic blood pressure."
-
 * component[DiastolicBP].interpretation from $fr-core-obervation-interpretation (extensible)
 * component[DiastolicBP].referenceRange ^contentReference = "http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange"
+* component[DiastolicBP].value[x] ^slicing.rules = #open // Added to resolve "error Observation.value[x] ^slicing.rules: Missing required value"
 
 * component[MeanBP] ^short = "Mean blood pressure"
 * component[MeanBP] ^definition = "Mean blood pressure"
