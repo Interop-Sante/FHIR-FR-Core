@@ -3,29 +3,42 @@
 [Add a brief description of this IG in English]
 </p>
 
+## 1.1 Introduction
 
-### Introduction
+Ce guide de mise en œuvre est fourni pour **soutenir l'utilisation de FHIR® en France**. Il permet de définir les profils, les extensions et les jeux de valeurs normalisant **l'échange de données administratives sur les patients, les professionnels de santé et les organisations, et les rencontres avec les patients (programmées ou effectives), ainsi que les signes vitaux**.
 
-Définir ici de quoi parle l'IG (En termes non expert, compréhensible par un patient). Rajouter également les détails techniques sur le contexte et le besoin de cet IG
+Il s'agit d'une spécification de travail. Sa mise en œuvre est actuellement testée, permettant un retour d'information afin d'en améliorer le contenu. On y retrouve :
 
-Les principales sections de l'IG  sont :
+* Orientations sur les ressources essentielles en France.
+* Extensions nécessaires à l'utilisation locale en France.
 
-* Le contexte de l'IG, quelle problématique il résout
-* Ce que les Implémenteurs doivent mettre en place
-* Un onglet "Ressources de conformité" pour s'assurer d'un schéma global entre tous les IGs
+## 1.2 Champ d'application
 
-### Périmètre du projet
+Ce document présente les concepts d'utilisation français définis par :
 
-Définir en quelques lignes en anglais quel est le périmètre du projet
+* Profils - contraintes utiles des ressources et types de données FHIR essentiels pour l'utilisation en France.
+* Extensions - extensions FHIR ajoutées pour un usage local, couvrant les concepts français nécessaires.
+* Terminologies - systèmes de codes et ensembles de valeurs définis ou référencés pour la France. 
 
-Toujours laisser l'onglet "Ressources de conformité" pour s'assurer d'une cohérence globales entre tous les IGs
+Les activités de profilage donnent la priorité aux ressources ayant un niveau de maturité suffisant (>=3). Chaque sujet fonctionnel est traité par un groupe de travail dédié d'Interop'Santé, réunissant des éditeurs de logiciels, des professionnels des établissements de santé et des représentants d'agences gouvernementales. Le consensus sur les artefacts FHIR est établi d'abord au niveau du groupe de travail, puis au niveau des membres.
 
+## 1.3 Standards utilisés
+
+Le Guide d'implémentation FR Core est **basé sur la version Release 4 de HL7 FHIR** et définit l'ensemble minimum de contraintes sur les ressources FHIR pour créer les profils FR Core. Elles font référence à un certain nombre de ressources du standard ainsi qu’aux spécifications de l’API REST FHIR, basées sur le protocole HTTP. Les syntaxes retenues sont la syntaxe XML et JSON.
+
+En établissant la "base" des normes pour promouvoir l'interopérabilité et l'adoption par le biais d'une mise en œuvre commune, il permet une évolution ultérieure de l'élaboration des normes pour des cas d'utilisation spécifiques.
+
+## 1.4 Gouvernance
+
+Le guide d'implémentation FR Core est géré par HL7 France et IHE France au sein du comité technique FHIR de HL7 France.
 ### Auteurs et contributeurs
 
-| Role  | Nom | Organisation | Contact |
-| --- | --- | --- | --- |
-| **Primary Editor** | Prenom Nom | Agence du Numérique en Santé | prenom.nom@address.email |
+| Role  | Nom           | Organisation | Contact                     |
+| --- |---------------|--------------|-----------------------------|
+| **Primary Editor** | Nicolas Riss  | Agence du Numérique en Santé  | nicolas.riss@esante.gouv.fr |
+| **Primary Editor** | Yohann Poiron | Xtrem Santé  | ypoiron@xtremsante.fr       |
 
-### Dépendances
+
+## Dépendances
 
 {% include dependency-table.xhtml %}
