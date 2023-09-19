@@ -33,7 +33,6 @@ menu:
     Accueil: index.html
     Ressources de conformité: artifacts.html
     Autres ressources:
-        Sécurité: securite.html
         Téléchargements et usage: downloads.html
         "Spécifications FHIR ": new-tab {{site.data.fhir.path}}index.html
-        "Site de l'ANS ": new-tab https://esante.gouv.fr/
+        "Site Interop'Santé": new-tab http://www.interopsante.org
