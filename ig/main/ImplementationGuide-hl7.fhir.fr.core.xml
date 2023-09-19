@@ -7,10 +7,10 @@
   </text>
   <url value="http://hl7.fr/ig/fhir/core/ImplementationGuide/hl7.fhir.fr.core"/>
   <version value="2.0.0"/>
-  <name value="ExampleIG"/>
-  <title value="Exemple d'IG Français"/>
+  <name value="GuidedimplmentationFrCore"/>
+  <title value="Guide d'implémentation Fr Core"/>
   <status value="draft"/>
-  <date value="2023-09-19T07:10:34+00:00"/>
+  <date value="2023-09-19T08:58:18+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>
@@ -61,6 +61,14 @@
       </extension>
       <extension url="value">
         <valueString value="ci-build"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="shownav"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -256,6 +264,14 @@
       </extension>
       <extension url="value">
         <valueString value="ci-build"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueCode value="shownav"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -1679,56 +1695,24 @@
           <valueUrl value="index.html"/>
         </extension>
         <nameUrl value="index.html"/>
-        <title value="Home"/>
-        <generation value="html"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="background.html"/>
-        </extension>
-        <nameUrl value="background.html"/>
-        <title value="Background"/>
-        <generation value="html"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="changes.html"/>
-        </extension>
-        <nameUrl value="changes.html"/>
-        <title value="Changes"/>
-        <generation value="html"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="downloads.html"/>
-        </extension>
-        <nameUrl value="downloads.html"/>
-        <title value="Downloads"/>
-        <generation value="html"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="spec.html"/>
-        </extension>
-        <nameUrl value="spec.html"/>
-        <title value="Spec"/>
+        <title value="Accueil"/>
         <generation value="markdown"/>
       </page>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="spec2.html"/>
+          <valueUrl value="autres_ressources.html"/>
         </extension>
-        <nameUrl value="spec2.html"/>
-        <title value="Spec 2"/>
+        <nameUrl value="autres_ressources.html"/>
+        <title value="Autres Ressources"/>
         <generation value="markdown"/>
-      </page>
-      <page>
-        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
-          <valueUrl value="StructureDefinition-ext-myExtension-note.html"/>
-        </extension>
-        <nameUrl value="StructureDefinition-ext-myExtension-note.html"/>
-        <title value="Structure Definition Ext My Extension Note"/>
-        <generation value="markdown"/>
+        <page>
+          <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+            <valueUrl value="downloads.html"/>
+          </extension>
+          <nameUrl value="downloads.html"/>
+          <title value="Téléchargements et usages"/>
+          <generation value="markdown"/>
+        </page>
       </page>
     </page>
     <parameter>

@@ -7,10 +7,10 @@
   },
   "url" : "http://hl7.fr/ig/fhir/core/ImplementationGuide/hl7.fhir.fr.core",
   "version" : "2.0.0",
-  "name" : "ExampleIG",
-  "title" : "Exemple d'IG Français",
+  "name" : "GuidedimplmentationFrCore",
+  "title" : "Guide d'implémentation Fr Core",
   "status" : "draft",
-  "date" : "2023-09-19T07:10:34+00:00",
+  "date" : "2023-09-19T08:58:18+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",
@@ -70,6 +70,17 @@
       {
         "url" : "value",
         "valueString" : "ci-build"
+      }],
+      "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+    },
+    {
+      "extension" : [{
+        "url" : "code",
+        "valueString" : "shownav"
+      },
+      {
+        "url" : "value",
+        "valueString" : "true"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -338,6 +349,17 @@
       {
         "url" : "value",
         "valueString" : "ci-build"
+      }],
+      "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+    },
+    {
+      "extension" : [{
+        "url" : "code",
+        "valueCode" : "shownav"
+      },
+      {
+        "url" : "value",
+        "valueString" : "true"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -1943,62 +1965,26 @@
           "valueUrl" : "index.html"
         }],
         "nameUrl" : "index.html",
-        "title" : "Home",
-        "generation" : "html"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "background.html"
-        }],
-        "nameUrl" : "background.html",
-        "title" : "Background",
-        "generation" : "html"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "changes.html"
-        }],
-        "nameUrl" : "changes.html",
-        "title" : "Changes",
-        "generation" : "html"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "downloads.html"
-        }],
-        "nameUrl" : "downloads.html",
-        "title" : "Downloads",
-        "generation" : "html"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "spec.html"
-        }],
-        "nameUrl" : "spec.html",
-        "title" : "Spec",
+        "title" : "Accueil",
         "generation" : "markdown"
       },
       {
         "extension" : [{
           "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "spec2.html"
+          "valueUrl" : "autres_ressources.html"
         }],
-        "nameUrl" : "spec2.html",
-        "title" : "Spec 2",
-        "generation" : "markdown"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
-          "valueUrl" : "StructureDefinition-ext-myExtension-note.html"
-        }],
-        "nameUrl" : "StructureDefinition-ext-myExtension-note.html",
-        "title" : "Structure Definition Ext My Extension Note",
-        "generation" : "markdown"
+        "nameUrl" : "autres_ressources.html",
+        "title" : "Autres Ressources",
+        "generation" : "markdown",
+        "page" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+            "valueUrl" : "downloads.html"
+          }],
+          "nameUrl" : "downloads.html",
+          "title" : "Téléchargements et usages",
+          "generation" : "markdown"
+        }]
       }]
     },
     "parameter" : [{

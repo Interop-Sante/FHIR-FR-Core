@@ -28,8 +28,8 @@
 /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/CodeSystem-fr-core-v2-0203.json: line 0, col 0, Warning - The resource should declare its jurisdiction to match the package id (hl7.fhir.fr.core, jurisdiction = urn:iso:std:iso:3166#FR) (for Sushi users: in sushi-config.yaml, 'jurisdiction: urn:iso:std:iso:3166#FR "null"') (BUSINESSRULE)
 /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/CodeSystem-fr-core-v2-3311.json: line 1, col 969, Error - Published code systems SHALL conform to the ShareableCodeSystem profile, which says that the element CodeSystem.experimental is mandatory, but it is not present (REQUIRED)
 /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/CodeSystem-fr-core-v2-3311.json: line 0, col 0, Warning - The resource should declare its jurisdiction to match the package id (hl7.fhir.fr.core, jurisdiction = urn:iso:std:iso:3166#FR) (for Sushi users: in sushi-config.yaml, 'jurisdiction: urn:iso:std:iso:3166#FR "null"') (BUSINESSRULE)
-/home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/ImplementationGuide-hl7.fhir.fr.core.json: line 1, col 10023, Warning - value should not start or finish with whitespace 'First day of the workweek | Premier jour de la semaine de travail ' (INVALID)
-/home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/ImplementationGuide-hl7.fhir.fr.core.json: line 1, col 55877, Warning - value should not start or finish with whitespace 'Recurrent caracteristic of the Schedule | Caractère récurrent du Schedule ' (INVALID)
+/home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/ImplementationGuide-hl7.fhir.fr.core.json: line 1, col 10364, Warning - value should not start or finish with whitespace 'First day of the workweek | Premier jour de la semaine de travail ' (INVALID)
+/home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/ImplementationGuide-hl7.fhir.fr.core.json: line 1, col 56218, Warning - value should not start or finish with whitespace 'Recurrent caracteristic of the Schedule | Caractère récurrent du Schedule ' (INVALID)
 /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/ImplementationGuide-hl7.fhir.fr.core.json: line 0, col 0, Warning - The resource should declare its jurisdiction to match the package id (hl7.fhir.fr.core, jurisdiction = urn:iso:std:iso:3166#FR instead of or as well as [null]) (for Sushi users: in sushi-config.yaml, 'jurisdiction: urn:iso:std:iso:3166#FR "null"') (BUSINESSRULE)
 /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/StructureDefinition-fr-core-address.json: line 1, col 19991, Info - The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk (INVALID)
 /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/StructureDefinition-fr-core-address.json: line 0, col 0, Error - The resource must declare its jurisdiction to match the package id (hl7.fhir.fr.core, jurisdiction = urn:iso:std:iso:3166#FR) (for Sushi users: in sushi-config.yaml, 'jurisdiction: urn:iso:std:iso:3166#FR "null"') (BUSINESSRULE)
@@ -480,9 +480,9 @@
 /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/ValueSet-fr-core-title.json: line 0, col 0, Warning - The resource should declare its jurisdiction to match the package id (hl7.fhir.fr.core, jurisdiction = urn:iso:std:iso:3166#FR) (for Sushi users: in sushi-config.yaml, 'jurisdiction: urn:iso:std:iso:3166#FR "null"') (BUSINESSRULE)
 /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/ValueSet-fr-core-title.json: line 0, col 0, Warning - Error from server: Unable to provide support for code system https://mos.esante.gouv.fr/NOS/TRE_R11-CiviliteExercice/FHIR/TRE-R11-CiviliteExercice (EXCEPTION)
 
-ExampleIG : Validation Results
+GuidedimplmentationFrCore : Validation Results
 =========================================
 
-err = 134, warn = 306, info = 55
+err = 134, warn = 305, info = 55
 IG Publisher Version: 1.4.6
-Generated Tue Sep 19 07:15:27 UTC 2023. FHIR version 4.0.1 for hl7.fhir.fr.core#2.0.0 (canonical = http://hl7.fr/ig/fhir/core)
+Generated Tue Sep 19 09:03:18 UTC 2023. FHIR version 4.0.1 for hl7.fhir.fr.core#2.0.0 (canonical = http://hl7.fr/ig/fhir/core)
