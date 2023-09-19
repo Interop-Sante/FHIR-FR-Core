@@ -6,7 +6,6 @@ Title: "FR Core Observation Body Height Profile"
 * extension ^slicing.discriminator.type = #value
 * extension ^slicing.discriminator.path = "url"
 * extension ^slicing.rules = #open
-* extension ^min = 0
 * extension contains
     FRCoreObservationHeightBodyPositionExtension named bodyposition 0..1 and
     $workflow-supportingInfo named supportingInfo 0..1 MS
@@ -14,11 +13,6 @@ Title: "FR Core Observation Body Height Profile"
 * encounter only Reference(FRCoreEncounterProfile)
 * performer only Reference(CareTeam or RelatedPerson or FRCorePatientProfile or FRCorePractitionerProfile or PractitionerRole or FRCoreOrganizationProfile)
 * interpretation from $fr-core-obervation-interpretation (extensible)
-* interpretation ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-* interpretation ^binding.extension.valueString = "ObservationInterpretation"
 * method from $ValueSet-heightLengthMeasMethodVS (example)
-* method ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-* method ^binding.extension.valueString = "ObservationMethod"
-
 
 * value[x] ^slicing.rules = #open

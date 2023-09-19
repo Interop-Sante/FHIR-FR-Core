@@ -7,6 +7,7 @@ Description: "French profile of Address datatype | Profil du type de données Ad
 * extension ^slicing.discriminator.type = #value
 * extension ^slicing.discriminator.path = "url"
 * extension ^slicing.rules = #open
+
 * extension contains FRCoreAddressInseeCodeExtension named inseeCode 0..1
 
 * country ^short = "Country (will be ISO 3166 3 letter code; code=FRA for France)"
