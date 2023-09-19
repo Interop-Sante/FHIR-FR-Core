@@ -3,7 +3,7 @@
 
 err = 134, warn = 305, info = 55
 IG Publisher Version: 1.4.6
-Generated Tue Sep 19 09:03:18 UTC 2023. FHIR version 4.0.1 for hl7.fhir.fr.core#2.0.0 (canonical = http://hl7.fr/ig/fhir/core)
+Generated Tue Sep 19 09:32:24 UTC 2023. FHIR version 4.0.1 for hl7.fhir.fr.core#2.0.0 (canonical = http://hl7.fr/ig/fhir/core)
  Build Errors : 3364 / 13 / 0
  /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/CodeSystem-fr-core-circonstances-sortie : 1 / 1 / 1
  /home/runner/work/FHIR-FR-Core/FHIR-FR-Core/fsh-generated/resources/CodeSystem-fr-core-contact-relationship : 0 / 1 / 1
