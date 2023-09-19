@@ -1,6 +1,10 @@
 <p style="padding: 5px; border-radius: 5px; border: 2px solid maroon; background: #ffffe6; width: 65%">
-<b>Brief description of this Implementation Guide</b><br>
-[Add a brief description of this IG in English]
+<b>
+Profils, extensions, jeux de valeurs, et guides de mise en œuvre normalisant l'échange de données administratives sur les patients, les professionnels de santé et les organisations, et les rencontres avec les patients (programmées ou effectives), ainsi que les signes vitaux en France.
+</b><br>
+
+_Profiles, extensions, value sets, code systems and implementation guides standardizing the exchange of administrative data about patients, health professionals and organization, and patient encounters (scheduled or effective), and vital sign in France_
+
 </p>
 
 ## 1.1 Introduction
