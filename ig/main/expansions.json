@@ -1,8 +1,8 @@
 {
   "resourceType" : "Bundle",
-  "id" : "e77a9b98-4ce1-4fae-8fa0-ab8e065dda21",
+  "id" : "70c3d0d7-4305-4234-be72-5345a397b5b1",
   "meta" : {
-    "lastUpdated" : "2023-09-19T09:28:32.683+00:00"
+    "lastUpdated" : "2023-09-19T09:52:24.222+00:00"
   },
   "type" : "collection",
   "entry" : [{
@@ -18,10 +18,10 @@
       "name" : "FRCoreValueSetAvailabilityTimeDay",
       "title" : "First day of the workweek | Premier jour de la semaine de travail ",
       "status" : "draft",
-      "date" : "2023-09-19T09:28:32+00:00",
+      "date" : "2023-09-19T09:52:24+00:00",
       "expansion" : {
-        "identifier" : "urn:uuid:0ae3cb82-253b-47ab-a80e-3b360b292b50",
-        "timestamp" : "2023-09-19T09:31:33+00:00",
+        "identifier" : "urn:uuid:984eba43-5e87-4c25-b0f9-845fc56b3e8b",
+        "timestamp" : "2023-09-19T09:58:38+00:00",
         "total" : 0,
         "parameter" : [{
           "name" : "excludeNested",
@@ -47,10 +47,10 @@
       "name" : "FRCoreValueSetBPMeasurementMethod",
       "title" : "FR Core ValueSet BP measurement method",
       "status" : "draft",
-      "date" : "2023-09-19T09:28:32+00:00",
+      "date" : "2023-09-19T09:52:24+00:00",
       "expansion" : {
-        "identifier" : "urn:uuid:cc72e375-16ae-414e-b7d9-ef28a7fe34e9",
-        "timestamp" : "2023-09-19T09:31:37+00:00",
+        "identifier" : "urn:uuid:4623f390-a9cf-4cb5-b38e-2e60b860aee8",
+        "timestamp" : "2023-09-19T09:58:45+00:00",
         "total" : 4,
         "parameter" : [{
           "name" : "excludeNested",
