@@ -485,4 +485,4 @@ GuidedimplmentationFrCore : Validation Results
 
 err = 134, warn = 305, info = 55
 IG Publisher Version: 1.4.6
-Generated Tue Sep 19 09:32:24 UTC 2023. FHIR version 4.0.1 for hl7.fhir.fr.core#2.0.0 (canonical = http://hl7.fr/ig/fhir/core)
+Generated Tue Sep 19 09:33:53 UTC 2023. FHIR version 4.0.1 for hl7.fhir.fr.core#2.0.0 (canonical = http://hl7.fr/ig/fhir/core)

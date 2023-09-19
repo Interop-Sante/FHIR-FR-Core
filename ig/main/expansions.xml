@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Bundle xmlns="http://hl7.org/fhir">
-  <id value="28f1a1c5-3ada-4308-9d7e-a90f394f74ba"/>
+  <id value="e77a9b98-4ce1-4fae-8fa0-ab8e065dda21"/>
   <meta>
-    <lastUpdated value="2023-09-19T09:27:01.560+00:00"/>
+    <lastUpdated value="2023-09-19T09:28:32.683+00:00"/>
   </meta>
   <type value="collection"/>
   <entry>
@@ -37,10 +37,10 @@
         <name value="FRCoreValueSetAvailabilityTimeDay"/>
         <title value="First day of the workweek | Premier jour de la semaine de travail "/>
         <status value="draft"/>
-        <date value="2023-09-19T09:27:01+00:00"/>
+        <date value="2023-09-19T09:28:32+00:00"/>
         <expansion>
-          <identifier value="urn:uuid:87bcdb19-0f3f-473d-9dc4-f49b3320fe97"/>
-          <timestamp value="2023-09-19T09:29:59+00:00"/>
+          <identifier value="urn:uuid:0ae3cb82-253b-47ab-a80e-3b360b292b50"/>
+          <timestamp value="2023-09-19T09:31:33+00:00"/>
           <total value="0"/>
           <parameter>
             <name value="excludeNested"/>
@@ -121,10 +121,10 @@
         <name value="FRCoreValueSetBPMeasurementMethod"/>
         <title value="FR Core ValueSet BP measurement method"/>
         <status value="draft"/>
-        <date value="2023-09-19T09:27:01+00:00"/>
+        <date value="2023-09-19T09:28:32+00:00"/>
         <expansion>
-          <identifier value="urn:uuid:f4acfa50-7291-4d3e-a5bd-33aa519695cc"/>
-          <timestamp value="2023-09-19T09:30:05+00:00"/>
+          <identifier value="urn:uuid:cc72e375-16ae-414e-b7d9-ef28a7fe34e9"/>
+          <timestamp value="2023-09-19T09:31:37+00:00"/>
           <total value="4"/>
           <parameter>
             <name value="excludeNested"/>
