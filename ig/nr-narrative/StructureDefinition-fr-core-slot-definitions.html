@@ -78,45 +78,51 @@
             </button>
             <a href="http://hl7.org/fhir/R4/index.html" class="navbar-brand hidden">FHIR</a>
             <div class="nav-collapse collapse navbar-inverse-collapse">
-              <ul class="nav navbar-nav">
-  <li><a href="index.html">IG Home</a></li>
-  <li><a href="toc.html">Table of Contents</a></li>
-  <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MyIg Background<b class="caret">
-      </b>
-    </a>
-    <ul class="dropdown-menu">
-      <li><a name="l161">​</a>
-        <a href="background.html">Background</a>
-      </li>
-    </ul>
-  </li>
-  <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Specification<b class="caret">
-      </b>
-    </a>
-    <ul class="dropdown-menu">
-      <li><a name="l179">​</a>
-        <a href="spec.html">Detailed Specification</a>
-      </li>
-    </ul>
-  </li>
-  <li><a href="artifacts.html">Artifact Index</a></li>
-  <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Support<b class="caret">
-      </b>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="http://hl7.org/fhir/R4/index.html" target="_blank">FHIR Spec <img src="external.png" style="text-align: baseline"/></a>
-      </li>
-      <li>
-        <a href="downloads.html">Downloads</a>
-      </li>
-    </ul>
-  </li>
-</ul>      
+                <!-- menu.xml -->
 
+<ul class="nav navbar-nav">
+  <li>
+    <a href="index.html">Accueil</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Description des flux
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a name="l160">​</a>
+        <a href="construction_des_flux.html">Construction des flux</a>
+      </li>
+      <li><a name="l166">​</a>
+        <a href="st_flux1.html">Flux 01</a>
+      </li>
+      <li><a name="l172">​</a>
+        <a href="st_flux2.html">Flux 02</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="artifacts.html">Ressources de conformité</a>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Autres ressources
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a name="l195">​</a>
+        <a href="securite.html">Sécurité</a>
+      </li>
+      <li>
+        <a href="downloads.html">Téléchargements et usage</a>
+      </li>
+      <li>
+        <a href="http://hl7.org/fhir/R4/index.html" target="_blank">Spécifications FHIR </a>
+      </li>
+      <li>
+        <a href="https://esante.gouv.fr/" target="_blank">Site de l'ANS </a>
+      </li>
+    </ul>
+  </li>
+</ul>
             </div>    <!-- /.nav-collapse -->
           </div>    <!-- /.container -->
         </nav>    <!-- /.navbar -->
@@ -361,7 +367,7 @@
 
 <tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="Slot.specialty">  </a><span style="color: grey">40</span><b>. Slot.specialty</b><a href="#Slot.specialty" title="link to here" class="self-link"><svg viewBox="0 0 1792 1792" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"/></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p>The specialty of a practitioner that would be required to perform the service requested in this appointment.</p></td></tr><tr><td style="white-space: nowrap">Short</td><td>The specialty of a practitioner that would be required to perform the service requested in this appointment</td></tr><tr><td style="white-space: nowrap">Comments</td><td><p>Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination.</p></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>0..*<br/>This element is affected by the following invariants: ele-1</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/terminologies.html">Binding</a></td><td><span>The codes SHALL be taken from  <a href="ValueSet-fr-core-practitioner-specialty.html">FR Core ValueSet Practitioner specialty</a></span></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/search.html#summary">Summary</a></td><td>true</td></tr><tr><td style="white-space: nowrap">Invariants</td><td><b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (<code>hasValue() or (children().count() &gt; id.count())</code>)</td></tr>
 
-<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="Slot.appointmentType">  </a><span style="color: grey">42</span><b>. Slot.appointmentType</b><a href="#Slot.appointmentType" title="link to here" class="self-link"><svg viewBox="0 0 1792 1792" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"/></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p>The style of appointment or patient that may be booked in the slot (not service type).</p></td></tr><tr><td style="white-space: nowrap">Short</td><td>The style of appointment or patient that may be booked in the slot (not service type)</td></tr><tr><td style="white-space: nowrap">Comments</td><td><p>Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination.</p></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>0..1<br/>This element is affected by the following invariants: ele-1</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/terminologies.html">Binding</a></td><td><span>The codes SHOULD be taken from  <a href="http://terminology.hl7.org/5.0.0/ValueSet-v2-0276.html">hl7VS-appointmentReasonCodes</a></span></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/versions.html#std-process">Standards Status</a></td><td>Normative (from Trial Use)</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/search.html#summary">Summary</a></td><td>true</td></tr><tr><td style="white-space: nowrap">Invariants</td><td><b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (<code>hasValue() or (children().count() &gt; id.count())</code>)</td></tr>
+<tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="Slot.appointmentType">  </a><span style="color: grey">42</span><b>. Slot.appointmentType</b><a href="#Slot.appointmentType" title="link to here" class="self-link"><svg viewBox="0 0 1792 1792" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"/></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p>The style of appointment or patient that may be booked in the slot (not service type).</p></td></tr><tr><td style="white-space: nowrap">Short</td><td>The style of appointment or patient that may be booked in the slot (not service type)</td></tr><tr><td style="white-space: nowrap">Comments</td><td><p>Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination.</p></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>0..1<br/>This element is affected by the following invariants: ele-1</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/terminologies.html">Binding</a></td><td><span>The codes SHOULD be taken from  <a href="http://terminology.hl7.org/5.3.0/ValueSet-v2-0276.html">hl7VS-appointmentReasonCodes</a></span></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/versions.html#std-process">Standards Status</a></td><td>Normative (from Trial Use)</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/search.html#summary">Summary</a></td><td>true</td></tr><tr><td style="white-space: nowrap">Invariants</td><td><b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (<code>hasValue() or (children().count() &gt; id.count())</code>)</td></tr>
 
 <tr><td colspan="2" class="structure"><span class="self-link-parent"><a name="Slot.schedule">  </a><span style="color: grey">44</span><b>. Slot.schedule</b><a href="#Slot.schedule" title="link to here" class="self-link"><svg viewBox="0 0 1792 1792" width="16" class="self-link" height="16"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"/></svg></a></span></td></tr><tr><td style="white-space: nowrap">Definition</td><td><p>The schedule resource that this slot defines an interval of status information.</p></td></tr><tr><td style="white-space: nowrap">Short</td><td>The schedule resource that this slot defines an interval of status information</td></tr><tr><td style="white-space: nowrap">Comments</td><td><p>References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc.). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository.</p></td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/conformance-rules.html#conformance">Control</a></td><td>1..1<br/>This element is affected by the following invariants: ele-1</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/datatypes.html">Type</a></td><td><a href="http://hl7.org/fhir/R4/references.html#Reference">Reference</a>(<a href="StructureDefinition-fr-core-schedule.html">FR Core Schedule Profile</a>)</td></tr><tr><td style="white-space: nowrap"><a href="http://hl7.org/fhir/R4/search.html#summary">Summary</a></td><td>true</td></tr><tr><td style="white-space: nowrap">Invariants</td><td><b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (<code>hasValue() or (children().count() &gt; id.count())</code>)<br/><b title="Formal Invariant Identifier">ref-1</b>: SHALL have a contained resource if a local reference is provided (<code>reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))</code>)</td></tr>
 
@@ -452,7 +458,7 @@
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2023+ <a style="color:var(--footer-hyperlink-text-color)" href="http://interopsante.org/">Interop'Santé</a>.  Package hl7.fhir.fr.core#2.0.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Tue, Sep 5, 2023 09:02+0000">2023-09-05</span>
+          IG &copy; 2023+ <a style="color:var(--footer-hyperlink-text-color)" href="http://interopsante.org/">Interop'Santé</a>.  Package hl7.fhir.fr.core#2.0.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Tue, Sep 19, 2023 07:10+0000">2023-09-19</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
                       Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |

@@ -3,10 +3,10 @@
   "name" : "GuidedimplmentationFrCore",
   "package-id" : "hl7.fhir.fr.core",
   "ig-ver" : "2.0.0",
-  "date" : "Tue, 05 Sep, 2023 09:02:09 +0000",
+  "date" : "Tue, 19 Sep, 2023 07:10:21 +0000",
   "errs" : 131,
   "warnings" : 311,
-  "hints" : 56,
+  "hints" : 55,
   "version" : "4.0.1",
   "tool" : "5.0.0 (3)"
 }

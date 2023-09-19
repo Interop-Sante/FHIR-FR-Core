@@ -10,7 +10,7 @@
   <name value="FRCoreAddressProfile"/>
   <title value="FR Core Address Profile"/>
   <status value="draft"/>
-  <date value="2023-09-05T09:02:09+00:00"/>
+  <date value="2023-09-19T07:10:21+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>
@@ -56,6 +56,12 @@
   <derivation value="constraint"/>
   <snapshot>
     <element id="Address">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+        <valueCode value="normative"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version">
+        <valueCode value="4.0.0"/>
+      </extension>
       <path value="Address"/>
       <short value="An address expressed using postal conventions (as opposed to GPS or other location definition formats)"/>
       <definition value="An address expressed using postal conventions (as opposed to GPS or other location definition formats).  This data type may be used to convey addresses for use in delivering mail as well as for visiting locations which might not be valid for mail delivery.  There are a variety of postal address formats defined around the world."/>
@@ -747,7 +753,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -777,9 +783,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Address">
-      <path value="Address"/>
-    </element>
     <element id="Address.extension:inseeCode">
       <path value="Address.extension"/>
       <sliceName value="inseeCode"/>

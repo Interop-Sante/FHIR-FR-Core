@@ -10,7 +10,7 @@
   <name value="FRCoreContactPointProfile"/>
   <title value="FR Core Contact Point Profile"/>
   <status value="draft"/>
-  <date value="2023-09-05T09:02:09+00:00"/>
+  <date value="2023-09-19T07:10:21+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>
@@ -50,6 +50,12 @@
   <derivation value="constraint"/>
   <snapshot>
     <element id="ContactPoint">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+        <valueCode value="normative"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version">
+        <valueCode value="4.0.0"/>
+      </extension>
       <path value="ContactPoint"/>
       <short value="Details of a Technology mediated contact point (phone, fax, email, etc.)"/>
       <definition value="Details for all kinds of technology mediated contact points for a person or organization, including telephone, email, etc."/>
@@ -437,7 +443,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -467,9 +473,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="ContactPoint">
-      <path value="ContactPoint"/>
-    </element>
     <element id="ContactPoint.extension:emailType">
       <path value="ContactPoint.extension"/>
       <sliceName value="emailType"/>

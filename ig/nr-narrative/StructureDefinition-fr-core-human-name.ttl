@@ -59,6 +59,13 @@
   fhir:snapshot [
      fhir:element ( [
        fhir:id [ fhir:v "HumanName" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "HumanName" ] ;
        fhir:short [ fhir:v "Name of a human - parts and usage" ] ;
        fhir:definition [ fhir:v "A human's name with the ability to identify parts and usage." ] ;
@@ -574,8 +581,8 @@
          fhir:expression [ fhir:v "start.hasValue().not() or end.hasValue().not() or (start <= end)" ] ;
          fhir:xpath [ fhir:v "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -602,9 +609,6 @@
   ] ; # 
   fhir:differential [
      fhir:element ( [
-       fhir:id [ fhir:v "HumanName" ] ;
-       fhir:path [ fhir:v "HumanName" ]
-     ] [
        fhir:id [ fhir:v "HumanName.extension:assemblyOrder" ] ;
        fhir:path [ fhir:v "HumanName.extension" ] ;
        fhir:sliceName [ fhir:v "assemblyOrder" ] ;

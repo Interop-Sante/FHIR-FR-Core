@@ -17,7 +17,7 @@
   fhir:name [ fhir:v "FRCoreContactPointProfile"] ; # 
   fhir:title [ fhir:v "FR Core Contact Point Profile"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2023-09-05T09:02:09+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2023-09-19T07:10:21+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Interop'Santé"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Interop'Santé" ] ;
@@ -58,6 +58,13 @@
   fhir:snapshot [
      fhir:element ( [
        fhir:id [ fhir:v "ContactPoint" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "ContactPoint" ] ;
        fhir:short [ fhir:v "Details of a Technology mediated contact point (phone, fax, email, etc.)" ] ;
        fhir:definition [ fhir:v "Details for all kinds of technology mediated contact points for a person or organization, including telephone, email, etc." ] ;
@@ -475,8 +482,8 @@
          fhir:expression [ fhir:v "start.hasValue().not() or end.hasValue().not() or (start <= end)" ] ;
          fhir:xpath [ fhir:v "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -503,9 +510,6 @@
   ] ; # 
   fhir:differential [
      fhir:element ( [
-       fhir:id [ fhir:v "ContactPoint" ] ;
-       fhir:path [ fhir:v "ContactPoint" ]
-     ] [
        fhir:id [ fhir:v "ContactPoint.extension:emailType" ] ;
        fhir:path [ fhir:v "ContactPoint.extension" ] ;
        fhir:sliceName [ fhir:v "emailType" ] ;
