@@ -16,8 +16,8 @@
   fhir:version [ fhir:v "2.0.0"] ; # 
   fhir:name [ fhir:v "FRCoreRelatedPersonProfile"] ; # 
   fhir:title [ fhir:v "FR Core Related Person Profile"] ; # 
-  fhir:status [ fhir:v "active"] ; # 
-  fhir:date [ fhir:v "2022-12-23"^^xsd:date] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2023-09-19T07:10:34+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Interop'Santé"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Interop'Santé" ] ;
@@ -634,8 +634,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -755,10 +755,6 @@
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "PatientRelationshipType" ]
-         ] ) ;
          fhir:strength [ fhir:v "preferred" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-related-person-role"^^xsd:anyURI ;
@@ -1033,7 +1029,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "uri"^^xsd:anyURI ]
        ] ) ;
-       fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"^^xsd:anyURI ] ;
+       fhir:pattern [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"^^xsd:anyURI ] ;
        fhir:condition ( [ fhir:v "ele-1" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
@@ -1348,10 +1344,6 @@
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "PatientRelationshipType" ]
-         ] ) ;
          fhir:strength [ fhir:v "preferred" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-related-person"^^xsd:anyURI ;
@@ -1626,7 +1618,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "uri"^^xsd:anyURI ]
        ] ) ;
-       fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"^^xsd:anyURI ] ;
+       fhir:pattern [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"^^xsd:anyURI ] ;
        fhir:condition ( [ fhir:v "ele-1" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
@@ -2202,8 +2194,8 @@
          fhir:expression [ fhir:v "data.empty() or contentType.exists()" ] ;
          fhir:xpath [ fhir:v "not(exists(f:data)) or exists(f:contentType)" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DiagnosticReport"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DiagnosticReport>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Media"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Media>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -2263,8 +2255,8 @@
          fhir:expression [ fhir:v "start.hasValue().not() or end.hasValue().not() or (start <= end)" ] ;
          fhir:xpath [ fhir:v "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -2624,10 +2616,6 @@
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "PatientRelationshipType" ]
-         ] ) ;
          fhir:strength [ fhir:v "preferred" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-related-person-role"^^xsd:anyURI ;
@@ -2638,7 +2626,7 @@
        fhir:id [ fhir:v "RelatedPerson.relationship:RolePerson.coding.system" ] ;
        fhir:path [ fhir:v "RelatedPerson.relationship.coding.system" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"^^xsd:anyURI ]
+       fhir:pattern [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "RelatedPerson.relationship:RelatedPerson" ] ;
        fhir:path [ fhir:v "RelatedPerson.relationship" ] ;
@@ -2648,10 +2636,6 @@
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "PatientRelationshipType" ]
-         ] ) ;
          fhir:strength [ fhir:v "preferred" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-related-person"^^xsd:anyURI ;
@@ -2662,7 +2646,7 @@
        fhir:id [ fhir:v "RelatedPerson.relationship:RelatedPerson.coding.system" ] ;
        fhir:path [ fhir:v "RelatedPerson.relationship.coding.system" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"^^xsd:anyURI ]
+       fhir:pattern [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "RelatedPerson.name" ] ;
        fhir:path [ fhir:v "RelatedPerson.name" ] ;

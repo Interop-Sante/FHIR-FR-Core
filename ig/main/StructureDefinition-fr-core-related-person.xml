@@ -9,8 +9,8 @@
   <version value="2.0.0"/>
   <name value="FRCoreRelatedPersonProfile"/>
   <title value="FR Core Related Person Profile"/>
-  <status value="active"/>
-  <date value="2022-12-23"/>
+  <status value="draft"/>
+  <date value="2023-09-19T07:10:34+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>
@@ -587,7 +587,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -705,9 +705,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="PatientRelationshipType"/>
-        </extension>
         <strength value="preferred"/>
         <valueSet value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-related-person-role"/>
       </binding>
@@ -977,7 +974,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"/>
+      <patternUri value="https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -1284,9 +1281,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="PatientRelationshipType"/>
-        </extension>
         <strength value="preferred"/>
         <valueSet value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-related-person"/>
       </binding>
@@ -1556,7 +1550,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"/>
+      <patternUri value="https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -2103,7 +2097,7 @@
         <human value="If the Attachment has data, it SHALL have a contentType"/>
         <expression value="data.empty() or contentType.exists()"/>
         <xpath value="not(exists(f:data)) or exists(f:contentType)"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Media"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -2162,7 +2156,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -2500,9 +2494,6 @@
       <min value="0"/>
       <max value="1"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="PatientRelationshipType"/>
-        </extension>
         <strength value="preferred"/>
         <valueSet value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-related-person-role"/>
       </binding>
@@ -2510,7 +2501,7 @@
     <element id="RelatedPerson.relationship:RolePerson.coding.system">
       <path value="RelatedPerson.relationship.coding.system"/>
       <min value="1"/>
-      <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"/>
+      <patternUri value="https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"/>
     </element>
     <element id="RelatedPerson.relationship:RelatedPerson">
       <path value="RelatedPerson.relationship"/>
@@ -2520,9 +2511,6 @@
       <min value="0"/>
       <max value="*"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="PatientRelationshipType"/>
-        </extension>
         <strength value="preferred"/>
         <valueSet value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-related-person"/>
       </binding>
@@ -2530,7 +2518,7 @@
     <element id="RelatedPerson.relationship:RelatedPerson.coding.system">
       <path value="RelatedPerson.relationship.coding.system"/>
       <min value="1"/>
-      <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"/>
+      <patternUri value="https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"/>
     </element>
     <element id="RelatedPerson.name">
       <path value="RelatedPerson.name"/>

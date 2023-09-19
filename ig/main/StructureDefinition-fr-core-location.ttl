@@ -16,8 +16,8 @@
   fhir:version [ fhir:v "2.0.0"] ; # 
   fhir:name [ fhir:v "FRCoreLocationProfile"] ; # 
   fhir:title [ fhir:v "FR Core Location Profile"] ; # 
-  fhir:status [ fhir:v "active"] ; # 
-  fhir:date [ fhir:v "2022-12-23"^^xsd:date] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2023-09-19T07:10:34+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Interop'Santé"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Interop'Santé" ] ;
@@ -698,10 +698,6 @@
        fhir:isModifierReason [ fhir:v "This is labeled as \"Is Modifier\" because applications should not mistake a temporary id for a permanent one." ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "IdentifierUse" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/identifier-use"^^xsd:anyURI ;
@@ -915,8 +911,8 @@
          fhir:expression [ fhir:v "start.hasValue().not() or end.hasValue().not() or (start <= end)" ] ;
          fhir:xpath [ fhir:v "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -977,8 +973,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -1030,10 +1026,6 @@
        fhir:isModifierReason [ fhir:v "This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid" ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "LocationStatus" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/location-status"^^xsd:anyURI ;
@@ -1275,10 +1267,6 @@
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "LocationMode" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/location-mode"^^xsd:anyURI ;
@@ -1325,10 +1313,6 @@
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "LocationType" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-type"^^xsd:anyURI ;
@@ -1485,10 +1469,6 @@
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "PhysicalType" ]
-         ] ) ;
          fhir:strength [ fhir:v "example" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-physical-type"^^xsd:anyURI ;
@@ -1863,8 +1843,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -1921,8 +1901,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -2471,10 +2451,6 @@
          ]
        ] ) ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "DaysOfWeek" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/days-of-week"^^xsd:anyURI ;
@@ -2696,8 +2672,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -2711,9 +2687,6 @@
   ] ; # 
   fhir:differential [
      fhir:element ( [
-       fhir:id [ fhir:v "Location" ] ;
-       fhir:path [ fhir:v "Location" ]
-     ] [
        fhir:id [ fhir:v "Location.extension:usePeriod" ] ;
        fhir:path [ fhir:v "Location.extension" ] ;
        fhir:sliceName [ fhir:v "usePeriod" ] ;
@@ -2734,10 +2707,6 @@
        fhir:id [ fhir:v "Location.identifier.use" ] ;
        fhir:path [ fhir:v "Location.identifier.use" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "IdentifierUse" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/identifier-use"^^xsd:anyURI ;
@@ -2784,10 +2753,6 @@
        fhir:id [ fhir:v "Location.status" ] ;
        fhir:path [ fhir:v "Location.status" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "LocationStatus" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/location-status"^^xsd:anyURI ;
@@ -2798,10 +2763,6 @@
        fhir:id [ fhir:v "Location.mode" ] ;
        fhir:path [ fhir:v "Location.mode" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "LocationMode" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/location-mode"^^xsd:anyURI ;
@@ -2813,10 +2774,6 @@
        fhir:path [ fhir:v "Location.type" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "LocationType" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-type"^^xsd:anyURI ;
@@ -2847,10 +2804,6 @@
        fhir:id [ fhir:v "Location.physicalType" ] ;
        fhir:path [ fhir:v "Location.physicalType" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "PhysicalType" ]
-         ] ) ;
          fhir:strength [ fhir:v "example" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-physical-type"^^xsd:anyURI ;
@@ -2898,10 +2851,6 @@
        fhir:id [ fhir:v "Location.hoursOfOperation.daysOfWeek" ] ;
        fhir:path [ fhir:v "Location.hoursOfOperation.daysOfWeek" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "DaysOfWeek" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/days-of-week"^^xsd:anyURI ;

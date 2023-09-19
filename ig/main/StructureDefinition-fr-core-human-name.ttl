@@ -17,7 +17,7 @@
   fhir:name [ fhir:v "FRCoreHumanNameProfile"] ; # 
   fhir:title [ fhir:v "FR Core Human Name Profile"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2022-12-23"^^xsd:date] ; # 
+  fhir:date [ fhir:v "2023-09-19T07:10:34+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Interop'Santé"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Interop'Santé" ] ;
@@ -59,6 +59,13 @@
   fhir:snapshot [
      fhir:element ( [
        fhir:id [ fhir:v "HumanName" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "HumanName" ] ;
        fhir:short [ fhir:v "Name of a human - parts and usage" ] ;
        fhir:definition [ fhir:v "A human's name with the ability to identify parts and usage." ] ;
@@ -262,10 +269,6 @@
        fhir:isModifierReason [ fhir:v "This is labeled as \"Is Modifier\" because applications should not mistake a temporary or old name etc.for a current/permanent one" ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "NameUse" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/name-use"^^xsd:anyURI ;
@@ -574,8 +577,8 @@
          fhir:expression [ fhir:v "start.hasValue().not() or end.hasValue().not() or (start <= end)" ] ;
          fhir:xpath [ fhir:v "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -602,9 +605,6 @@
   ] ; # 
   fhir:differential [
      fhir:element ( [
-       fhir:id [ fhir:v "HumanName" ] ;
-       fhir:path [ fhir:v "HumanName" ]
-     ] [
        fhir:id [ fhir:v "HumanName.extension:assemblyOrder" ] ;
        fhir:path [ fhir:v "HumanName.extension" ] ;
        fhir:sliceName [ fhir:v "assemblyOrder" ] ;
@@ -621,10 +621,6 @@
        fhir:id [ fhir:v "HumanName.use" ] ;
        fhir:path [ fhir:v "HumanName.use" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "NameUse" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/name-use"^^xsd:anyURI ;

@@ -10,7 +10,7 @@
   <name value="FRCoreHumanNameProfile"/>
   <title value="FR Core Human Name Profile"/>
   <status value="draft"/>
-  <date value="2022-12-23"/>
+  <date value="2023-09-19T07:10:34+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>
@@ -51,6 +51,12 @@
   <derivation value="constraint"/>
   <snapshot>
     <element id="HumanName">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+        <valueCode value="normative"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version">
+        <valueCode value="4.0.0"/>
+      </extension>
       <path value="HumanName"/>
       <short value="Name of a human - parts and usage"/>
       <definition value="A human's name with the ability to identify parts and usage."/>
@@ -239,9 +245,6 @@
       <isModifierReason value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary or old name etc.for a current/permanent one"/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="NameUse"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/name-use"/>
       </binding>
@@ -536,7 +539,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -566,9 +569,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="HumanName">
-      <path value="HumanName"/>
-    </element>
     <element id="HumanName.extension:assemblyOrder">
       <path value="HumanName.extension"/>
       <sliceName value="assemblyOrder"/>
@@ -582,9 +582,6 @@
     <element id="HumanName.use">
       <path value="HumanName.use"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="NameUse"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/name-use"/>
       </binding>

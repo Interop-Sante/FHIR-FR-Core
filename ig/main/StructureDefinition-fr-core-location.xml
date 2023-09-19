@@ -9,8 +9,8 @@
   <version value="2.0.0"/>
   <name value="FRCoreLocationProfile"/>
   <title value="FR Core Location Profile"/>
-  <status value="active"/>
-  <date value="2022-12-23"/>
+  <status value="draft"/>
+  <date value="2023-09-19T07:10:34+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>
@@ -641,9 +641,6 @@
       <isModifierReason value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary id for a permanent one."/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierUse"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/identifier-use"/>
       </binding>
@@ -850,7 +847,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -909,7 +906,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -961,9 +958,6 @@
       <isModifierReason value="This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid"/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="LocationStatus"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/location-status"/>
       </binding>
@@ -1188,9 +1182,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="LocationMode"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/location-mode"/>
       </binding>
@@ -1233,9 +1224,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="LocationType"/>
-        </extension>
         <strength value="extensible"/>
         <valueSet value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-type"/>
       </binding>
@@ -1383,9 +1371,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="PhysicalType"/>
-        </extension>
         <strength value="example"/>
         <valueSet value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-physical-type"/>
       </binding>
@@ -1736,7 +1721,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -1787,7 +1772,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -2298,9 +2283,6 @@
         <source value="http://hl7.org/fhir/StructureDefinition/Element"/>
       </constraint>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="DaysOfWeek"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/days-of-week"/>
       </binding>
@@ -2500,7 +2482,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -2513,9 +2495,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Location">
-      <path value="Location"/>
-    </element>
     <element id="Location.extension:usePeriod">
       <path value="Location.extension"/>
       <sliceName value="usePeriod"/>
@@ -2533,9 +2512,6 @@
     <element id="Location.identifier.use">
       <path value="Location.identifier.use"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierUse"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/identifier-use"/>
       </binding>
@@ -2572,9 +2548,6 @@
     <element id="Location.status">
       <path value="Location.status"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="LocationStatus"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/location-status"/>
       </binding>
@@ -2582,9 +2555,6 @@
     <element id="Location.mode">
       <path value="Location.mode"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="LocationMode"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/location-mode"/>
       </binding>
@@ -2593,9 +2563,6 @@
       <path value="Location.type"/>
       <max value="1"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="LocationType"/>
-        </extension>
         <strength value="extensible"/>
         <valueSet value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-type"/>
       </binding>
@@ -2617,9 +2584,6 @@
     <element id="Location.physicalType">
       <path value="Location.physicalType"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="PhysicalType"/>
-        </extension>
         <strength value="example"/>
         <valueSet value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-physical-type"/>
       </binding>
@@ -2654,9 +2618,6 @@
     <element id="Location.hoursOfOperation.daysOfWeek">
       <path value="Location.hoursOfOperation.daysOfWeek"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="DaysOfWeek"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/days-of-week"/>
       </binding>

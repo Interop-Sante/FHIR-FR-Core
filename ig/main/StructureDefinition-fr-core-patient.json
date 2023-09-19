@@ -10,7 +10,7 @@
   "name" : "FRCorePatientProfile",
   "title" : "FR Core Patient Profile",
   "status" : "draft",
-  "date" : "2022-12-23",
+  "date" : "2023-09-19T07:10:34+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",
@@ -2232,7 +2232,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -2552,7 +2552,7 @@
       "type" : [{
         "code" : "code"
       }],
-      "fixedCode" : "official",
+      "patternCode" : "official",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -2604,7 +2604,7 @@
       "type" : [{
         "code" : "CodeableConcept"
       }],
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "INS-NIR",
@@ -2623,10 +2623,6 @@
       "isSummary" : true,
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -2675,7 +2671,7 @@
       "type" : [{
         "code" : "uri"
       }],
-      "fixedUri" : "urn:oid:1.2.250.1.213.1.4.8",
+      "patternUri" : "urn:oid:1.2.250.1.213.1.4.8",
       "example" : [{
         "label" : "General",
         "valueUri" : "http://www.acme.com/identifiers/patient"
@@ -2793,7 +2789,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -2861,7 +2857,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -3047,7 +3043,7 @@
       "type" : [{
         "code" : "code"
       }],
-      "fixedCode" : "temp",
+      "patternCode" : "temp",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -3099,7 +3095,7 @@
       "type" : [{
         "code" : "CodeableConcept"
       }],
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "INS-NIA",
@@ -3118,10 +3114,6 @@
       "isSummary" : true,
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -3170,7 +3162,7 @@
       "type" : [{
         "code" : "uri"
       }],
-      "fixedUri" : "urn:oid:1.2.250.1.213.1.4.9",
+      "patternUri" : "urn:oid:1.2.250.1.213.1.4.9",
       "example" : [{
         "label" : "General",
         "valueUri" : "http://www.acme.com/identifiers/patient"
@@ -3288,7 +3280,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -3356,7 +3348,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -3542,7 +3534,7 @@
       "type" : [{
         "code" : "code"
       }],
-      "fixedCode" : "secondary",
+      "patternCode" : "secondary",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -3594,7 +3586,7 @@
       "type" : [{
         "code" : "CodeableConcept"
       }],
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "INS-C",
@@ -3613,10 +3605,6 @@
       "isSummary" : true,
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -3665,7 +3653,7 @@
       "type" : [{
         "code" : "uri"
       }],
-      "fixedUri" : "urn:oid:1.2.250.1.213.1.4.2",
+      "patternUri" : "urn:oid:1.2.250.1.213.1.4.2",
       "example" : [{
         "label" : "General",
         "valueUri" : "http://www.acme.com/identifiers/patient"
@@ -3783,7 +3771,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -3851,7 +3839,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -4037,7 +4025,7 @@
       "type" : [{
         "code" : "code"
       }],
-      "fixedCode" : "secondary",
+      "patternCode" : "secondary",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -4089,7 +4077,7 @@
       "type" : [{
         "code" : "CodeableConcept"
       }],
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "NDP",
@@ -4160,7 +4148,7 @@
       "type" : [{
         "code" : "uri"
       }],
-      "fixedUri" : "urn:oid:1.2.250.1.176.1.2",
+      "patternUri" : "urn:oid:1.2.250.1.176.1.2",
       "example" : [{
         "label" : "General",
         "valueUri" : "http://www.acme.com/identifiers/patient"
@@ -4278,7 +4266,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -4346,7 +4334,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -4532,7 +4520,7 @@
       "type" : [{
         "code" : "code"
       }],
-      "fixedCode" : "usual",
+      "patternCode" : "usual",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -4584,7 +4572,7 @@
       "type" : [{
         "code" : "CodeableConcept"
       }],
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "PI",
@@ -4772,7 +4760,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -4840,7 +4828,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -5026,7 +5014,7 @@
       "type" : [{
         "code" : "code"
       }],
-      "fixedCode" : "secondary",
+      "patternCode" : "secondary",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -5078,7 +5066,7 @@
       "type" : [{
         "code" : "CodeableConcept"
       }],
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "RRI",
@@ -5097,10 +5085,6 @@
       "isSummary" : true,
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -5266,7 +5250,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -5334,7 +5318,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -5636,7 +5620,7 @@
       "type" : [{
         "code" : "code"
       }],
-      "fixedCode" : "usual",
+      "patternCode" : "usual",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -5969,7 +5953,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -6156,7 +6140,7 @@
       "type" : [{
         "code" : "code"
       }],
-      "fixedCode" : "official",
+      "patternCode" : "official",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -6473,7 +6457,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -6929,7 +6913,7 @@
         "human" : "If the Attachment has data, it SHALL have a contentType",
         "expression" : "data.empty() or contentType.exists()",
         "xpath" : "not(exists(f:data)) or exists(f:contentType)",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DiagnosticReport"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Media"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -7594,7 +7578,7 @@
       "type" : [{
         "code" : "uri"
       }],
-      "fixedUri" : "https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass",
+      "patternUri" : "https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -8204,7 +8188,7 @@
       "type" : [{
         "code" : "uri"
       }],
-      "fixedUri" : "https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode",
+      "patternUri" : "https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -8764,7 +8748,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -8826,7 +8810,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -9204,7 +9188,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -9260,7 +9244,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -9517,7 +9501,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -9600,10 +9584,6 @@
   },
   "differential" : {
     "element" : [{
-      "id" : "Patient",
-      "path" : "Patient"
-    },
-    {
       "id" : "Patient.extension",
       "path" : "Patient.extension",
       "min" : 1
@@ -9714,13 +9694,13 @@
     {
       "id" : "Patient.identifier:INS-NIR.use",
       "path" : "Patient.identifier.use",
-      "fixedCode" : "official"
+      "patternCode" : "official"
     },
     {
       "id" : "Patient.identifier:INS-NIR.type",
       "path" : "Patient.identifier.type",
       "min" : 1,
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "INS-NIR",
@@ -9729,10 +9709,6 @@
       },
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -9745,7 +9721,7 @@
       "path" : "Patient.identifier.system",
       "definition" : "Establishes the namespace for the value - that is, a OID that describes a set values that are unique. | Autorité d'affectation des INS-NIR",
       "min" : 1,
-      "fixedUri" : "urn:oid:1.2.250.1.213.1.4.8"
+      "patternUri" : "urn:oid:1.2.250.1.213.1.4.8"
     },
     {
       "id" : "Patient.identifier:INS-NIR.value",
@@ -9764,13 +9740,13 @@
     {
       "id" : "Patient.identifier:INS-NIA.use",
       "path" : "Patient.identifier.use",
-      "fixedCode" : "temp"
+      "patternCode" : "temp"
     },
     {
       "id" : "Patient.identifier:INS-NIA.type",
       "path" : "Patient.identifier.type",
       "min" : 1,
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "INS-NIA",
@@ -9779,10 +9755,6 @@
       },
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -9795,7 +9767,7 @@
       "path" : "Patient.identifier.system",
       "definition" : "Establishes the namespace for the value - that is, a OID that describes a set values that are unique. | Autorité d'affectation des INS-NIA",
       "min" : 1,
-      "fixedUri" : "urn:oid:1.2.250.1.213.1.4.9"
+      "patternUri" : "urn:oid:1.2.250.1.213.1.4.9"
     },
     {
       "id" : "Patient.identifier:INS-NIA.value",
@@ -9813,14 +9785,14 @@
     {
       "id" : "Patient.identifier:INS-C.use",
       "path" : "Patient.identifier.use",
-      "fixedCode" : "secondary"
+      "patternCode" : "secondary"
     },
     {
       "id" : "Patient.identifier:INS-C.type",
       "path" : "Patient.identifier.type",
       "definition" : "Computed National Health Identifier | Identifiant National de Santé Calculé à partir des éléments de la carte vitale",
       "min" : 1,
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "INS-C",
@@ -9829,10 +9801,6 @@
       },
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -9844,7 +9812,7 @@
       "id" : "Patient.identifier:INS-C.system",
       "path" : "Patient.identifier.system",
       "min" : 1,
-      "fixedUri" : "urn:oid:1.2.250.1.213.1.4.2"
+      "patternUri" : "urn:oid:1.2.250.1.213.1.4.2"
     },
     {
       "id" : "Patient.identifier:INS-C.value",
@@ -9863,13 +9831,13 @@
     {
       "id" : "Patient.identifier:NDP.use",
       "path" : "Patient.identifier.use",
-      "fixedCode" : "secondary"
+      "patternCode" : "secondary"
     },
     {
       "id" : "Patient.identifier:NDP.type",
       "path" : "Patient.identifier.type",
       "min" : 1,
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "NDP",
@@ -9893,7 +9861,7 @@
       "id" : "Patient.identifier:NDP.system",
       "path" : "Patient.identifier.system",
       "min" : 1,
-      "fixedUri" : "urn:oid:1.2.250.1.176.1.2"
+      "patternUri" : "urn:oid:1.2.250.1.176.1.2"
     },
     {
       "id" : "Patient.identifier:NDP.value",
@@ -9912,13 +9880,13 @@
     {
       "id" : "Patient.identifier:PI.use",
       "path" : "Patient.identifier.use",
-      "fixedCode" : "usual"
+      "patternCode" : "usual"
     },
     {
       "id" : "Patient.identifier:PI.type",
       "path" : "Patient.identifier.type",
       "min" : 1,
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "PI",
@@ -9960,13 +9928,13 @@
     {
       "id" : "Patient.identifier:RRI.use",
       "path" : "Patient.identifier.use",
-      "fixedCode" : "secondary"
+      "patternCode" : "secondary"
     },
     {
       "id" : "Patient.identifier:RRI.type",
       "path" : "Patient.identifier.type",
       "min" : 1,
-      "fixedCodeableConcept" : {
+      "patternCodeableConcept" : {
         "coding" : [{
           "system" : "http://interopsante.org/CodeSystem/fr-core-v2-0203",
           "code" : "RRI",
@@ -9975,10 +9943,6 @@
       },
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -10025,7 +9989,7 @@
       "id" : "Patient.name:usualName.use",
       "path" : "Patient.name.use",
       "min" : 1,
-      "fixedCode" : "usual"
+      "patternCode" : "usual"
     },
     {
       "id" : "Patient.name:officialName",
@@ -10040,7 +10004,7 @@
       "id" : "Patient.name:officialName.use",
       "path" : "Patient.name.use",
       "min" : 1,
-      "fixedCode" : "official"
+      "patternCode" : "official"
     },
     {
       "id" : "Patient.name:officialName.family",
@@ -10142,7 +10106,7 @@
       "id" : "Patient.contact.relationship:RolePerson.coding.system",
       "path" : "Patient.contact.relationship.coding.system",
       "min" : 1,
-      "fixedUri" : "https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"
+      "patternUri" : "https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"
     },
     {
       "id" : "Patient.contact.relationship:RelatedPerson",
@@ -10164,7 +10128,7 @@
       "id" : "Patient.contact.relationship:RelatedPerson.coding.system",
       "path" : "Patient.contact.relationship.coding.system",
       "min" : 1,
-      "fixedUri" : "https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"
+      "patternUri" : "https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"
     },
     {
       "id" : "Patient.contact.name",

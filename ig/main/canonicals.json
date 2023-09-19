@@ -280,6 +280,13 @@
     "name" : "FRCoreObservationHeadCircumProfile"
   },
   {
+    "id" : "fr-core-observation-heartrate",
+    "type" : "StructureDefinition",
+    "url" : "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-observation-heartrate",
+    "version" : "2.0.0",
+    "name" : "FRCoreObservationHeartRateProfile"
+  },
+  {
     "id" : "fr-core-observation-height-body-position",
     "type" : "StructureDefinition",
     "url" : "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-observation-height-body-position",
@@ -789,12 +796,5 @@
     "url" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-title",
     "version" : "2.0.0",
     "name" : "FRCoreValueSetTitle"
-  },
-  {
-    "id" : "fr-core-observation-heartrate",
-    "type" : "StructureDefinition",
-    "url" : "http://interopsante.org/fhir/StructureDefinition/fr-core-observation-heart-rate",
-    "version" : "2.0.0",
-    "name" : "FRCoreObservationHeartRateProfile"
   }
 ]

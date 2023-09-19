@@ -17,7 +17,7 @@
   fhir:name [ fhir:v "FRCoreObservationBpProfile"] ; # 
   fhir:title [ fhir:v "FR Core Observation Bp Profile"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2022-10-18"^^xsd:date] ; # 
+  fhir:date [ fhir:v "2023-09-19T07:10:34+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Interop'Santé"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Interop'Santé" ] ;
@@ -34,7 +34,6 @@
      ] )
   ] ) ; # 
   fhir:description [ fhir:v "French profil Blood pressure panel with all children optional - This is a component observation. It has no value in Observation.valueQuantity and contains at least one component (systolic and/or diastolic and/or mean) | Profil français de pression artérielle avec tous les éléments fils optionnels. Il s'agit d'une Observation avec l'élément Observation.valueQuantity n'est pas renseigné et qui contient au moins un composant Pression systolique, Pression diastolique, Pression moyenne."] ; # 
-  fhir:purpose [ fhir:v "French profil Blood pressure panel with all children optional - This is a component observation. It has no value in Observation.valueQuantity and contains at least one component (systolic and/or diastolic and/or mean) | Profil français de pression artérielle avec tous les éléments fils optionnels. Il s'agit d'une Observation avec l'élément Observation.valueQuantity n'est pas renseigné et qui contient au moins un composant Pression systolique, Pression diastolique, Pression moyenne."] ; # 
   fhir:fhirVersion [ fhir:v "4.0.1"] ; # 
   fhir:mapping ( [
      fhir:identity [ fhir:v "workflow" ] ;
@@ -65,16 +64,16 @@
   fhir:abstract [ fhir:v "false"^^xsd:boolean] ; # 
   fhir:type [ fhir:v "Observation"^^xsd:anyURI] ; # 
   fhir:baseDefinition [
-     fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
-     fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
+     fhir:v "http://hl7.org/fhir/StructureDefinition/bp"^^xsd:anyURI ;
+     fhir:link <http://hl7.org/fhir/StructureDefinition/bp>
   ] ; # 
   fhir:derivation [ fhir:v "constraint"] ; # 
   fhir:snapshot [
      fhir:element ( [
        fhir:id [ fhir:v "Observation" ] ;
        fhir:path [ fhir:v "Observation" ] ;
-       fhir:short [ fhir:v "Measurements and simple assertions" ] ;
-       fhir:definition [ fhir:v "Measurements and simple assertions made about a patient, device or other subject." ] ;
+       fhir:short [ fhir:v "FHIR Blood Pressure Profile" ] ;
+       fhir:definition [ fhir:v "This profile defines  how to represent Blood Pressure observations in FHIR using a standard LOINC code and UCUM units of measure.  This is a grouping structure. It has no value in Observation.valueQuantity but contains at least one component (systolic and/or diastolic)." ] ;
        fhir:comment [ fhir:v "Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as laboratory reports, etc." ] ;
        fhir:alias ( [ fhir:v "Vital Signs" ] [ fhir:v "Measurement" ] [ fhir:v "Results" ] [ fhir:v "Tests" ] ) ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
@@ -160,6 +159,16 @@
          fhir:source [
            fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
+         ]
+       ] [
+         fhir:key [ fhir:v "vs-2" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "If there is no component or hasMember element then either a value[x] or a data absent reason must be present." ] ;
+         fhir:expression [ fhir:v "(component.empty() and hasMember.empty()) implies (dataAbsentReason.exists() or value.exists())" ] ;
+         fhir:xpath [ fhir:v "f:component or f:memberOF or f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason" ] ;
+         fhir:source [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/vitalsigns"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/vitalsigns>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -710,8 +719,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -792,8 +801,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -852,6 +861,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isModifier [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isModifierReason [ fhir:v "This element is labeled as a modifier because it is a status element that contains status entered-in-error which means that the resource should not be treated as valid" ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -888,6 +898,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.category" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.category" ] ;
        fhir:slicing [
          fhir:discriminator ( [
@@ -897,6 +914,7 @@
            fhir:type [ fhir:v "value" ] ;
            fhir:path [ fhir:v "coding.system" ]
          ] ) ;
+         fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
          fhir:rules [ fhir:v "open" ]
        ] ;
        fhir:short [ fhir:v "Classification of  type of observation" ] ;
@@ -925,6 +943,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
@@ -958,6 +977,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.category:VSCat" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.category" ] ;
        fhir:sliceName [ fhir:v "VSCat" ] ;
        fhir:short [ fhir:v "Classification of  type of observation" ] ;
@@ -986,6 +1012,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
@@ -1104,6 +1131,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.category:VSCat.coding" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.category.coding" ] ;
        fhir:short [ fhir:v "Code defined by a terminology system" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
@@ -1131,6 +1165,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -1241,6 +1276,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.category:VSCat.coding.system" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.category.coding.system" ] ;
        fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
@@ -1269,6 +1311,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -1334,6 +1377,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.category:VSCat.coding.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.category.coding.code" ] ;
        fhir:short [ fhir:v "Symbol in syntax defined by the system" ] ;
        fhir:definition [ fhir:v "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." ] ;
@@ -1362,6 +1412,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -1534,12 +1585,19 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.code" ] ;
-       fhir:short [ fhir:v "Blood pressure code" ] ;
-       fhir:definition [ fhir:v "Blood pressure code" ] ;
-       fhir:comment [ fhir:v "*All* code-value and, if present, component.code-component.value pairs need to be taken into account to correctly understand the meaning of the observation." ] ;
-       fhir:requirements [ fhir:v "Knowing what kind of observation is being made is essential to understanding the observation." ] ;
-       fhir:alias ( [ fhir:v "Name" ] ) ;
+       fhir:short [ fhir:v "Blood Pressure" ] ;
+       fhir:definition [ fhir:v "Blood Pressure." ] ;
+       fhir:comment [ fhir:v "additional codes that translate or map to this code are allowed.  For example a more granular LOINC code or code that is used locally in a system." ] ;
+       fhir:requirements [ fhir:v "5. SHALL contain exactly one [1..1] code, where the @code SHOULD be selected from ValueSet HITSP Vital Sign Result Type 2.16.840.1.113883.3.88.12.80.62 DYNAMIC (CONF:7301)." ] ;
+       fhir:alias ( [ fhir:v "Name" ] [ fhir:v "Test" ] ) ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -1562,6 +1620,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
@@ -1569,6 +1628,7 @@
            fhir:value [ fhir:v "ObservationCode" ]
          ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
+         fhir:description [ fhir:v "This identifies the vital sign result type." ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/ValueSet/observation-vitalsignresult>
@@ -1692,6 +1752,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.code.coding" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.code.coding" ] ;
        fhir:slicing [
          fhir:discriminator ( [
@@ -1701,13 +1768,14 @@
            fhir:type [ fhir:v "value" ] ;
            fhir:path [ fhir:v "system" ]
          ] ) ;
+         fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
          fhir:rules [ fhir:v "open" ]
        ] ;
        fhir:short [ fhir:v "Code defined by a terminology system" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
+       fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:base [
          fhir:path [ fhir:v "CodeableConcept.coding" ] ;
@@ -1754,6 +1822,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.code.coding:BPCode" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.code.coding" ] ;
        fhir:sliceName [ fhir:v "BPCode" ] ;
        fhir:short [ fhir:v "Code defined by a terminology system" ] ;
@@ -1892,6 +1967,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.code.coding:BPCode.system" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.code.coding.system" ] ;
        fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
@@ -1985,6 +2067,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.code.coding:BPCode.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.code.coding.code" ] ;
        fhir:short [ fhir:v "Symbol in syntax defined by the system" ] ;
        fhir:definition [ fhir:v "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." ] ;
@@ -2185,12 +2274,19 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.subject" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.subject" ] ;
        fhir:short [ fhir:v "Who and/or what the observation is about" ] ;
        fhir:definition [ fhir:v "The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation." ] ;
        fhir:comment [ fhir:v "One would expect this element to be a cardinality of 1..1. The only circumstance in which the subject can be missing is when the observation is made by a device that does not know the patient. In this case, the observation SHALL be matched to a patient through some context/channel matching technique, and at this point, the observation should be updated." ] ;
        fhir:requirements [ fhir:v "Observations have no value if you don't know who or what they're about." ] ;
-       fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
+       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
          fhir:path [ fhir:v "Observation.subject" ] ;
@@ -2200,17 +2296,8 @@
        fhir:type ( [
          fhir:code [ fhir:v "Reference"^^xsd:anyURI ] ;
          fhir:targetProfile ( [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
-         ] [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Device"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Device>
-         ] [
-           fhir:v "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient>
-         ] [
-           fhir:v "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-location"^^xsd:anyURI ;
-           fhir:link <http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-location>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
          ] )
        ] ) ;
        fhir:condition ( [ fhir:v "ele-1" ] ) ;
@@ -2231,10 +2318,11 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -2303,8 +2391,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -2367,8 +2455,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -2411,7 +2499,7 @@
        ] [
          fhir:code [ fhir:v "Period"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "vs-1" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -2422,7 +2510,18 @@
            fhir:v "http://hl7.org/fhir/StructureDefinition/Element"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
+       ] [
+         fhir:key [ fhir:v "vs-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "if Observation.effective[x] is dateTime and has a value then that value shall be precise to the day" ] ;
+         fhir:expression [ fhir:v "($this as dateTime).toString().length() >= 8" ] ;
+         fhir:xpath [ fhir:v "f:effectiveDateTime[matches(@value, '^\\d{4}-\\d{2}-\\d{2}')]" ] ;
+         fhir:source [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/vitalsigns"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/vitalsigns>
+         ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -2543,8 +2642,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -2570,10 +2669,18 @@
      ] [
        fhir:id [ fhir:v "Observation.value[x]" ] ;
        fhir:path [ fhir:v "Observation.value[x]" ] ;
-       fhir:short [ fhir:v "Actual result" ] ;
-       fhir:definition [ fhir:v "The information determined as a result of making the observation, if the information has a simple value." ] ;
+       fhir:slicing [
+         fhir:discriminator ( [
+           fhir:type [ fhir:v "type" ] ;
+           fhir:path [ fhir:v "$this" ]
+         ] ) ;
+         fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:rules [ fhir:v "closed" ]
+       ] ;
+       fhir:short [ fhir:v "Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept." ] ;
+       fhir:definition [ fhir:v "Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept." ] ;
        fhir:comment [ fhir:v "An observation may have; 1)  a single value here, 2)  both a value and a set of related or component values,  or 3)  only a set of related or component values. If a value is present, the datatype for this element should be determined by Observation.code.  A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
-       fhir:requirements [ fhir:v "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations." ] ;
+       fhir:requirements [ fhir:v "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305)." ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "0" ] ;
        fhir:base [
@@ -2604,7 +2711,7 @@
        ] [
          fhir:code [ fhir:v "Period"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-7" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-7" ] [ fhir:v "vs-2" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -2616,6 +2723,55 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
+       fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] [
+         fhir:identity [ fhir:v "sct-concept" ] ;
+         fhir:map [ fhir:v "< 441742003 |Evaluation finding|" ]
+       ] [
+         fhir:identity [ fhir:v "v2" ] ;
+         fhir:map [ fhir:v "OBX.2, OBX.5, OBX.6" ]
+       ] [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "value" ]
+       ] [
+         fhir:identity [ fhir:v "sct-attr" ] ;
+         fhir:map [ fhir:v "363714003 |Interprets|" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "Observation.value[x]:valueQuantity" ] ;
+       fhir:path [ fhir:v "Observation.value[x]" ] ;
+       fhir:sliceName [ fhir:v "valueQuantity" ] ;
+       fhir:short [ fhir:v "Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept." ] ;
+       fhir:definition [ fhir:v "Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept." ] ;
+       fhir:comment [ fhir:v "An observation may have; 1)  a single value here, 2)  both a value and a set of related or component values,  or 3)  only a set of related or component values. If a value is present, the datatype for this element should be determined by Observation.code.  A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
+       fhir:requirements [ fhir:v "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305)." ] ;
+       fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
+       fhir:max [ fhir:v "0" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Observation.value[x]" ] ;
+         fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Quantity"^^xsd:anyURI ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-7" ] [ fhir:v "vs-2" ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:xpath [ fhir:v "@value|f:*|h:div" ] ;
+         fhir:source [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Element"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
+         ]
+       ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -2657,7 +2813,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "CodeableConcept"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] [ fhir:v "vs-2" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -2669,6 +2825,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
@@ -2731,10 +2888,6 @@
          ]
        ] ) ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationInterpretation" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"^^xsd:anyURI ;
@@ -2847,10 +3000,6 @@
          ]
        ] ) ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "BodySite" ]
-         ] ) ;
          fhir:strength [ fhir:v "example" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/hspc/ValueSet/bpMeasBodyLocationPrecoordVS"^^xsd:anyURI ;
@@ -2912,10 +3061,6 @@
          ]
        ] ) ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationMethod" ]
-         ] ) ;
          fhir:strength [ fhir:v "example" ] ;
          fhir:valueSet [
            fhir:v "http://interopsante.org/fhir/ValueSet/fr-core-bp-measurement-method"^^xsd:anyURI ;
@@ -2986,8 +3131,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -3057,8 +3202,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -3684,8 +3829,8 @@
          fhir:value [ fhir:v "4.0.0" ]
        ] ) ;
        fhir:path [ fhir:v "Observation.hasMember" ] ;
-       fhir:short [ fhir:v "Related resource that belongs to the Observation group" ] ;
-       fhir:definition [ fhir:v "This observation is a group observation (e.g. a battery, a panel of tests, a set of vital sign measurements) that includes the target as a member of the group." ] ;
+       fhir:short [ fhir:v "Used when reporting vital signs panel components" ] ;
+       fhir:definition [ fhir:v "Used when reporting vital signs panel components." ] ;
        fhir:comment [ fhir:v "When using this element, an observation will typically have either a value or a set of related resources, although both may be present in some cases.  For a discussion on the ways Observations can assembled in groups together, see [Notes](http://hl7.org/fhir/R4/observation.html#obsgrouping) below.  Note that a system may calculate results from [QuestionnaireResponse](http://hl7.org/fhir/R4/questionnaireresponse.html)  into a final score and represent the score as an Observation." ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
@@ -3697,14 +3842,14 @@
        fhir:type ( [
          fhir:code [ fhir:v "Reference"^^xsd:anyURI ] ;
          fhir:targetProfile ( [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
-         ] [
            fhir:v "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse>
          ] [
            fhir:v "http://hl7.org/fhir/StructureDefinition/MolecularSequence"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/MolecularSequence>
+         ] [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/vitalsigns"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/vitalsigns>
          ] )
        ] ) ;
        fhir:condition ( [ fhir:v "ele-1" ] ) ;
@@ -3725,8 +3870,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -3778,11 +3923,11 @@
            fhir:v "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse>
          ] [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
-         ] [
            fhir:v "http://hl7.org/fhir/StructureDefinition/MolecularSequence"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/MolecularSequence>
+         ] [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/vitalsigns"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/vitalsigns>
          ] )
        ] ) ;
        fhir:condition ( [ fhir:v "ele-1" ] ) ;
@@ -3803,8 +3948,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -3823,6 +3968,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component" ] ;
        fhir:slicing [
          fhir:discriminator ( [
@@ -3832,10 +3984,11 @@
            fhir:type [ fhir:v "value" ] ;
            fhir:path [ fhir:v "code.coding.system" ]
          ] ) ;
+         fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
          fhir:rules [ fhir:v "open" ]
        ] ;
        fhir:short [ fhir:v "Used when reporting systolic and diastolic blood pressure." ] ;
-       fhir:definition [ fhir:v "Some observations have multiple component observations.  These component observations are expressed as separate code value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood pressure measurement and multiple component observations for genetics observations." ] ;
+       fhir:definition [ fhir:v "Used when reporting systolic and diastolic blood pressure." ] ;
        fhir:comment [ fhir:v "For a discussion on the ways Observations can be assembled in groups together see [Notes](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
        fhir:requirements [ fhir:v "Component observations share the same attributes in the Observation resource as the primary observation and are always treated a part of a single observation (they are not separable).   However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation." ] ;
        fhir:min [ fhir:v "2"^^xsd:nonNegativeInteger ] ;
@@ -3859,7 +4012,18 @@
            fhir:v "http://hl7.org/fhir/StructureDefinition/Element"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
+       ] [
+         fhir:key [ fhir:v "vs-3" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "If there is no a value a data absent reason must be present" ] ;
+         fhir:expression [ fhir:v "value.exists() or dataAbsentReason.exists()" ] ;
+         fhir:xpath [ fhir:v "f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason" ] ;
+         fhir:source [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/vitalsigns"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/vitalsigns>
+         ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -4049,17 +4213,18 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
            fhir:value [ fhir:v "ObservationCode" ]
          ] ) ;
-         fhir:strength [ fhir:v "example" ] ;
-         fhir:description [ fhir:v "Codes identifying names of simple observations." ] ;
+         fhir:strength [ fhir:v "extensible" ] ;
+         fhir:description [ fhir:v "This identifies the vital sign result type." ] ;
          fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/observation-codes"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/observation-codes>
+           fhir:v "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/observation-vitalsignresult>
          ]
        ] ;
        fhir:mapping ( [
@@ -4097,10 +4262,10 @@
          fhir:value [ fhir:v "4.0.0" ]
        ] ) ;
        fhir:path [ fhir:v "Observation.component.value[x]" ] ;
-       fhir:short [ fhir:v "Actual component result" ] ;
-       fhir:definition [ fhir:v "The information determined as a result of making the observation, if the information has a simple value." ] ;
+       fhir:short [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
+       fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
        fhir:comment [ fhir:v "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
-       fhir:requirements [ fhir:v "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations." ] ;
+       fhir:requirements [ fhir:v "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305)." ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -4131,7 +4296,7 @@
        ] [
          fhir:code [ fhir:v "Period"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -4143,7 +4308,20 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "VitalSignsUnits" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "Common UCUM units for recording Vital Signs." ] ;
+         fhir:valueSet [
+           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1>
+         ]
+       ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
          fhir:map [ fhir:v "n/a" ]
@@ -4184,7 +4362,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "CodeableConcept"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -4196,6 +4374,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
@@ -4327,8 +4506,8 @@
        fhir:id [ fhir:v "Observation.component:SystolicBP" ] ;
        fhir:path [ fhir:v "Observation.component" ] ;
        fhir:sliceName [ fhir:v "SystolicBP" ] ;
-       fhir:short [ fhir:v "Used when reporting systolic blood pressure." ] ;
-       fhir:definition [ fhir:v "Used when reporting systolic blood pressure." ] ;
+       fhir:short [ fhir:v "Used when reporting systolic and diastolic blood pressure." ] ;
+       fhir:definition [ fhir:v "Used when reporting systolic and diastolic blood pressure." ] ;
        fhir:comment [ fhir:v "For a discussion on the ways Observations can be assembled in groups together see [Notes](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
        fhir:requirements [ fhir:v "Component observations share the same attributes in the Observation resource as the primary observation and are always treated a part of a single observation (they are not separable).   However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation." ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
@@ -4351,6 +4530,16 @@
          fhir:source [
            fhir:v "http://hl7.org/fhir/StructureDefinition/Element"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
+         ]
+       ] [
+         fhir:key [ fhir:v "vs-3" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "If there is no a value a data absent reason must be present" ] ;
+         fhir:expression [ fhir:v "value.exists() or dataAbsentReason.exists()" ] ;
+         fhir:xpath [ fhir:v "f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason" ] ;
+         fhir:source [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/vitalsigns"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/vitalsigns>
          ]
        ] ) ;
        fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
@@ -4509,11 +4698,19 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code" ] ;
        fhir:short [ fhir:v "Type of component observation (code / type)" ] ;
        fhir:definition [ fhir:v "Describes what was observed. Sometimes this is called the observation \"code\"." ] ;
-       fhir:comment [ fhir:v "*All* code-value and  component.code-component.value pairs need to be taken into account to correctly understand the meaning of the observation." ] ;
+       fhir:comment [ fhir:v "additional codes that translate or map to this code are allowed.  For example a more granular LOINC code or code that is used locally in a system." ] ;
        fhir:requirements [ fhir:v "Knowing what kind of observation is being made is essential to understanding the observation." ] ;
+       fhir:alias ( [ fhir:v "Component Test" ] [ fhir:v "Component Name" ] ) ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -4543,11 +4740,11 @@
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
            fhir:value [ fhir:v "ObservationCode" ]
          ] ) ;
-         fhir:strength [ fhir:v "example" ] ;
-         fhir:description [ fhir:v "Codes identifying names of simple observations." ] ;
+         fhir:strength [ fhir:v "extensible" ] ;
+         fhir:description [ fhir:v "This identifies the vital sign result type." ] ;
          fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/observation-codes"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/observation-codes>
+           fhir:v "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/observation-vitalsignresult>
          ]
        ] ;
        fhir:mapping ( [
@@ -4662,6 +4859,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.code.coding" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code.coding" ] ;
        fhir:slicing [
          fhir:discriminator ( [
@@ -4671,13 +4875,14 @@
            fhir:type [ fhir:v "value" ] ;
            fhir:path [ fhir:v "system" ]
          ] ) ;
+         fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
          fhir:rules [ fhir:v "open" ]
        ] ;
        fhir:short [ fhir:v "Systolic Blood Pressure" ] ;
-       fhir:definition [ fhir:v "Systolic Blood Pressure" ] ;
+       fhir:definition [ fhir:v "Systolic Blood Pressure." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
+       fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:base [
          fhir:path [ fhir:v "CodeableConcept.coding" ] ;
@@ -4724,10 +4929,17 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.code.coding:SBPCode" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code.coding" ] ;
        fhir:sliceName [ fhir:v "SBPCode" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
-       fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
+       fhir:short [ fhir:v "Systolic Blood Pressure" ] ;
+       fhir:definition [ fhir:v "Systolic Blood Pressure." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
@@ -4862,6 +5074,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.code.coding:SBPCode.system" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code.coding.system" ] ;
        fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
@@ -4955,6 +5174,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.code.coding:SBPCode.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code.coding.code" ] ;
        fhir:short [ fhir:v "Symbol in syntax defined by the system" ] ;
        fhir:definition [ fhir:v "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." ] ;
@@ -5162,12 +5388,12 @@
            fhir:path [ fhir:v "$this" ]
          ] ) ;
          fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
-         fhir:rules [ fhir:v "open" ]
+         fhir:rules [ fhir:v "closed" ]
        ] ;
        fhir:short [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
-       fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
+       fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
        fhir:comment [ fhir:v "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
-       fhir:requirements [ fhir:v "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations." ] ;
+       fhir:requirements [ fhir:v "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305)." ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -5198,7 +5424,7 @@
        ] [
          fhir:code [ fhir:v "Period"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -5213,11 +5439,15 @@
        fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "VitalSignsUnits" ]
+         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "Common UCUM units for recording Vital Signs." ] ;
          fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0>
+           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1>
          ]
        ] ;
        fhir:mapping ( [
@@ -5240,10 +5470,10 @@
        fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity" ] ;
        fhir:path [ fhir:v "Observation.component.value[x]" ] ;
        fhir:sliceName [ fhir:v "valueQuantity" ] ;
-       fhir:short [ fhir:v "Actual component result" ] ;
-       fhir:definition [ fhir:v "The information determined as a result of making the observation, if the information has a simple value." ] ;
+       fhir:short [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
+       fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
        fhir:comment [ fhir:v "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
-       fhir:requirements [ fhir:v "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations." ] ;
+       fhir:requirements [ fhir:v "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305)." ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -5254,7 +5484,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "Quantity"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -5266,7 +5496,20 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "VitalSignsUnits" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "Common UCUM units for recording Vital Signs." ] ;
+         fhir:valueSet [
+           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1>
+         ]
+       ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
          fhir:map [ fhir:v "n/a" ]
@@ -5370,6 +5613,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity.value" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.value[x].value" ] ;
        fhir:short [ fhir:v "Numerical value (with implicit precision)" ] ;
        fhir:definition [ fhir:v "The value of the measured amount. The value includes an implicit precision in the presentation of the value." ] ;
@@ -5474,6 +5724,12 @@
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity.unit" ] ;
        fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] [
          fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable"^^xsd:anyURI ] ;
          fhir:value [ fhir:v "true"^^xsd:boolean ]
        ] ) ;
@@ -5492,7 +5748,6 @@
        fhir:type ( [
          fhir:code [ fhir:v "string"^^xsd:anyURI ]
        ] ) ;
-       fhir:fixed [ fhir:v "mm[Hg]" ] ;
        fhir:condition ( [ fhir:v "ele-1" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
@@ -5519,6 +5774,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity.system" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.value[x].system" ] ;
        fhir:short [ fhir:v "System that defines coded unit form" ] ;
        fhir:definition [ fhir:v "The identification of the system that provides the coded form of the unit." ] ;
@@ -5547,6 +5809,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -5560,9 +5823,16 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.value[x].code" ] ;
-       fhir:short [ fhir:v "Coded form of the unit" ] ;
-       fhir:definition [ fhir:v "A computer processable form of the unit in some unit representation system." ] ;
+       fhir:short [ fhir:v "Coded responses from the common UCUM units for vital signs value set." ] ;
+       fhir:definition [ fhir:v "Coded responses from the common UCUM units for vital signs value set." ] ;
        fhir:comment [ fhir:v "The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system." ] ;
        fhir:requirements [ fhir:v "Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest." ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
@@ -5588,6 +5858,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -5623,7 +5894,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "CodeableConcept"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -5635,6 +5906,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
@@ -5697,10 +5969,6 @@
          ]
        ] ) ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationInterpretation" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"^^xsd:anyURI ;
@@ -5782,6 +6050,16 @@
          fhir:source [
            fhir:v "http://hl7.org/fhir/StructureDefinition/Element"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
+         ]
+       ] [
+         fhir:key [ fhir:v "vs-3" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "If there is no a value a data absent reason must be present" ] ;
+         fhir:expression [ fhir:v "value.exists() or dataAbsentReason.exists()" ] ;
+         fhir:xpath [ fhir:v "f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason" ] ;
+         fhir:source [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/vitalsigns"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/vitalsigns>
          ]
        ] ) ;
        fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
@@ -5940,10 +6218,17 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code" ] ;
        fhir:short [ fhir:v "Type of component observation (code / type)" ] ;
        fhir:definition [ fhir:v "Describes what was observed. Sometimes this is called the observation \"code\"." ] ;
-       fhir:comment [ fhir:v "*All* code-value and  component.code-component.value pairs need to be taken into account to correctly understand the meaning of the observation." ] ;
+       fhir:comment [ fhir:v "additional codes that translate or map to this code are allowed.  For example a more granular LOINC code or code that is used locally in a system." ] ;
        fhir:requirements [ fhir:v "Knowing what kind of observation is being made is essential to understanding the observation." ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
@@ -5974,11 +6259,11 @@
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
            fhir:value [ fhir:v "ObservationCode" ]
          ] ) ;
-         fhir:strength [ fhir:v "example" ] ;
-         fhir:description [ fhir:v "Codes identifying names of simple observations." ] ;
+         fhir:strength [ fhir:v "extensible" ] ;
+         fhir:description [ fhir:v "This identifies the vital sign result type." ] ;
          fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/observation-codes"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/observation-codes>
+           fhir:v "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/observation-vitalsignresult>
          ]
        ] ;
        fhir:mapping ( [
@@ -6093,6 +6378,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.code.coding" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code.coding" ] ;
        fhir:slicing [
          fhir:discriminator ( [
@@ -6102,13 +6394,14 @@
            fhir:type [ fhir:v "value" ] ;
            fhir:path [ fhir:v "system" ]
          ] ) ;
+         fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
          fhir:rules [ fhir:v "open" ]
        ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
-       fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
+       fhir:short [ fhir:v "Diastolic Blood Pressure" ] ;
+       fhir:definition [ fhir:v "Diastolic Blood Pressure." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
+       fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:base [
          fhir:path [ fhir:v "CodeableConcept.coding" ] ;
@@ -6155,10 +6448,17 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.code.coding:DBPCode" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code.coding" ] ;
        fhir:sliceName [ fhir:v "DBPCode" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
-       fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
+       fhir:short [ fhir:v "Diastolic Blood Pressure" ] ;
+       fhir:definition [ fhir:v "Diastolic Blood Pressure." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
@@ -6293,6 +6593,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.code.coding:DBPCode.system" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code.coding.system" ] ;
        fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
@@ -6386,6 +6693,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.code.coding:DBPCode.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code.coding.code" ] ;
        fhir:short [ fhir:v "Symbol in syntax defined by the system" ] ;
        fhir:definition [ fhir:v "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." ] ;
@@ -6593,12 +6907,12 @@
            fhir:path [ fhir:v "$this" ]
          ] ) ;
          fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
-         fhir:rules [ fhir:v "open" ]
+         fhir:rules [ fhir:v "closed" ]
        ] ;
-       fhir:short [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
+       fhir:short [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
        fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
        fhir:comment [ fhir:v "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
-       fhir:requirements [ fhir:v "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations." ] ;
+       fhir:requirements [ fhir:v "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305)." ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -6629,7 +6943,7 @@
        ] [
          fhir:code [ fhir:v "Period"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -6644,11 +6958,15 @@
        fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "VitalSignsUnits" ]
+         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "Common UCUM units for recording Vital Signs." ] ;
          fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0>
+           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1>
          ]
        ] ;
        fhir:mapping ( [
@@ -6671,10 +6989,10 @@
        fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity" ] ;
        fhir:path [ fhir:v "Observation.component.value[x]" ] ;
        fhir:sliceName [ fhir:v "valueQuantity" ] ;
-       fhir:short [ fhir:v "Actual component result" ] ;
-       fhir:definition [ fhir:v "The information determined as a result of making the observation, if the information has a simple value." ] ;
+       fhir:short [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
+       fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
        fhir:comment [ fhir:v "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
-       fhir:requirements [ fhir:v "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations." ] ;
+       fhir:requirements [ fhir:v "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305)." ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -6685,7 +7003,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "Quantity"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -6697,7 +7015,20 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "VitalSignsUnits" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "Common UCUM units for recording Vital Signs." ] ;
+         fhir:valueSet [
+           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1>
+         ]
+       ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
          fhir:map [ fhir:v "n/a" ]
@@ -6801,6 +7132,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity.value" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.value[x].value" ] ;
        fhir:short [ fhir:v "Numerical value (with implicit precision)" ] ;
        fhir:definition [ fhir:v "The value of the measured amount. The value includes an implicit precision in the presentation of the value." ] ;
@@ -6828,6 +7166,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -6904,6 +7243,12 @@
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity.unit" ] ;
        fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] [
          fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable"^^xsd:anyURI ] ;
          fhir:value [ fhir:v "true"^^xsd:boolean ]
        ] ) ;
@@ -6922,7 +7267,6 @@
        fhir:type ( [
          fhir:code [ fhir:v "string"^^xsd:anyURI ]
        ] ) ;
-       fhir:fixed [ fhir:v "mm[Hg]" ] ;
        fhir:condition ( [ fhir:v "ele-1" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
@@ -6935,6 +7279,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -6948,6 +7293,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity.system" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.value[x].system" ] ;
        fhir:short [ fhir:v "System that defines coded unit form" ] ;
        fhir:definition [ fhir:v "The identification of the system that provides the coded form of the unit." ] ;
@@ -6976,6 +7328,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -6989,9 +7342,16 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.value[x].code" ] ;
-       fhir:short [ fhir:v "Coded form of the unit" ] ;
-       fhir:definition [ fhir:v "A computer processable form of the unit in some unit representation system." ] ;
+       fhir:short [ fhir:v "Coded responses from the common UCUM units for vital signs value set." ] ;
+       fhir:definition [ fhir:v "Coded responses from the common UCUM units for vital signs value set." ] ;
        fhir:comment [ fhir:v "The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system." ] ;
        fhir:requirements [ fhir:v "Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest." ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
@@ -7017,6 +7377,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -7052,7 +7413,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "CodeableConcept"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -7064,6 +7425,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
@@ -7126,10 +7488,6 @@
          ]
        ] ) ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationInterpretation" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"^^xsd:anyURI ;
@@ -7212,7 +7570,18 @@
            fhir:v "http://hl7.org/fhir/StructureDefinition/Element"^^xsd:anyURI ;
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
+       ] [
+         fhir:key [ fhir:v "vs-3" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "If there is no a value a data absent reason must be present" ] ;
+         fhir:expression [ fhir:v "value.exists() or dataAbsentReason.exists()" ] ;
+         fhir:xpath [ fhir:v "f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason" ] ;
+         fhir:source [
+           fhir:v "http://hl7.org/fhir/StructureDefinition/vitalsigns"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/vitalsigns>
+         ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -7368,6 +7737,13 @@
        ] )
      ] [
        fhir:id [ fhir:v "Observation.component:MeanBP.code" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "normative" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "4.0.0" ]
+       ] ) ;
        fhir:path [ fhir:v "Observation.component.code" ] ;
        fhir:short [ fhir:v "Type of component observation (code / type)" ] ;
        fhir:definition [ fhir:v "Describes what was observed. Sometimes this is called the observation \"code\"." ] ;
@@ -7402,11 +7778,11 @@
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
            fhir:value [ fhir:v "ObservationCode" ]
          ] ) ;
-         fhir:strength [ fhir:v "example" ] ;
-         fhir:description [ fhir:v "Codes identifying names of simple observations." ] ;
+         fhir:strength [ fhir:v "extensible" ] ;
+         fhir:description [ fhir:v "This identifies the vital sign result type." ] ;
          fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/observation-codes"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/observation-codes>
+           fhir:v "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/observation-vitalsignresult>
          ]
        ] ;
        fhir:mapping ( [
@@ -8022,10 +8398,10 @@
          fhir:value [ fhir:v "4.0.0" ]
        ] ) ;
        fhir:path [ fhir:v "Observation.component.value[x]" ] ;
-       fhir:short [ fhir:v "Actual component result" ] ;
-       fhir:definition [ fhir:v "The information determined as a result of making the observation, if the information has a simple value." ] ;
+       fhir:short [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
+       fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
        fhir:comment [ fhir:v "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below." ] ;
-       fhir:requirements [ fhir:v "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations." ] ;
+       fhir:requirements [ fhir:v "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305)." ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -8056,7 +8432,7 @@
        ] [
          fhir:code [ fhir:v "Period"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -8068,7 +8444,20 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "VitalSignsUnits" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "Common UCUM units for recording Vital Signs." ] ;
+         fhir:valueSet [
+           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1>
+         ]
+       ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
          fhir:map [ fhir:v "n/a" ]
@@ -8109,7 +8498,7 @@
        fhir:type ( [
          fhir:code [ fhir:v "CodeableConcept"^^xsd:anyURI ]
        ] ) ;
-       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] [ fhir:v "obs-6" ] [ fhir:v "vs-3" ] ) ;
        fhir:constraint ( [
          fhir:key [ fhir:v "ele-1" ] ;
          fhir:severity [ fhir:v "error" ] ;
@@ -8121,6 +8510,7 @@
            fhir:link <http://hl7.org/fhir/StructureDefinition/Element>
          ]
        ] ) ;
+       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
@@ -8183,10 +8573,6 @@
          ]
        ] ) ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationInterpretation" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"^^xsd:anyURI ;
@@ -8260,105 +8646,6 @@
          ] )
        ] )
      ] [
-       fhir:id [ fhir:v "Observation.category" ] ;
-       fhir:path [ fhir:v "Observation.category" ] ;
-       fhir:slicing [
-         fhir:discriminator ( [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "coding.code" ]
-         ] [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "coding.system" ]
-         ] ) ;
-         fhir:rules [ fhir:v "open" ]
-       ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ]
-     ] [
-       fhir:id [ fhir:v "Observation.category:VSCat" ] ;
-       fhir:path [ fhir:v "Observation.category" ] ;
-       fhir:sliceName [ fhir:v "VSCat" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:max [ fhir:v "1" ]
-     ] [
-       fhir:id [ fhir:v "Observation.category:VSCat.coding" ] ;
-       fhir:path [ fhir:v "Observation.category.coding" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ]
-     ] [
-       fhir:id [ fhir:v "Observation.category:VSCat.coding.system" ] ;
-       fhir:path [ fhir:v "Observation.category.coding.system" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ]
-     ] [
-       fhir:id [ fhir:v "Observation.category:VSCat.coding.code" ] ;
-       fhir:path [ fhir:v "Observation.category.coding.code" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "vital-signs" ]
-     ] [
-       fhir:id [ fhir:v "Observation.code" ] ;
-       fhir:path [ fhir:v "Observation.code" ] ;
-       fhir:short [ fhir:v "Blood pressure code" ] ;
-       fhir:definition [ fhir:v "Blood pressure code" ] ;
-       fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationCode" ]
-         ] ) ;
-         fhir:strength [ fhir:v "extensible" ] ;
-         fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/observation-vitalsignresult>
-         ]
-       ]
-     ] [
-       fhir:id [ fhir:v "Observation.code.coding" ] ;
-       fhir:path [ fhir:v "Observation.code.coding" ] ;
-       fhir:slicing [
-         fhir:discriminator ( [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "code" ]
-         ] [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "system" ]
-         ] ) ;
-         fhir:rules [ fhir:v "open" ]
-       ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ]
-     ] [
-       fhir:id [ fhir:v "Observation.code.coding:BPCode" ] ;
-       fhir:path [ fhir:v "Observation.code.coding" ] ;
-       fhir:sliceName [ fhir:v "BPCode" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:max [ fhir:v "1" ]
-     ] [
-       fhir:id [ fhir:v "Observation.code.coding:BPCode.system" ] ;
-       fhir:path [ fhir:v "Observation.code.coding.system" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "http://loinc.org"^^xsd:anyURI ]
-     ] [
-       fhir:id [ fhir:v "Observation.code.coding:BPCode.code" ] ;
-       fhir:path [ fhir:v "Observation.code.coding.code" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "85354-9" ]
-     ] [
-       fhir:id [ fhir:v "Observation.subject" ] ;
-       fhir:path [ fhir:v "Observation.subject" ] ;
-       fhir:type ( [
-         fhir:code [ fhir:v "Reference"^^xsd:anyURI ] ;
-         fhir:targetProfile ( [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
-         ] [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Device"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Device>
-         ] [
-           fhir:v "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient>
-         ] [
-           fhir:v "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-location"^^xsd:anyURI ;
-           fhir:link <http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-location>
-         ] )
-       ] )
-     ] [
        fhir:id [ fhir:v "Observation.encounter" ] ;
        fhir:path [ fhir:v "Observation.encounter" ] ;
        fhir:type ( [
@@ -8371,14 +8658,7 @@
      ] [
        fhir:id [ fhir:v "Observation.effective[x]" ] ;
        fhir:path [ fhir:v "Observation.effective[x]" ] ;
-       fhir:short [ fhir:v "Often just a dateTime for Vital Signs" ] ;
-       fhir:definition [ fhir:v "Often just a dateTime for Vital Signs" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:type ( [
-         fhir:code [ fhir:v "dateTime"^^xsd:anyURI ]
-       ] [
-         fhir:code [ fhir:v "Period"^^xsd:anyURI ]
-       ] )
+       fhir:definition [ fhir:v "Often just a dateTime for Vital Signs" ]
      ] [
        fhir:id [ fhir:v "Observation.performer" ] ;
        fhir:path [ fhir:v "Observation.performer" ] ;
@@ -8407,15 +8687,18 @@
      ] [
        fhir:id [ fhir:v "Observation.value[x]" ] ;
        fhir:path [ fhir:v "Observation.value[x]" ] ;
+       fhir:slicing [
+         fhir:discriminator ( [
+           fhir:type [ fhir:v "type" ] ;
+           fhir:path [ fhir:v "$this" ]
+         ] ) ;
+         fhir:rules [ fhir:v "open" ]
+       ] ;
        fhir:max [ fhir:v "0" ]
      ] [
        fhir:id [ fhir:v "Observation.interpretation" ] ;
        fhir:path [ fhir:v "Observation.interpretation" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationInterpretation" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"^^xsd:anyURI ;
@@ -8426,10 +8709,6 @@
        fhir:id [ fhir:v "Observation.bodySite" ] ;
        fhir:path [ fhir:v "Observation.bodySite" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "BodySite" ]
-         ] ) ;
          fhir:strength [ fhir:v "example" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/hspc/ValueSet/bpMeasBodyLocationPrecoordVS"^^xsd:anyURI ;
@@ -8440,10 +8719,6 @@
        fhir:id [ fhir:v "Observation.method" ] ;
        fhir:path [ fhir:v "Observation.method" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationMethod" ]
-         ] ) ;
          fhir:strength [ fhir:v "example" ] ;
          fhir:valueSet [
            fhir:v "http://interopsante.org/fhir/ValueSet/fr-core-bp-measurement-method"^^xsd:anyURI ;
@@ -8451,65 +8726,9 @@
          ]
        ]
      ] [
-       fhir:id [ fhir:v "Observation.component" ] ;
-       fhir:path [ fhir:v "Observation.component" ] ;
-       fhir:slicing [
-         fhir:discriminator ( [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "code.coding.code" ]
-         ] [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "code.coding.system" ]
-         ] ) ;
-         fhir:rules [ fhir:v "open" ]
-       ] ;
-       fhir:short [ fhir:v "Used when reporting systolic and diastolic blood pressure." ] ;
-       fhir:min [ fhir:v "2"^^xsd:nonNegativeInteger ]
-     ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP" ] ;
        fhir:path [ fhir:v "Observation.component" ] ;
-       fhir:sliceName [ fhir:v "SystolicBP" ] ;
-       fhir:short [ fhir:v "Used when reporting systolic blood pressure." ] ;
-       fhir:definition [ fhir:v "Used when reporting systolic blood pressure." ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:max [ fhir:v "1" ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.code" ] ;
-       fhir:path [ fhir:v "Observation.component.code" ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.code.coding" ] ;
-       fhir:path [ fhir:v "Observation.component.code.coding" ] ;
-       fhir:slicing [
-         fhir:discriminator ( [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "code" ]
-         ] [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "system" ]
-         ] ) ;
-         fhir:rules [ fhir:v "open" ]
-       ] ;
-       fhir:short [ fhir:v "Systolic Blood Pressure" ] ;
-       fhir:definition [ fhir:v "Systolic Blood Pressure" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.code.coding:SBPCode" ] ;
-       fhir:path [ fhir:v "Observation.component.code.coding" ] ;
-       fhir:sliceName [ fhir:v "SBPCode" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:max [ fhir:v "1" ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.code.coding:SBPCode.system" ] ;
-       fhir:path [ fhir:v "Observation.component.code.coding.system" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "http://loinc.org"^^xsd:anyURI ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.code.coding:SBPCode.code" ] ;
-       fhir:path [ fhir:v "Observation.component.code.coding.code" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "8480-6" ]
+       fhir:sliceName [ fhir:v "SystolicBP" ]
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]" ] ;
        fhir:path [ fhir:v "Observation.component.value[x]" ] ;
@@ -8518,58 +8737,12 @@
            fhir:type [ fhir:v "type" ] ;
            fhir:path [ fhir:v "$this" ]
          ] ) ;
-         fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
          fhir:rules [ fhir:v "open" ]
-       ] ;
-       fhir:short [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
-       fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM" ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
-       fhir:binding [
-         fhir:strength [ fhir:v "required" ] ;
-         fhir:description [ fhir:v "Common UCUM units for recording Vital Signs." ] ;
-         fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0>
-         ]
        ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x]" ] ;
-       fhir:sliceName [ fhir:v "valueQuantity" ] ;
-       fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
-       fhir:max [ fhir:v "1" ] ;
-       fhir:type ( [
-         fhir:code [ fhir:v "Quantity"^^xsd:anyURI ]
-       ] )
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity.value" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x].value" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity.unit" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x].unit" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "mm[Hg]" ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity.system" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x].system" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.value[x]:valueQuantity.code" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x].code" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "mm[Hg]" ]
      ] [
        fhir:id [ fhir:v "Observation.component:SystolicBP.interpretation" ] ;
        fhir:path [ fhir:v "Observation.component.interpretation" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationInterpretation" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"^^xsd:anyURI ;
@@ -8577,52 +8750,11 @@
          ]
        ]
      ] [
-       fhir:id [ fhir:v "Observation.component:SystolicBP.referenceRange" ] ;
-       fhir:path [ fhir:v "Observation.component.referenceRange" ] ;
-       fhir:contentReference [ fhir:v "http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange"^^xsd:anyURI ]
-     ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP" ] ;
        fhir:path [ fhir:v "Observation.component" ] ;
        fhir:sliceName [ fhir:v "DiastolicBP" ] ;
        fhir:short [ fhir:v "Used when reporting diastolic blood pressure." ] ;
-       fhir:definition [ fhir:v "Used when reporting diastolic blood pressure." ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:max [ fhir:v "1" ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.code" ] ;
-       fhir:path [ fhir:v "Observation.component.code" ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.code.coding" ] ;
-       fhir:path [ fhir:v "Observation.component.code.coding" ] ;
-       fhir:slicing [
-         fhir:discriminator ( [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "code" ]
-         ] [
-           fhir:type [ fhir:v "value" ] ;
-           fhir:path [ fhir:v "system" ]
-         ] ) ;
-         fhir:rules [ fhir:v "open" ]
-       ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.code.coding:DBPCode" ] ;
-       fhir:path [ fhir:v "Observation.component.code.coding" ] ;
-       fhir:sliceName [ fhir:v "DBPCode" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:max [ fhir:v "1" ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.code.coding:DBPCode.system" ] ;
-       fhir:path [ fhir:v "Observation.component.code.coding.system" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "http://loinc.org"^^xsd:anyURI ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.code.coding:DBPCode.code" ] ;
-       fhir:path [ fhir:v "Observation.component.code.coding.code" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "8462-4" ]
+       fhir:definition [ fhir:v "Used when reporting diastolic blood pressure." ]
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]" ] ;
        fhir:path [ fhir:v "Observation.component.value[x]" ] ;
@@ -8631,66 +8763,18 @@
            fhir:type [ fhir:v "type" ] ;
            fhir:path [ fhir:v "$this" ]
          ] ) ;
-         fhir:ordered [ fhir:v "false"^^xsd:boolean ] ;
          fhir:rules [ fhir:v "open" ]
-       ] ;
-       fhir:short [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
-       fhir:definition [ fhir:v "Vital Sign Value recorded with UCUM." ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ] ;
-       fhir:binding [
-         fhir:strength [ fhir:v "required" ] ;
-         fhir:description [ fhir:v "Common UCUM units for recording Vital Signs." ] ;
-         fhir:valueSet [
-           fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0>
-         ]
        ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x]" ] ;
-       fhir:sliceName [ fhir:v "valueQuantity" ] ;
-       fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
-       fhir:max [ fhir:v "1" ] ;
-       fhir:type ( [
-         fhir:code [ fhir:v "Quantity"^^xsd:anyURI ]
-       ] )
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity.value" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x].value" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity.unit" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x].unit" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "mm[Hg]" ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity.system" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x].system" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.value[x]:valueQuantity.code" ] ;
-       fhir:path [ fhir:v "Observation.component.value[x].code" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
-       fhir:fixed [ fhir:v "mm[Hg]" ]
      ] [
        fhir:id [ fhir:v "Observation.component:DiastolicBP.interpretation" ] ;
        fhir:path [ fhir:v "Observation.component.interpretation" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationInterpretation" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"^^xsd:anyURI ;
            fhir:link <http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation>
          ]
        ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:DiastolicBP.referenceRange" ] ;
-       fhir:path [ fhir:v "Observation.component.referenceRange" ] ;
-       fhir:contentReference [ fhir:v "http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Observation.component:MeanBP" ] ;
        fhir:path [ fhir:v "Observation.component" ] ;
@@ -8699,10 +8783,6 @@
        fhir:definition [ fhir:v "Mean blood pressure" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:MeanBP.code" ] ;
-       fhir:path [ fhir:v "Observation.component.code" ] ;
-       fhir:mustSupport [ fhir:v "true"^^xsd:boolean ]
      ] [
        fhir:id [ fhir:v "Observation.component:MeanBP.code.coding" ] ;
        fhir:path [ fhir:v "Observation.component.code.coding" ] ;
@@ -8739,20 +8819,12 @@
        fhir:id [ fhir:v "Observation.component:MeanBP.interpretation" ] ;
        fhir:path [ fhir:v "Observation.component.interpretation" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "ObservationInterpretation" ]
-         ] ) ;
          fhir:strength [ fhir:v "extensible" ] ;
          fhir:valueSet [
            fhir:v "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"^^xsd:anyURI ;
            fhir:link <http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation>
          ]
        ]
-     ] [
-       fhir:id [ fhir:v "Observation.component:MeanBP.referenceRange" ] ;
-       fhir:path [ fhir:v "Observation.component.referenceRange" ] ;
-       fhir:contentReference [ fhir:v "http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange"^^xsd:anyURI ]
      ] )
   ] . # 
 

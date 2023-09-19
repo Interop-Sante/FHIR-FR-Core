@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Bundle xmlns="http://hl7.org/fhir">
-  <id value="03d0a9db-9a21-44ce-8cc6-67fa1da7cd05"/>
+  <id value="4f7c64cb-cc42-467e-a28a-d84e05f0fae5"/>
   <meta>
-    <lastUpdated value="2023-09-05T08:16:49.133+00:00"/>
+    <lastUpdated value="2023-09-19T07:10:34.966+00:00"/>
   </meta>
   <type value="collection"/>
   <entry>
@@ -37,10 +37,10 @@
         <name value="FRCoreValueSetAvailabilityTimeDay"/>
         <title value="First day of the workweek | Premier jour de la semaine de travail "/>
         <status value="draft"/>
-        <date value="2023-09-05T08:16:49+00:00"/>
+        <date value="2023-09-19T07:10:34+00:00"/>
         <expansion>
-          <identifier value="urn:uuid:60a34dce-20a3-4c9b-a464-d5d8fedbc07f"/>
-          <timestamp value="2023-09-05T08:20:28+00:00"/>
+          <identifier value="urn:uuid:ee8d5ed6-f8b3-4103-a53d-181f8d43e71d"/>
+          <timestamp value="2023-09-19T07:13:15+00:00"/>
           <total value="0"/>
           <parameter>
             <name value="excludeNested"/>
@@ -65,8 +65,8 @@
             <div style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">
               <p>Expansion based on: </p>
               <ul>
-                <li>SNOMED CT International edition 31-Jul 2023</li>
-                <li>SNOMED CT International edition 31-Jul 2023</li>
+                <li>SNOMED CT International edition 01-Sep 2023</li>
+                <li>SNOMED CT International edition 01-Sep 2023</li>
               </ul>
             </div>
             <table class="codes">
@@ -121,10 +121,10 @@
         <name value="FRCoreValueSetBPMeasurementMethod"/>
         <title value="FR Core ValueSet BP measurement method"/>
         <status value="draft"/>
-        <date value="2023-09-05T08:16:49+00:00"/>
+        <date value="2023-09-19T07:10:34+00:00"/>
         <expansion>
-          <identifier value="urn:uuid:ac2999e3-6a7d-4eef-9a42-fb09200ff875"/>
-          <timestamp value="2023-09-05T08:20:41+00:00"/>
+          <identifier value="urn:uuid:c7567d80-2129-4808-9161-2f671101c90f"/>
+          <timestamp value="2023-09-19T07:13:19+00:00"/>
           <total value="4"/>
           <parameter>
             <name value="excludeNested"/>
@@ -140,11 +140,11 @@
           </parameter>
           <parameter>
             <name value="used-codesystem"/>
-            <valueUri value="http://snomed.info/sct|http://snomed.info/sct/900000000000207008/version/20230731"/>
+            <valueUri value="http://snomed.info/sct|http://snomed.info/sct/900000000000207008/version/20230901"/>
           </parameter>
           <parameter>
             <name value="version"/>
-            <valueUri value="http://snomed.info/sct|http://snomed.info/sct/900000000000207008/version/20230731"/>
+            <valueUri value="http://snomed.info/sct|http://snomed.info/sct/900000000000207008/version/20230901"/>
           </parameter>
           <contains>
             <system value="http://snomed.info/sct"/>

@@ -9,8 +9,8 @@
   "version" : "2.0.0",
   "name" : "FRCoreOrganizationProfile",
   "title" : "FR Core Organization Profile",
-  "status" : "active",
-  "date" : "2022-12-23",
+  "status" : "draft",
+  "date" : "2023-09-19T07:10:34+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",
@@ -797,10 +797,6 @@
       "isModifierReason" : "This is labeled as \"Is Modifier\" because applications should not mistake a temporary id for a permanent one.",
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierUse"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/identifier-use"
       },
@@ -824,7 +820,7 @@
       "definition" : "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
       "comment" : "This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage.   Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type.",
       "requirements" : "Allows users to make use of identifiers when the identifier system is not known.",
-      "min" : 1,
+      "min" : 0,
       "max" : "1",
       "base" : {
         "path" : "Identifier.type",
@@ -846,10 +842,6 @@
       "isSummary" : true,
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -1015,7 +1007,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -1083,7 +1075,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -1271,10 +1263,6 @@
       }],
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "OrganizationType"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-organization-type"
       },
@@ -1883,7 +1871,6 @@
       "isSummary" : true,
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
           "valueString" : "OrganizationType"
         }],
         "strength" : "required",
@@ -2494,10 +2481,6 @@
       }],
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "OrganizationType"
-        }],
         "strength" : "required",
         "description" : "Catégorie d'établissement du RASS",
         "valueSet" : "https://mos.esante.gouv.fr/NOS/JDV_J129-CategorieEtablissement-RASS/FHIR/JDV-J129-CategorieEtablissement-RASS"
@@ -3318,7 +3301,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -3498,10 +3481,6 @@
       }],
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "FHIRResourceTypeExt"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-organization-type"
       },
@@ -4060,7 +4039,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -4074,10 +4053,6 @@
   },
   "differential" : {
     "element" : [{
-      "id" : "Organization",
-      "path" : "Organization"
-    },
-    {
       "id" : "Organization.extension:shortName",
       "path" : "Organization.extension",
       "sliceName" : "shortName",
@@ -4114,10 +4089,6 @@
       "id" : "Organization.identifier.use",
       "path" : "Organization.identifier.use",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierUse"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/identifier-use"
       }
@@ -4125,13 +4096,8 @@
     {
       "id" : "Organization.identifier.type",
       "path" : "Organization.identifier.type",
-      "min" : 1,
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierType"
-        },
-        {
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
           "valueBoolean" : true
         }],
@@ -4167,10 +4133,6 @@
       "min" : 0,
       "max" : "1",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "OrganizationType"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-organization-type"
       }
@@ -4199,7 +4161,6 @@
       "max" : "1",
       "binding" : {
         "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
           "valueString" : "OrganizationType"
         }],
         "strength" : "required",
@@ -4232,10 +4193,6 @@
       "min" : 0,
       "max" : "1",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "OrganizationType"
-        }],
         "strength" : "required",
         "description" : "Catégorie d'établissement du RASS",
         "valueSet" : "https://mos.esante.gouv.fr/NOS/JDV_J129-CategorieEtablissement-RASS/FHIR/JDV-J129-CategorieEtablissement-RASS"
@@ -4287,10 +4244,6 @@
       "id" : "Organization.partOf.type",
       "path" : "Organization.partOf.type",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "FHIRResourceTypeExt"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-organization-type"
       }

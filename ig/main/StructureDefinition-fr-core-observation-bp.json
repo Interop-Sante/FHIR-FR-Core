@@ -10,7 +10,7 @@
   "name" : "FRCoreObservationBpProfile",
   "title" : "FR Core Observation Bp Profile",
   "status" : "draft",
-  "date" : "2022-10-18",
+  "date" : "2023-09-19T07:10:34+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",
@@ -28,7 +28,6 @@
     }]
   }],
   "description" : "French profil Blood pressure panel with all children optional - This is a component observation. It has no value in Observation.valueQuantity and contains at least one component (systolic and/or diastolic and/or mean) | Profil français de pression artérielle avec tous les éléments fils optionnels. Il s'agit d'une Observation avec l'élément Observation.valueQuantity n'est pas renseigné et qui contient au moins un composant Pression systolique, Pression diastolique, Pression moyenne.",
-  "purpose" : "French profil Blood pressure panel with all children optional - This is a component observation. It has no value in Observation.valueQuantity and contains at least one component (systolic and/or diastolic and/or mean) | Profil français de pression artérielle avec tous les éléments fils optionnels. Il s'agit d'une Observation avec l'élément Observation.valueQuantity n'est pas renseigné et qui contient au moins un composant Pression systolique, Pression diastolique, Pression moyenne.",
   "fhirVersion" : "4.0.1",
   "mapping" : [{
     "identity" : "workflow",
@@ -63,14 +62,14 @@
   "kind" : "resource",
   "abstract" : false,
   "type" : "Observation",
-  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/Observation",
+  "baseDefinition" : "http://hl7.org/fhir/StructureDefinition/bp",
   "derivation" : "constraint",
   "snapshot" : {
     "element" : [{
       "id" : "Observation",
       "path" : "Observation",
-      "short" : "Measurements and simple assertions",
-      "definition" : "Measurements and simple assertions made about a patient, device or other subject.",
+      "short" : "FHIR Blood Pressure Profile",
+      "definition" : "This profile defines  how to represent Blood Pressure observations in FHIR using a standard LOINC code and UCUM units of measure.  This is a grouping structure. It has no value in Observation.valueQuantity but contains at least one component (systolic and/or diastolic).",
       "comment" : "Used for simple observations such as device measurements, laboratory atomic results, vital signs, height, weight, smoking status, comments, etc.  Other resources are used to provide context for observations such as laboratory reports, etc.",
       "alias" : ["Vital Signs",
       "Measurement",
@@ -146,6 +145,14 @@
         "expression" : "dataAbsentReason.empty() or value.empty()",
         "xpath" : "not(exists(f:dataAbsentReason)) or (not(exists(*[starts-with(local-name(.), 'value')])))",
         "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
+      },
+      {
+        "key" : "vs-2",
+        "severity" : "error",
+        "human" : "If there is no component or hasMember element then either a value[x] or a data absent reason must be present.",
+        "expression" : "(component.empty() and hasMember.empty()) implies (dataAbsentReason.exists() or value.exists())",
+        "xpath" : "f:component or f:memberOF or f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason",
+        "source" : "http://hl7.org/fhir/StructureDefinition/vitalsigns"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -686,7 +693,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -756,7 +763,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -818,6 +825,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isModifier" : true,
       "isModifierReason" : "This element is labeled as a modifier because it is a status element that contains status entered-in-error which means that the resource should not be treated as valid",
       "isSummary" : true,
@@ -857,6 +865,14 @@
     },
     {
       "id" : "Observation.category",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.category",
       "slicing" : {
         "discriminator" : [{
@@ -867,6 +883,7 @@
           "type" : "value",
           "path" : "coding.system"
         }],
+        "ordered" : false,
         "rules" : "open"
       },
       "short" : "Classification of  type of observation",
@@ -892,6 +909,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "binding" : {
         "extension" : [{
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
@@ -928,6 +946,14 @@
     },
     {
       "id" : "Observation.category:VSCat",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.category",
       "sliceName" : "VSCat",
       "short" : "Classification of  type of observation",
@@ -953,6 +979,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "binding" : {
         "extension" : [{
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
@@ -1074,6 +1101,14 @@
     },
     {
       "id" : "Observation.category:VSCat.coding",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.category.coding",
       "short" : "Code defined by a terminology system",
       "definition" : "A reference to a code defined by a terminology system.",
@@ -1098,6 +1133,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -1215,6 +1251,14 @@
     },
     {
       "id" : "Observation.category:VSCat.coding.system",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.category.coding.system",
       "short" : "Identity of the terminology system",
       "definition" : "The identification of the code system that defines the meaning of the symbol in the code.",
@@ -1240,6 +1284,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -1311,6 +1356,14 @@
     },
     {
       "id" : "Observation.category:VSCat.coding.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.category.coding.code",
       "short" : "Symbol in syntax defined by the system",
       "definition" : "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
@@ -1336,6 +1389,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -1520,12 +1574,21 @@
     },
     {
       "id" : "Observation.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.code",
-      "short" : "Blood pressure code",
-      "definition" : "Blood pressure code",
-      "comment" : "*All* code-value and, if present, component.code-component.value pairs need to be taken into account to correctly understand the meaning of the observation.",
-      "requirements" : "Knowing what kind of observation is being made is essential to understanding the observation.",
-      "alias" : ["Name"],
+      "short" : "Blood Pressure",
+      "definition" : "Blood Pressure.",
+      "comment" : "additional codes that translate or map to this code are allowed.  For example a more granular LOINC code or code that is used locally in a system.",
+      "requirements" : "5. SHALL contain exactly one [1..1] code, where the @code SHOULD be selected from ValueSet HITSP Vital Sign Result Type 2.16.840.1.113883.3.88.12.80.62 DYNAMIC (CONF:7301).",
+      "alias" : ["Name",
+      "Test"],
       "min" : 1,
       "max" : "1",
       "base" : {
@@ -1545,6 +1608,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "binding" : {
         "extension" : [{
@@ -1552,6 +1616,7 @@
           "valueString" : "ObservationCode"
         }],
         "strength" : "extensible",
+        "description" : "This identifies the vital sign result type.",
         "valueSet" : "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
       },
       "mapping" : [{
@@ -1682,6 +1747,14 @@
     },
     {
       "id" : "Observation.code.coding",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.code.coding",
       "slicing" : {
         "discriminator" : [{
@@ -1692,13 +1765,14 @@
           "type" : "value",
           "path" : "system"
         }],
+        "ordered" : false,
         "rules" : "open"
       },
       "short" : "Code defined by a terminology system",
       "definition" : "A reference to a code defined by a terminology system.",
       "comment" : "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true.",
       "requirements" : "Allows for alternative encodings within a code system, and translations to other code systems.",
-      "min" : 1,
+      "min" : 0,
       "max" : "*",
       "base" : {
         "path" : "CodeableConcept.coding",
@@ -1749,6 +1823,14 @@
     },
     {
       "id" : "Observation.code.coding:BPCode",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.code.coding",
       "sliceName" : "BPCode",
       "short" : "Code defined by a terminology system",
@@ -1891,6 +1973,14 @@
     },
     {
       "id" : "Observation.code.coding:BPCode.system",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.code.coding.system",
       "short" : "Identity of the terminology system",
       "definition" : "The identification of the code system that defines the meaning of the symbol in the code.",
@@ -1987,6 +2077,14 @@
     },
     {
       "id" : "Observation.code.coding:BPCode.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.code.coding.code",
       "short" : "Symbol in syntax defined by the system",
       "definition" : "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
@@ -2196,12 +2294,20 @@
     },
     {
       "id" : "Observation.subject",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.subject",
       "short" : "Who and/or what the observation is about",
       "definition" : "The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation.",
       "comment" : "One would expect this element to be a cardinality of 1..1. The only circumstance in which the subject can be missing is when the observation is made by a device that does not know the patient. In this case, the observation SHALL be matched to a patient through some context/channel matching technique, and at this point, the observation should be updated.",
       "requirements" : "Observations have no value if you don't know who or what they're about.",
-      "min" : 0,
+      "min" : 1,
       "max" : "1",
       "base" : {
         "path" : "Observation.subject",
@@ -2210,10 +2316,7 @@
       },
       "type" : [{
         "code" : "Reference",
-        "targetProfile" : ["http://hl7.org/fhir/StructureDefinition/Group",
-        "http://hl7.org/fhir/StructureDefinition/Device",
-        "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient",
-        "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-location"]
+        "targetProfile" : ["http://hl7.org/fhir/StructureDefinition/Patient"]
       }],
       "condition" : ["ele-1"],
       "constraint" : [{
@@ -2230,8 +2333,9 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -2302,7 +2406,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -2364,7 +2468,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -2413,7 +2517,8 @@
       {
         "code" : "Period"
       }],
-      "condition" : ["ele-1"],
+      "condition" : ["ele-1",
+      "vs-1"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -2421,7 +2526,16 @@
         "expression" : "hasValue() or (children().count() > id.count())",
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
+      },
+      {
+        "key" : "vs-1",
+        "severity" : "error",
+        "human" : "if Observation.effective[x] is dateTime and has a value then that value shall be precise to the day",
+        "expression" : "($this as dateTime).toString().length() >= 8",
+        "xpath" : "f:effectiveDateTime[matches(@value, '^\\d{4}-\\d{2}-\\d{2}')]",
+        "source" : "http://hl7.org/fhir/StructureDefinition/vitalsigns"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -2533,7 +2647,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -2564,10 +2678,18 @@
     {
       "id" : "Observation.value[x]",
       "path" : "Observation.value[x]",
-      "short" : "Actual result",
-      "definition" : "The information determined as a result of making the observation, if the information has a simple value.",
+      "slicing" : {
+        "discriminator" : [{
+          "type" : "type",
+          "path" : "$this"
+        }],
+        "ordered" : false,
+        "rules" : "closed"
+      },
+      "short" : "Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept.",
+      "definition" : "Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept.",
       "comment" : "An observation may have; 1)  a single value here, 2)  both a value and a set of related or component values,  or 3)  only a set of related or component values. If a value is present, the datatype for this element should be determined by Observation.code.  A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below.",
-      "requirements" : "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations.",
+      "requirements" : "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305).",
       "min" : 0,
       "max" : "0",
       "base" : {
@@ -2609,7 +2731,8 @@
         "code" : "Period"
       }],
       "condition" : ["ele-1",
-      "obs-7"],
+      "obs-7",
+      "vs-2"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -2618,6 +2741,59 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
+      "isSummary" : true,
+      "mapping" : [{
+        "identity" : "rim",
+        "map" : "n/a"
+      },
+      {
+        "identity" : "sct-concept",
+        "map" : "< 441742003 |Evaluation finding|"
+      },
+      {
+        "identity" : "v2",
+        "map" : "OBX.2, OBX.5, OBX.6"
+      },
+      {
+        "identity" : "rim",
+        "map" : "value"
+      },
+      {
+        "identity" : "sct-attr",
+        "map" : "363714003 |Interprets|"
+      }]
+    },
+    {
+      "id" : "Observation.value[x]:valueQuantity",
+      "path" : "Observation.value[x]",
+      "sliceName" : "valueQuantity",
+      "short" : "Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept.",
+      "definition" : "Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept.",
+      "comment" : "An observation may have; 1)  a single value here, 2)  both a value and a set of related or component values,  or 3)  only a set of related or component values. If a value is present, the datatype for this element should be determined by Observation.code.  A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below.",
+      "requirements" : "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305).",
+      "min" : 0,
+      "max" : "0",
+      "base" : {
+        "path" : "Observation.value[x]",
+        "min" : 0,
+        "max" : "1"
+      },
+      "type" : [{
+        "code" : "Quantity"
+      }],
+      "condition" : ["ele-1",
+      "obs-7",
+      "vs-2"],
+      "constraint" : [{
+        "key" : "ele-1",
+        "severity" : "error",
+        "human" : "All FHIR elements must have a @value or children",
+        "expression" : "hasValue() or (children().count() > id.count())",
+        "xpath" : "@value|f:*|h:div",
+        "source" : "http://hl7.org/fhir/StructureDefinition/Element"
+      }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -2666,7 +2842,8 @@
         "code" : "CodeableConcept"
       }],
       "condition" : ["ele-1",
-      "obs-6"],
+      "obs-6",
+      "vs-2"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -2675,6 +2852,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "binding" : {
         "extension" : [{
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
@@ -2737,10 +2915,6 @@
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationInterpretation"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"
       },
@@ -2858,10 +3032,6 @@
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "BodySite"
-        }],
         "strength" : "example",
         "valueSet" : "http://hl7.org/fhir/hspc/ValueSet/bpMeasBodyLocationPrecoordVS"
       },
@@ -2925,10 +3095,6 @@
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationMethod"
-        }],
         "strength" : "example",
         "valueSet" : "http://interopsante.org/fhir/ValueSet/fr-core-bp-measurement-method"
       },
@@ -2997,7 +3163,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -3065,7 +3231,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -3695,8 +3861,8 @@
         "valueCode" : "4.0.0"
       }],
       "path" : "Observation.hasMember",
-      "short" : "Related resource that belongs to the Observation group",
-      "definition" : "This observation is a group observation (e.g. a battery, a panel of tests, a set of vital sign measurements) that includes the target as a member of the group.",
+      "short" : "Used when reporting vital signs panel components",
+      "definition" : "Used when reporting vital signs panel components.",
       "comment" : "When using this element, an observation will typically have either a value or a set of related resources, although both may be present in some cases.  For a discussion on the ways Observations can assembled in groups together, see [Notes](http://hl7.org/fhir/R4/observation.html#obsgrouping) below.  Note that a system may calculate results from [QuestionnaireResponse](http://hl7.org/fhir/R4/questionnaireresponse.html)  into a final score and represent the score as an Observation.",
       "min" : 0,
       "max" : "*",
@@ -3707,9 +3873,9 @@
       },
       "type" : [{
         "code" : "Reference",
-        "targetProfile" : ["http://hl7.org/fhir/StructureDefinition/Observation",
-        "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
-        "http://hl7.org/fhir/StructureDefinition/MolecularSequence"]
+        "targetProfile" : ["http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+        "http://hl7.org/fhir/StructureDefinition/MolecularSequence",
+        "http://hl7.org/fhir/StructureDefinition/vitalsigns"]
       }],
       "condition" : ["ele-1"],
       "constraint" : [{
@@ -3726,7 +3892,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -3773,8 +3939,8 @@
         "http://hl7.org/fhir/StructureDefinition/ImagingStudy",
         "http://hl7.org/fhir/StructureDefinition/Media",
         "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
-        "http://hl7.org/fhir/StructureDefinition/Observation",
-        "http://hl7.org/fhir/StructureDefinition/MolecularSequence"]
+        "http://hl7.org/fhir/StructureDefinition/MolecularSequence",
+        "http://hl7.org/fhir/StructureDefinition/vitalsigns"]
       }],
       "condition" : ["ele-1"],
       "constraint" : [{
@@ -3791,7 +3957,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -3813,6 +3979,14 @@
     },
     {
       "id" : "Observation.component",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component",
       "slicing" : {
         "discriminator" : [{
@@ -3823,10 +3997,11 @@
           "type" : "value",
           "path" : "code.coding.system"
         }],
+        "ordered" : false,
         "rules" : "open"
       },
       "short" : "Used when reporting systolic and diastolic blood pressure.",
-      "definition" : "Some observations have multiple component observations.  These component observations are expressed as separate code value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood pressure measurement and multiple component observations for genetics observations.",
+      "definition" : "Used when reporting systolic and diastolic blood pressure.",
       "comment" : "For a discussion on the ways Observations can be assembled in groups together see [Notes](http://hl7.org/fhir/R4/observation.html#notes) below.",
       "requirements" : "Component observations share the same attributes in the Observation resource as the primary observation and are always treated a part of a single observation (they are not separable).   However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
       "min" : 2,
@@ -3847,7 +4022,16 @@
         "expression" : "hasValue() or (children().count() > id.count())",
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
+      },
+      {
+        "key" : "vs-3",
+        "severity" : "error",
+        "human" : "If there is no a value a data absent reason must be present",
+        "expression" : "value.exists() or dataAbsentReason.exists()",
+        "xpath" : "f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason",
+        "source" : "http://hl7.org/fhir/StructureDefinition/vitalsigns"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -4038,15 +4222,16 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "binding" : {
         "extension" : [{
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
           "valueString" : "ObservationCode"
         }],
-        "strength" : "example",
-        "description" : "Codes identifying names of simple observations.",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-codes"
+        "strength" : "extensible",
+        "description" : "This identifies the vital sign result type.",
+        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
       },
       "mapping" : [{
         "identity" : "rim",
@@ -4092,10 +4277,10 @@
         "valueCode" : "4.0.0"
       }],
       "path" : "Observation.component.value[x]",
-      "short" : "Actual component result",
-      "definition" : "The information determined as a result of making the observation, if the information has a simple value.",
+      "short" : "Vital Sign Value recorded with UCUM",
+      "definition" : "Vital Sign Value recorded with UCUM.",
       "comment" : "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below.",
-      "requirements" : "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations.",
+      "requirements" : "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305).",
       "min" : 0,
       "max" : "1",
       "base" : {
@@ -4136,7 +4321,8 @@
       {
         "code" : "Period"
       }],
-      "condition" : ["ele-1"],
+      "condition" : ["ele-1",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -4145,7 +4331,17 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
+      "binding" : {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+          "valueString" : "VitalSignsUnits"
+        }],
+        "strength" : "required",
+        "description" : "Common UCUM units for recording Vital Signs.",
+        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"
+      },
       "mapping" : [{
         "identity" : "rim",
         "map" : "n/a"
@@ -4193,7 +4389,8 @@
         "code" : "CodeableConcept"
       }],
       "condition" : ["ele-1",
-      "obs-6"],
+      "obs-6",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -4202,6 +4399,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "binding" : {
         "extension" : [{
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
@@ -4341,8 +4539,8 @@
       "id" : "Observation.component:SystolicBP",
       "path" : "Observation.component",
       "sliceName" : "SystolicBP",
-      "short" : "Used when reporting systolic blood pressure.",
-      "definition" : "Used when reporting systolic blood pressure.",
+      "short" : "Used when reporting systolic and diastolic blood pressure.",
+      "definition" : "Used when reporting systolic and diastolic blood pressure.",
       "comment" : "For a discussion on the ways Observations can be assembled in groups together see [Notes](http://hl7.org/fhir/R4/observation.html#notes) below.",
       "requirements" : "Component observations share the same attributes in the Observation resource as the primary observation and are always treated a part of a single observation (they are not separable).   However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation.",
       "min" : 1,
@@ -4363,6 +4561,14 @@
         "expression" : "hasValue() or (children().count() > id.count())",
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
+      },
+      {
+        "key" : "vs-3",
+        "severity" : "error",
+        "human" : "If there is no a value a data absent reason must be present",
+        "expression" : "value.exists() or dataAbsentReason.exists()",
+        "xpath" : "f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason",
+        "source" : "http://hl7.org/fhir/StructureDefinition/vitalsigns"
       }],
       "mustSupport" : true,
       "isSummary" : true,
@@ -4523,11 +4729,21 @@
     },
     {
       "id" : "Observation.component:SystolicBP.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code",
       "short" : "Type of component observation (code / type)",
       "definition" : "Describes what was observed. Sometimes this is called the observation \"code\".",
-      "comment" : "*All* code-value and  component.code-component.value pairs need to be taken into account to correctly understand the meaning of the observation.",
+      "comment" : "additional codes that translate or map to this code are allowed.  For example a more granular LOINC code or code that is used locally in a system.",
       "requirements" : "Knowing what kind of observation is being made is essential to understanding the observation.",
+      "alias" : ["Component Test",
+      "Component Name"],
       "min" : 1,
       "max" : "1",
       "base" : {
@@ -4554,9 +4770,9 @@
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
           "valueString" : "ObservationCode"
         }],
-        "strength" : "example",
-        "description" : "Codes identifying names of simple observations.",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-codes"
+        "strength" : "extensible",
+        "description" : "This identifies the vital sign result type.",
+        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
       },
       "mapping" : [{
         "identity" : "rim",
@@ -4678,6 +4894,14 @@
     },
     {
       "id" : "Observation.component:SystolicBP.code.coding",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code.coding",
       "slicing" : {
         "discriminator" : [{
@@ -4688,13 +4912,14 @@
           "type" : "value",
           "path" : "system"
         }],
+        "ordered" : false,
         "rules" : "open"
       },
       "short" : "Systolic Blood Pressure",
-      "definition" : "Systolic Blood Pressure",
+      "definition" : "Systolic Blood Pressure.",
       "comment" : "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true.",
       "requirements" : "Allows for alternative encodings within a code system, and translations to other code systems.",
-      "min" : 1,
+      "min" : 0,
       "max" : "*",
       "base" : {
         "path" : "CodeableConcept.coding",
@@ -4745,10 +4970,18 @@
     },
     {
       "id" : "Observation.component:SystolicBP.code.coding:SBPCode",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code.coding",
       "sliceName" : "SBPCode",
-      "short" : "Code defined by a terminology system",
-      "definition" : "A reference to a code defined by a terminology system.",
+      "short" : "Systolic Blood Pressure",
+      "definition" : "Systolic Blood Pressure.",
       "comment" : "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true.",
       "requirements" : "Allows for alternative encodings within a code system, and translations to other code systems.",
       "min" : 1,
@@ -4887,6 +5120,14 @@
     },
     {
       "id" : "Observation.component:SystolicBP.code.coding:SBPCode.system",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code.coding.system",
       "short" : "Identity of the terminology system",
       "definition" : "The identification of the code system that defines the meaning of the symbol in the code.",
@@ -4983,6 +5224,14 @@
     },
     {
       "id" : "Observation.component:SystolicBP.code.coding:SBPCode.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code.coding.code",
       "short" : "Symbol in syntax defined by the system",
       "definition" : "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
@@ -5199,12 +5448,12 @@
           "path" : "$this"
         }],
         "ordered" : false,
-        "rules" : "open"
+        "rules" : "closed"
       },
       "short" : "Vital Sign Value recorded with UCUM",
-      "definition" : "Vital Sign Value recorded with UCUM",
+      "definition" : "Vital Sign Value recorded with UCUM.",
       "comment" : "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below.",
-      "requirements" : "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations.",
+      "requirements" : "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305).",
       "min" : 0,
       "max" : "1",
       "base" : {
@@ -5245,7 +5494,8 @@
       {
         "code" : "Period"
       }],
-      "condition" : ["ele-1"],
+      "condition" : ["ele-1",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -5257,9 +5507,13 @@
       "mustSupport" : true,
       "isSummary" : true,
       "binding" : {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+          "valueString" : "VitalSignsUnits"
+        }],
         "strength" : "required",
         "description" : "Common UCUM units for recording Vital Signs.",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0"
+        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"
       },
       "mapping" : [{
         "identity" : "rim",
@@ -5286,10 +5540,10 @@
       "id" : "Observation.component:SystolicBP.value[x]:valueQuantity",
       "path" : "Observation.component.value[x]",
       "sliceName" : "valueQuantity",
-      "short" : "Actual component result",
-      "definition" : "The information determined as a result of making the observation, if the information has a simple value.",
+      "short" : "Vital Sign Value recorded with UCUM",
+      "definition" : "Vital Sign Value recorded with UCUM.",
       "comment" : "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below.",
-      "requirements" : "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations.",
+      "requirements" : "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305).",
       "min" : 0,
       "max" : "1",
       "base" : {
@@ -5300,7 +5554,8 @@
       "type" : [{
         "code" : "Quantity"
       }],
-      "condition" : ["ele-1"],
+      "condition" : ["ele-1",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -5309,7 +5564,17 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
+      "binding" : {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+          "valueString" : "VitalSignsUnits"
+        }],
+        "strength" : "required",
+        "description" : "Common UCUM units for recording Vital Signs.",
+        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"
+      },
       "mapping" : [{
         "identity" : "rim",
         "map" : "n/a"
@@ -5418,6 +5683,14 @@
     },
     {
       "id" : "Observation.component:SystolicBP.value[x]:valueQuantity.value",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.value[x].value",
       "short" : "Numerical value (with implicit precision)",
       "definition" : "The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
@@ -5520,6 +5793,14 @@
     {
       "id" : "Observation.component:SystolicBP.value[x]:valueQuantity.unit",
       "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      },
+      {
         "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable",
         "valueBoolean" : true
       }],
@@ -5538,7 +5819,6 @@
       "type" : [{
         "code" : "string"
       }],
-      "fixedString" : "mm[Hg]",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -5565,6 +5845,14 @@
     },
     {
       "id" : "Observation.component:SystolicBP.value[x]:valueQuantity.system",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.value[x].system",
       "short" : "System that defines coded unit form",
       "definition" : "The identification of the system that provides the coded form of the unit.",
@@ -5591,6 +5879,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -5607,9 +5896,17 @@
     },
     {
       "id" : "Observation.component:SystolicBP.value[x]:valueQuantity.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.value[x].code",
-      "short" : "Coded form of the unit",
-      "definition" : "A computer processable form of the unit in some unit representation system.",
+      "short" : "Coded responses from the common UCUM units for vital signs value set.",
+      "definition" : "Coded responses from the common UCUM units for vital signs value set.",
       "comment" : "The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system.",
       "requirements" : "Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest.",
       "min" : 1,
@@ -5632,6 +5929,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -5672,7 +5970,8 @@
         "code" : "CodeableConcept"
       }],
       "condition" : ["ele-1",
-      "obs-6"],
+      "obs-6",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -5681,6 +5980,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "binding" : {
         "extension" : [{
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
@@ -5743,10 +6043,6 @@
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationInterpretation"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"
       },
@@ -5833,6 +6129,14 @@
         "expression" : "hasValue() or (children().count() > id.count())",
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
+      },
+      {
+        "key" : "vs-3",
+        "severity" : "error",
+        "human" : "If there is no a value a data absent reason must be present",
+        "expression" : "value.exists() or dataAbsentReason.exists()",
+        "xpath" : "f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason",
+        "source" : "http://hl7.org/fhir/StructureDefinition/vitalsigns"
       }],
       "mustSupport" : true,
       "isSummary" : true,
@@ -5993,10 +6297,18 @@
     },
     {
       "id" : "Observation.component:DiastolicBP.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code",
       "short" : "Type of component observation (code / type)",
       "definition" : "Describes what was observed. Sometimes this is called the observation \"code\".",
-      "comment" : "*All* code-value and  component.code-component.value pairs need to be taken into account to correctly understand the meaning of the observation.",
+      "comment" : "additional codes that translate or map to this code are allowed.  For example a more granular LOINC code or code that is used locally in a system.",
       "requirements" : "Knowing what kind of observation is being made is essential to understanding the observation.",
       "min" : 1,
       "max" : "1",
@@ -6024,9 +6336,9 @@
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
           "valueString" : "ObservationCode"
         }],
-        "strength" : "example",
-        "description" : "Codes identifying names of simple observations.",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-codes"
+        "strength" : "extensible",
+        "description" : "This identifies the vital sign result type.",
+        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
       },
       "mapping" : [{
         "identity" : "rim",
@@ -6148,6 +6460,14 @@
     },
     {
       "id" : "Observation.component:DiastolicBP.code.coding",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code.coding",
       "slicing" : {
         "discriminator" : [{
@@ -6158,13 +6478,14 @@
           "type" : "value",
           "path" : "system"
         }],
+        "ordered" : false,
         "rules" : "open"
       },
-      "short" : "Code defined by a terminology system",
-      "definition" : "A reference to a code defined by a terminology system.",
+      "short" : "Diastolic Blood Pressure",
+      "definition" : "Diastolic Blood Pressure.",
       "comment" : "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true.",
       "requirements" : "Allows for alternative encodings within a code system, and translations to other code systems.",
-      "min" : 1,
+      "min" : 0,
       "max" : "*",
       "base" : {
         "path" : "CodeableConcept.coding",
@@ -6215,10 +6536,18 @@
     },
     {
       "id" : "Observation.component:DiastolicBP.code.coding:DBPCode",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code.coding",
       "sliceName" : "DBPCode",
-      "short" : "Code defined by a terminology system",
-      "definition" : "A reference to a code defined by a terminology system.",
+      "short" : "Diastolic Blood Pressure",
+      "definition" : "Diastolic Blood Pressure.",
       "comment" : "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true.",
       "requirements" : "Allows for alternative encodings within a code system, and translations to other code systems.",
       "min" : 1,
@@ -6357,6 +6686,14 @@
     },
     {
       "id" : "Observation.component:DiastolicBP.code.coding:DBPCode.system",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code.coding.system",
       "short" : "Identity of the terminology system",
       "definition" : "The identification of the code system that defines the meaning of the symbol in the code.",
@@ -6453,6 +6790,14 @@
     },
     {
       "id" : "Observation.component:DiastolicBP.code.coding:DBPCode.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code.coding.code",
       "short" : "Symbol in syntax defined by the system",
       "definition" : "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
@@ -6669,12 +7014,12 @@
           "path" : "$this"
         }],
         "ordered" : false,
-        "rules" : "open"
+        "rules" : "closed"
       },
-      "short" : "Vital Sign Value recorded with UCUM.",
+      "short" : "Vital Sign Value recorded with UCUM",
       "definition" : "Vital Sign Value recorded with UCUM.",
       "comment" : "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below.",
-      "requirements" : "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations.",
+      "requirements" : "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305).",
       "min" : 0,
       "max" : "1",
       "base" : {
@@ -6715,7 +7060,8 @@
       {
         "code" : "Period"
       }],
-      "condition" : ["ele-1"],
+      "condition" : ["ele-1",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -6727,9 +7073,13 @@
       "mustSupport" : true,
       "isSummary" : true,
       "binding" : {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+          "valueString" : "VitalSignsUnits"
+        }],
         "strength" : "required",
         "description" : "Common UCUM units for recording Vital Signs.",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0"
+        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"
       },
       "mapping" : [{
         "identity" : "rim",
@@ -6756,10 +7106,10 @@
       "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity",
       "path" : "Observation.component.value[x]",
       "sliceName" : "valueQuantity",
-      "short" : "Actual component result",
-      "definition" : "The information determined as a result of making the observation, if the information has a simple value.",
+      "short" : "Vital Sign Value recorded with UCUM",
+      "definition" : "Vital Sign Value recorded with UCUM.",
       "comment" : "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below.",
-      "requirements" : "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations.",
+      "requirements" : "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305).",
       "min" : 0,
       "max" : "1",
       "base" : {
@@ -6770,7 +7120,8 @@
       "type" : [{
         "code" : "Quantity"
       }],
-      "condition" : ["ele-1"],
+      "condition" : ["ele-1",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -6779,7 +7130,17 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
+      "binding" : {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+          "valueString" : "VitalSignsUnits"
+        }],
+        "strength" : "required",
+        "description" : "Common UCUM units for recording Vital Signs.",
+        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"
+      },
       "mapping" : [{
         "identity" : "rim",
         "map" : "n/a"
@@ -6888,6 +7249,14 @@
     },
     {
       "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity.value",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.value[x].value",
       "short" : "Numerical value (with implicit precision)",
       "definition" : "The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
@@ -6912,6 +7281,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -6989,6 +7359,14 @@
     {
       "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity.unit",
       "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      },
+      {
         "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable",
         "valueBoolean" : true
       }],
@@ -7007,7 +7385,6 @@
       "type" : [{
         "code" : "string"
       }],
-      "fixedString" : "mm[Hg]",
       "condition" : ["ele-1"],
       "constraint" : [{
         "key" : "ele-1",
@@ -7017,6 +7394,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -7033,6 +7411,14 @@
     },
     {
       "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity.system",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.value[x].system",
       "short" : "System that defines coded unit form",
       "definition" : "The identification of the system that provides the coded form of the unit.",
@@ -7059,6 +7445,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -7075,9 +7462,17 @@
     },
     {
       "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.value[x].code",
-      "short" : "Coded form of the unit",
-      "definition" : "A computer processable form of the unit in some unit representation system.",
+      "short" : "Coded responses from the common UCUM units for vital signs value set.",
+      "definition" : "Coded responses from the common UCUM units for vital signs value set.",
       "comment" : "The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system.",
       "requirements" : "Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest.",
       "min" : 1,
@@ -7100,6 +7495,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -7140,7 +7536,8 @@
         "code" : "CodeableConcept"
       }],
       "condition" : ["ele-1",
-      "obs-6"],
+      "obs-6",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -7149,6 +7546,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "binding" : {
         "extension" : [{
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
@@ -7211,10 +7609,6 @@
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationInterpretation"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"
       },
@@ -7301,7 +7695,16 @@
         "expression" : "hasValue() or (children().count() > id.count())",
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
+      },
+      {
+        "key" : "vs-3",
+        "severity" : "error",
+        "human" : "If there is no a value a data absent reason must be present",
+        "expression" : "value.exists() or dataAbsentReason.exists()",
+        "xpath" : "f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason",
+        "source" : "http://hl7.org/fhir/StructureDefinition/vitalsigns"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
       "mapping" : [{
         "identity" : "rim",
@@ -7460,6 +7863,14 @@
     },
     {
       "id" : "Observation.component:MeanBP.code",
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+        "valueCode" : "normative"
+      },
+      {
+        "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+        "valueCode" : "4.0.0"
+      }],
       "path" : "Observation.component.code",
       "short" : "Type of component observation (code / type)",
       "definition" : "Describes what was observed. Sometimes this is called the observation \"code\".",
@@ -7491,9 +7902,9 @@
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
           "valueString" : "ObservationCode"
         }],
-        "strength" : "example",
-        "description" : "Codes identifying names of simple observations.",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-codes"
+        "strength" : "extensible",
+        "description" : "This identifies the vital sign result type.",
+        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
       },
       "mapping" : [{
         "identity" : "rim",
@@ -8138,10 +8549,10 @@
         "valueCode" : "4.0.0"
       }],
       "path" : "Observation.component.value[x]",
-      "short" : "Actual component result",
-      "definition" : "The information determined as a result of making the observation, if the information has a simple value.",
+      "short" : "Vital Sign Value recorded with UCUM",
+      "definition" : "Vital Sign Value recorded with UCUM.",
       "comment" : "Used when observation has a set of component observations. An observation may have both a value (e.g. an  Apgar score)  and component observations (the observations from which the Apgar score was derived). If a value is present, the datatype for this element should be determined by Observation.code. A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/R4/observation.html#notes) below.",
-      "requirements" : "An observation exists to have a value, though it might not if it is in error, or if it represents a group of observations.",
+      "requirements" : "9. SHALL contain exactly one [1..1] value with @xsi:type=\"PQ\" (CONF:7305).",
       "min" : 0,
       "max" : "1",
       "base" : {
@@ -8182,7 +8593,8 @@
       {
         "code" : "Period"
       }],
-      "condition" : ["ele-1"],
+      "condition" : ["ele-1",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -8191,7 +8603,17 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "isSummary" : true,
+      "binding" : {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
+          "valueString" : "VitalSignsUnits"
+        }],
+        "strength" : "required",
+        "description" : "Common UCUM units for recording Vital Signs.",
+        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"
+      },
       "mapping" : [{
         "identity" : "rim",
         "map" : "n/a"
@@ -8239,7 +8661,8 @@
         "code" : "CodeableConcept"
       }],
       "condition" : ["ele-1",
-      "obs-6"],
+      "obs-6",
+      "vs-3"],
       "constraint" : [{
         "key" : "ele-1",
         "severity" : "error",
@@ -8248,6 +8671,7 @@
         "xpath" : "@value|f:*|h:div",
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
+      "mustSupport" : true,
       "binding" : {
         "extension" : [{
           "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
@@ -8310,10 +8734,6 @@
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationInterpretation"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"
       },
@@ -8392,106 +8812,6 @@
       }]
     },
     {
-      "id" : "Observation.category",
-      "path" : "Observation.category",
-      "slicing" : {
-        "discriminator" : [{
-          "type" : "value",
-          "path" : "coding.code"
-        },
-        {
-          "type" : "value",
-          "path" : "coding.system"
-        }],
-        "rules" : "open"
-      },
-      "min" : 1
-    },
-    {
-      "id" : "Observation.category:VSCat",
-      "path" : "Observation.category",
-      "sliceName" : "VSCat",
-      "min" : 1,
-      "max" : "1"
-    },
-    {
-      "id" : "Observation.category:VSCat.coding",
-      "path" : "Observation.category.coding",
-      "min" : 1
-    },
-    {
-      "id" : "Observation.category:VSCat.coding.system",
-      "path" : "Observation.category.coding.system",
-      "min" : 1,
-      "fixedUri" : "http://terminology.hl7.org/CodeSystem/observation-category"
-    },
-    {
-      "id" : "Observation.category:VSCat.coding.code",
-      "path" : "Observation.category.coding.code",
-      "min" : 1,
-      "fixedCode" : "vital-signs"
-    },
-    {
-      "id" : "Observation.code",
-      "path" : "Observation.code",
-      "short" : "Blood pressure code",
-      "definition" : "Blood pressure code",
-      "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationCode"
-        }],
-        "strength" : "extensible",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
-      }
-    },
-    {
-      "id" : "Observation.code.coding",
-      "path" : "Observation.code.coding",
-      "slicing" : {
-        "discriminator" : [{
-          "type" : "value",
-          "path" : "code"
-        },
-        {
-          "type" : "value",
-          "path" : "system"
-        }],
-        "rules" : "open"
-      },
-      "min" : 1
-    },
-    {
-      "id" : "Observation.code.coding:BPCode",
-      "path" : "Observation.code.coding",
-      "sliceName" : "BPCode",
-      "min" : 1,
-      "max" : "1"
-    },
-    {
-      "id" : "Observation.code.coding:BPCode.system",
-      "path" : "Observation.code.coding.system",
-      "min" : 1,
-      "fixedUri" : "http://loinc.org"
-    },
-    {
-      "id" : "Observation.code.coding:BPCode.code",
-      "path" : "Observation.code.coding.code",
-      "min" : 1,
-      "fixedCode" : "85354-9"
-    },
-    {
-      "id" : "Observation.subject",
-      "path" : "Observation.subject",
-      "type" : [{
-        "code" : "Reference",
-        "targetProfile" : ["http://hl7.org/fhir/StructureDefinition/Group",
-        "http://hl7.org/fhir/StructureDefinition/Device",
-        "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-patient",
-        "http://hl7.fr/ig/fhir/core/StructureDefinition/fr-core-location"]
-      }]
-    },
-    {
       "id" : "Observation.encounter",
       "path" : "Observation.encounter",
       "type" : [{
@@ -8502,15 +8822,7 @@
     {
       "id" : "Observation.effective[x]",
       "path" : "Observation.effective[x]",
-      "short" : "Often just a dateTime for Vital Signs",
-      "definition" : "Often just a dateTime for Vital Signs",
-      "min" : 1,
-      "type" : [{
-        "code" : "dateTime"
-      },
-      {
-        "code" : "Period"
-      }]
+      "definition" : "Often just a dateTime for Vital Signs"
     },
     {
       "id" : "Observation.performer",
@@ -8528,16 +8840,19 @@
     {
       "id" : "Observation.value[x]",
       "path" : "Observation.value[x]",
+      "slicing" : {
+        "discriminator" : [{
+          "type" : "type",
+          "path" : "$this"
+        }],
+        "rules" : "open"
+      },
       "max" : "0"
     },
     {
       "id" : "Observation.interpretation",
       "path" : "Observation.interpretation",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationInterpretation"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"
       }
@@ -8546,10 +8861,6 @@
       "id" : "Observation.bodySite",
       "path" : "Observation.bodySite",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "BodySite"
-        }],
         "strength" : "example",
         "valueSet" : "http://hl7.org/fhir/hspc/ValueSet/bpMeasBodyLocationPrecoordVS"
       }
@@ -8558,82 +8869,14 @@
       "id" : "Observation.method",
       "path" : "Observation.method",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationMethod"
-        }],
         "strength" : "example",
         "valueSet" : "http://interopsante.org/fhir/ValueSet/fr-core-bp-measurement-method"
       }
     },
     {
-      "id" : "Observation.component",
-      "path" : "Observation.component",
-      "slicing" : {
-        "discriminator" : [{
-          "type" : "value",
-          "path" : "code.coding.code"
-        },
-        {
-          "type" : "value",
-          "path" : "code.coding.system"
-        }],
-        "rules" : "open"
-      },
-      "short" : "Used when reporting systolic and diastolic blood pressure.",
-      "min" : 2
-    },
-    {
       "id" : "Observation.component:SystolicBP",
       "path" : "Observation.component",
-      "sliceName" : "SystolicBP",
-      "short" : "Used when reporting systolic blood pressure.",
-      "definition" : "Used when reporting systolic blood pressure.",
-      "min" : 1,
-      "max" : "1",
-      "mustSupport" : true
-    },
-    {
-      "id" : "Observation.component:SystolicBP.code",
-      "path" : "Observation.component.code",
-      "mustSupport" : true
-    },
-    {
-      "id" : "Observation.component:SystolicBP.code.coding",
-      "path" : "Observation.component.code.coding",
-      "slicing" : {
-        "discriminator" : [{
-          "type" : "value",
-          "path" : "code"
-        },
-        {
-          "type" : "value",
-          "path" : "system"
-        }],
-        "rules" : "open"
-      },
-      "short" : "Systolic Blood Pressure",
-      "definition" : "Systolic Blood Pressure",
-      "min" : 1
-    },
-    {
-      "id" : "Observation.component:SystolicBP.code.coding:SBPCode",
-      "path" : "Observation.component.code.coding",
-      "sliceName" : "SBPCode",
-      "min" : 1,
-      "max" : "1"
-    },
-    {
-      "id" : "Observation.component:SystolicBP.code.coding:SBPCode.system",
-      "path" : "Observation.component.code.coding.system",
-      "min" : 1,
-      "fixedUri" : "http://loinc.org"
-    },
-    {
-      "id" : "Observation.component:SystolicBP.code.coding:SBPCode.code",
-      "path" : "Observation.component.code.coding.code",
-      "min" : 1,
-      "fixedCode" : "8480-6"
+      "sliceName" : "SystolicBP"
     },
     {
       "id" : "Observation.component:SystolicBP.value[x]",
@@ -8643,119 +8886,23 @@
           "type" : "type",
           "path" : "$this"
         }],
-        "ordered" : false,
         "rules" : "open"
-      },
-      "short" : "Vital Sign Value recorded with UCUM",
-      "definition" : "Vital Sign Value recorded with UCUM",
-      "mustSupport" : true,
-      "binding" : {
-        "strength" : "required",
-        "description" : "Common UCUM units for recording Vital Signs.",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0"
       }
-    },
-    {
-      "id" : "Observation.component:SystolicBP.value[x]:valueQuantity",
-      "path" : "Observation.component.value[x]",
-      "sliceName" : "valueQuantity",
-      "min" : 0,
-      "max" : "1",
-      "type" : [{
-        "code" : "Quantity"
-      }]
-    },
-    {
-      "id" : "Observation.component:SystolicBP.value[x]:valueQuantity.value",
-      "path" : "Observation.component.value[x].value",
-      "min" : 1,
-      "mustSupport" : true
-    },
-    {
-      "id" : "Observation.component:SystolicBP.value[x]:valueQuantity.unit",
-      "path" : "Observation.component.value[x].unit",
-      "min" : 1,
-      "fixedString" : "mm[Hg]",
-      "mustSupport" : true
-    },
-    {
-      "id" : "Observation.component:SystolicBP.value[x]:valueQuantity.system",
-      "path" : "Observation.component.value[x].system",
-      "min" : 1,
-      "fixedUri" : "http://unitsofmeasure.org"
-    },
-    {
-      "id" : "Observation.component:SystolicBP.value[x]:valueQuantity.code",
-      "path" : "Observation.component.value[x].code",
-      "min" : 1,
-      "fixedCode" : "mm[Hg]"
     },
     {
       "id" : "Observation.component:SystolicBP.interpretation",
       "path" : "Observation.component.interpretation",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationInterpretation"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"
       }
-    },
-    {
-      "id" : "Observation.component:SystolicBP.referenceRange",
-      "path" : "Observation.component.referenceRange",
-      "contentReference" : "http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange"
     },
     {
       "id" : "Observation.component:DiastolicBP",
       "path" : "Observation.component",
       "sliceName" : "DiastolicBP",
       "short" : "Used when reporting diastolic blood pressure.",
-      "definition" : "Used when reporting diastolic blood pressure.",
-      "min" : 1,
-      "max" : "1",
-      "mustSupport" : true
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.code",
-      "path" : "Observation.component.code",
-      "mustSupport" : true
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.code.coding",
-      "path" : "Observation.component.code.coding",
-      "slicing" : {
-        "discriminator" : [{
-          "type" : "value",
-          "path" : "code"
-        },
-        {
-          "type" : "value",
-          "path" : "system"
-        }],
-        "rules" : "open"
-      },
-      "min" : 1
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.code.coding:DBPCode",
-      "path" : "Observation.component.code.coding",
-      "sliceName" : "DBPCode",
-      "min" : 1,
-      "max" : "1"
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.code.coding:DBPCode.system",
-      "path" : "Observation.component.code.coding.system",
-      "min" : 1,
-      "fixedUri" : "http://loinc.org"
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.code.coding:DBPCode.code",
-      "path" : "Observation.component.code.coding.code",
-      "min" : 1,
-      "fixedCode" : "8462-4"
+      "definition" : "Used when reporting diastolic blood pressure."
     },
     {
       "id" : "Observation.component:DiastolicBP.value[x]",
@@ -8765,67 +8912,16 @@
           "type" : "type",
           "path" : "$this"
         }],
-        "ordered" : false,
         "rules" : "open"
-      },
-      "short" : "Vital Sign Value recorded with UCUM.",
-      "definition" : "Vital Sign Value recorded with UCUM.",
-      "mustSupport" : true,
-      "binding" : {
-        "strength" : "required",
-        "description" : "Common UCUM units for recording Vital Signs.",
-        "valueSet" : "http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.0"
       }
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity",
-      "path" : "Observation.component.value[x]",
-      "sliceName" : "valueQuantity",
-      "min" : 0,
-      "max" : "1",
-      "type" : [{
-        "code" : "Quantity"
-      }]
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity.value",
-      "path" : "Observation.component.value[x].value",
-      "min" : 1
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity.unit",
-      "path" : "Observation.component.value[x].unit",
-      "min" : 1,
-      "fixedString" : "mm[Hg]"
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity.system",
-      "path" : "Observation.component.value[x].system",
-      "min" : 1,
-      "fixedUri" : "http://unitsofmeasure.org"
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.value[x]:valueQuantity.code",
-      "path" : "Observation.component.value[x].code",
-      "min" : 1,
-      "fixedCode" : "mm[Hg]"
     },
     {
       "id" : "Observation.component:DiastolicBP.interpretation",
       "path" : "Observation.component.interpretation",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationInterpretation"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"
       }
-    },
-    {
-      "id" : "Observation.component:DiastolicBP.referenceRange",
-      "path" : "Observation.component.referenceRange",
-      "contentReference" : "http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange"
     },
     {
       "id" : "Observation.component:MeanBP",
@@ -8835,11 +8931,6 @@
       "definition" : "Mean blood pressure",
       "min" : 0,
       "max" : "1"
-    },
-    {
-      "id" : "Observation.component:MeanBP.code",
-      "path" : "Observation.component.code",
-      "mustSupport" : true
     },
     {
       "id" : "Observation.component:MeanBP.code.coding",
@@ -8882,18 +8973,9 @@
       "id" : "Observation.component:MeanBP.interpretation",
       "path" : "Observation.component.interpretation",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "ObservationInterpretation"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://www.interopsante.org/fhir/structuredefinition/observation/fr-core-obervation-interpretation"
       }
-    },
-    {
-      "id" : "Observation.component:MeanBP.referenceRange",
-      "path" : "Observation.component.referenceRange",
-      "contentReference" : "http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange"
     }]
   }
 }

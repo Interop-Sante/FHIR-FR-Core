@@ -17,7 +17,7 @@
   fhir:name [ fhir:v "FRCorePractitionerProfile"] ; # 
   fhir:title [ fhir:v "FR Core Practitioner Profile"] ; # 
   fhir:status [ fhir:v "active"] ; # 
-  fhir:date [ fhir:v "2022-12-23"^^xsd:date] ; # 
+  fhir:date [ fhir:v "2023-09-19T07:10:34+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "Interop'Santé"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "Interop'Santé" ] ;
@@ -683,10 +683,6 @@
        fhir:isModifierReason [ fhir:v "This is labeled as \"Is Modifier\" because applications should not mistake a temporary id for a permanent one." ] ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "IdentifierUse" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/identifier-use"^^xsd:anyURI ;
@@ -710,7 +706,7 @@
        fhir:definition [ fhir:v "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose." ] ;
        fhir:comment [ fhir:v "This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage.   Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type." ] ;
        fhir:requirements [ fhir:v "Allows users to make use of identifiers when the identifier system is not known." ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
+       fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
          fhir:path [ fhir:v "Identifier.type" ] ;
@@ -735,9 +731,6 @@
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "IdentifierType" ]
-         ] [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding"^^xsd:anyURI ] ;
            fhir:value [ fhir:v "true"^^xsd:boolean ]
          ] ) ;
@@ -1440,8 +1433,8 @@
          fhir:expression [ fhir:v "start.hasValue().not() or end.hasValue().not() or (start <= end)" ] ;
          fhir:xpath [ fhir:v "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -1509,8 +1502,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -2056,8 +2049,8 @@
          fhir:expression [ fhir:v "start.hasValue().not() or end.hasValue().not() or (start <= end)" ] ;
          fhir:xpath [ fhir:v "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
          ]
        ] ) ;
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
@@ -2158,9 +2151,6 @@
        fhir:isSummary [ fhir:v "true"^^xsd:boolean ] ;
        fhir:binding [
          fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "AdministrativeGender" ]
-         ] [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding"^^xsd:anyURI ] ;
            fhir:value [ fhir:v "true"^^xsd:boolean ]
          ] ) ;
@@ -2274,8 +2264,8 @@
          fhir:expression [ fhir:v "data.empty() or contentType.exists()" ] ;
          fhir:xpath [ fhir:v "not(exists(f:data)) or exists(f:contentType)" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DiagnosticReport"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DiagnosticReport>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Media"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Media>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -2741,7 +2731,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR36" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR36" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Autre diplôme obtenu" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -2885,7 +2875,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR36.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Autre diplôme obtenu" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -3132,7 +3122,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR47" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR47" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Commission de qualification" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -3276,7 +3266,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR47.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Commission de qualification" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -3523,7 +3513,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR48" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR48" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Diplôme de l'Etat français" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -3667,7 +3657,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR48.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme de l'Etat français" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -3914,7 +3904,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR49" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR49" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Diplôme d'Etudes Spécialisées" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -4058,7 +4048,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR49.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme d'Etudes Spécialisées" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "Diplôme d'Etudes Spécialisées" ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -4305,7 +4295,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR50" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR50" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "DESC Groupe 1 (diplôme)" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -4449,7 +4439,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR50.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "DESC Groupe 1 (diplôme)" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -4696,7 +4686,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR51" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR51" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "DESC Groupe 2 (diplôme)" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -4840,7 +4830,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR51.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "DESC Groupe 2 (diplôme)" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -5087,7 +5077,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR52" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR52" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Capacité (diplôme)" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -5231,7 +5221,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR52.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Capacité (diplôme)" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -5478,7 +5468,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR53" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR53" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Diplôme d'un pays de l'EEE" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -5622,7 +5612,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR53.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme d'un pays de l'EEE" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -5869,7 +5859,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR54" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR54" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Diplôme d'Université ou Inter-Universitaire" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -6013,7 +6003,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR54.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme d'Université ou Inter-Universitaire" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "Diplôme d'Université ou Inter-Universitaire" ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -6260,7 +6250,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR55" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR55" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Certificat d'Etude Spéciale" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -6404,7 +6394,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR55.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Certificat d'Etude Spéciale" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "Certificat d'Etude Spéciale" ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -6651,7 +6641,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR56" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR56" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Attestation" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -6795,7 +6785,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR56.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Attestation" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -7042,7 +7032,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR57" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR57" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Diplôme Européen d'Etudes Spécialisées" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -7186,7 +7176,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR57.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme Européen d'Etudes Spécialisées" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "Diplôme Européen d'Etudes Spécialisées" ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -7433,7 +7423,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR58" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR58" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Autre type de diplôme" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -7577,7 +7567,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR58.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Autre type de diplôme" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "Autre type de diplôme" ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -7824,7 +7814,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR226" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR226" ] ;
-       fhir:short [ fhir:v "Code defined by a terminology system" ] ;
+       fhir:short [ fhir:v "Diplôme de 2ième cycle non qualifiant" ] ;
        fhir:definition [ fhir:v "A reference to a code defined by a terminology system." ] ;
        fhir:comment [ fhir:v "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." ] ;
        fhir:requirements [ fhir:v "Allows for alternative encodings within a code system, and translations to other code systems." ] ;
@@ -7968,7 +7958,7 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR226.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme de 2ième cycle non qualifiant" ] ;
+       fhir:short [ fhir:v "Identity of the terminology system" ] ;
        fhir:definition [ fhir:v "The identification of the code system that defines the meaning of the symbol in the code." ] ;
        fhir:comment [ fhir:v "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously." ] ;
        fhir:requirements [ fhir:v "Need to be unambiguous about the source of the definition of the symbol." ] ;
@@ -8306,8 +8296,8 @@
          fhir:expression [ fhir:v "start.hasValue().not() or end.hasValue().not() or (start <= end)" ] ;
          fhir:xpath [ fhir:v "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Group"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Group>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -8371,8 +8361,8 @@
          fhir:expression [ fhir:v "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))" ] ;
          fhir:xpath [ fhir:v "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" ] ;
          fhir:source [
-           fhir:v "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"^^xsd:anyURI ;
-           fhir:link <http://hl7.org/fhir/StructureDefinition/DeviceUseStatement>
+           fhir:v "http://hl7.org/fhir/StructureDefinition/Observation"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/StructureDefinition/Observation>
          ]
        ] ) ;
        fhir:mapping ( [
@@ -8476,10 +8466,6 @@
        fhir:id [ fhir:v "Practitioner.identifier.use" ] ;
        fhir:path [ fhir:v "Practitioner.identifier.use" ] ;
        fhir:binding [
-         fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "IdentifierUse" ]
-         ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:valueSet [
            fhir:v "http://hl7.org/fhir/ValueSet/identifier-use"^^xsd:anyURI ;
@@ -8489,12 +8475,8 @@
      ] [
        fhir:id [ fhir:v "Practitioner.identifier.type" ] ;
        fhir:path [ fhir:v "Practitioner.identifier.type" ] ;
-       fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:binding [
          fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "IdentifierType" ]
-         ] [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding"^^xsd:anyURI ] ;
            fhir:value [ fhir:v "true"^^xsd:boolean ]
          ] ) ;
@@ -8572,9 +8554,6 @@
        fhir:path [ fhir:v "Practitioner.gender" ] ;
        fhir:binding [
          fhir:extension ( [
-           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"^^xsd:anyURI ] ;
-           fhir:value [ fhir:v "AdministrativeGender" ]
-         ] [
            fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding"^^xsd:anyURI ] ;
            fhir:value [ fhir:v "true"^^xsd:boolean ]
          ] ) ;
@@ -8603,6 +8582,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR36" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR36" ] ;
+       fhir:short [ fhir:v "Autre diplôme obtenu" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8615,13 +8595,13 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR36.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Autre diplôme obtenu" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R36-AutreDiplomeObtenu/FHIR/TRE-R36-AutreDiplomeObtenu"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR47" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR47" ] ;
+       fhir:short [ fhir:v "Commission de qualification" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8634,13 +8614,13 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR47.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Commission de qualification" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R47-CommissionQualification/FHIR/TRE-R47-CommissionQualification"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR48" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR48" ] ;
+       fhir:short [ fhir:v "Diplôme de l'Etat français" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8653,13 +8633,13 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR48.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme de l'Etat français" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R48-DiplomeEtatFrancais/FHIR/TRE-R48-DiplomeEtatFrancais"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR49" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR49" ] ;
+       fhir:short [ fhir:v "Diplôme d'Etudes Spécialisées" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8672,7 +8652,6 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR49.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme d'Etudes Spécialisées" ] ;
        fhir:definition [ fhir:v "Diplôme d'Etudes Spécialisées" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R49-DiplomeEtudeSpecialisee/FHIR/TRE-R49-DiplomeEtudeSpecialisee"^^xsd:anyURI ]
@@ -8680,6 +8659,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR50" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR50" ] ;
+       fhir:short [ fhir:v "DESC Groupe 1 (diplôme)" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8692,13 +8672,13 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR50.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "DESC Groupe 1 (diplôme)" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R50-DESCGroupe1Diplome/FHIR/TRE-R50-DESCGroupe1Diplome"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR51" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR51" ] ;
+       fhir:short [ fhir:v "DESC Groupe 2 (diplôme)" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8711,13 +8691,13 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR51.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "DESC Groupe 2 (diplôme)" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R51-DESCGroupe2Diplome/FHIR/TRE-R51-DESCGroupe2Diplome"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR52" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR52" ] ;
+       fhir:short [ fhir:v "Capacité (diplôme)" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8730,13 +8710,13 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR52.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Capacité (diplôme)" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R52-CapaciteDiplome/FHIR/TRE-R52-CapaciteDiplome"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR53" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR53" ] ;
+       fhir:short [ fhir:v "Diplôme d'un pays de l'EEE" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8749,13 +8729,13 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR53.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme d'un pays de l'EEE" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R53-DiplomePaysEEE/FHIR/TRE-R53-DiplomePaysEEE"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR54" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR54" ] ;
+       fhir:short [ fhir:v "Diplôme d'Université ou Inter-Universitaire" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8768,7 +8748,6 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR54.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme d'Université ou Inter-Universitaire" ] ;
        fhir:definition [ fhir:v "Diplôme d'Université ou Inter-Universitaire" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R54-DiplomeUniversiteInterUniversitaire/FHIR/TRE-R54-DiplomeUniversiteInterUniversitare"^^xsd:anyURI ]
@@ -8776,6 +8755,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR55" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR55" ] ;
+       fhir:short [ fhir:v "Certificat d'Etude Spéciale" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8788,7 +8768,6 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR55.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Certificat d'Etude Spéciale" ] ;
        fhir:definition [ fhir:v "Certificat d'Etude Spéciale" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R55-CertificatEtudeSpeciale/FHIR/TRE-R55-CertificatEtudeSpeciale"^^xsd:anyURI ]
@@ -8796,6 +8775,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR56" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR56" ] ;
+       fhir:short [ fhir:v "Attestation" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8808,13 +8788,13 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR56.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Attestation" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R56-Attestation/FHIR/TRE-R56-Attestation"^^xsd:anyURI ]
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR57" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR57" ] ;
+       fhir:short [ fhir:v "Diplôme Européen d'Etudes Spécialisées" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8827,7 +8807,6 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR57.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme Européen d'Etudes Spécialisées" ] ;
        fhir:definition [ fhir:v "Diplôme Européen d'Etudes Spécialisées" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R57-DiplomeEuropeenEtudeSpecialisee/FHIR/TRE-R57-DiplomeEuropeenEtudeSpecialisee"^^xsd:anyURI ]
@@ -8835,6 +8814,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR58" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR58" ] ;
+       fhir:short [ fhir:v "Autre type de diplôme" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8847,7 +8827,6 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR58.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Autre type de diplôme" ] ;
        fhir:definition [ fhir:v "Autre type de diplôme" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R58-AutreTypeDiplome/FHIR/TRE-R58-AutreTypeDiplome"^^xsd:anyURI ]
@@ -8855,6 +8834,7 @@
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR226" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding" ] ;
        fhir:sliceName [ fhir:v "degreeR226" ] ;
+       fhir:short [ fhir:v "Diplôme de 2ième cycle non qualifiant" ] ;
        fhir:min [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:binding [
@@ -8867,7 +8847,6 @@
      ] [
        fhir:id [ fhir:v "Practitioner.qualification.code.coding:degreeR226.system" ] ;
        fhir:path [ fhir:v "Practitioner.qualification.code.coding.system" ] ;
-       fhir:short [ fhir:v "Diplôme de 2ième cycle non qualifiant" ] ;
        fhir:min [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
        fhir:fixed [ fhir:v "https://mos.esante.gouv.fr/NOS/TRE_R226-Dip2iemeCycleNQ/FHIR/TRE-R226-Dip2iemeCycleNQ"^^xsd:anyURI ]
      ] )

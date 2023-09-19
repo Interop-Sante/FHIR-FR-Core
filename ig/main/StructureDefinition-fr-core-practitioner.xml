@@ -10,7 +10,7 @@
   <name value="FRCorePractitionerProfile"/>
   <title value="FR Core Practitioner Profile"/>
   <status value="active"/>
-  <date value="2022-12-23"/>
+  <date value="2023-09-19T07:10:34+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>
@@ -639,9 +639,6 @@
       <isModifierReason value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary id for a permanent one."/>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierUse"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/identifier-use"/>
       </binding>
@@ -664,7 +661,7 @@
       <definition value="A coded type for the identifier that can be used to determine which identifier to use for a specific purpose."/>
       <comment value="This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage.   Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type."/>
       <requirements value="Allows users to make use of identifiers when the identifier system is not known."/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="Identifier.type"/>
@@ -685,9 +682,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -1378,7 +1372,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -1443,7 +1437,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -1954,7 +1948,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -2052,9 +2046,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="AdministrativeGender"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -2163,7 +2154,7 @@
         <human value="If the Attachment has data, it SHALL have a contentType"/>
         <expression value="data.empty() or contentType.exists()"/>
         <xpath value="not(exists(f:data)) or exists(f:contentType)"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Media"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -2619,7 +2610,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR36">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR36"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Autre diplôme obtenu"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -2758,7 +2749,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR36.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Autre diplôme obtenu"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -3001,7 +2992,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR47">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR47"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Commission de qualification"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -3140,7 +3131,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR47.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Commission de qualification"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -3383,7 +3374,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR48">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR48"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Diplôme de l'Etat français"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -3522,7 +3513,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR48.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme de l'Etat français"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -3765,7 +3756,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR49">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR49"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Diplôme d'Etudes Spécialisées"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -3904,7 +3895,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR49.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme d'Etudes Spécialisées"/>
+      <short value="Identity of the terminology system"/>
       <definition value="Diplôme d'Etudes Spécialisées"/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -4147,7 +4138,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR50">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR50"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="DESC Groupe 1 (diplôme)"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -4286,7 +4277,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR50.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="DESC Groupe 1 (diplôme)"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -4529,7 +4520,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR51">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR51"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="DESC Groupe 2 (diplôme)"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -4668,7 +4659,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR51.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="DESC Groupe 2 (diplôme)"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -4911,7 +4902,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR52">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR52"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Capacité (diplôme)"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -5050,7 +5041,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR52.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Capacité (diplôme)"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -5293,7 +5284,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR53">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR53"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Diplôme d'un pays de l'EEE"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -5432,7 +5423,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR53.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme d'un pays de l'EEE"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -5675,7 +5666,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR54">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR54"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Diplôme d'Université ou Inter-Universitaire"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -5814,7 +5805,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR54.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme d'Université ou Inter-Universitaire"/>
+      <short value="Identity of the terminology system"/>
       <definition value="Diplôme d'Université ou Inter-Universitaire"/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -6057,7 +6048,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR55">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR55"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Certificat d'Etude Spéciale"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -6196,7 +6187,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR55.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Certificat d'Etude Spéciale"/>
+      <short value="Identity of the terminology system"/>
       <definition value="Certificat d'Etude Spéciale"/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -6439,7 +6430,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR56">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR56"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Attestation"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -6578,7 +6569,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR56.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Attestation"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -6821,7 +6812,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR57">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR57"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Diplôme Européen d'Etudes Spécialisées"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -6960,7 +6951,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR57.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme Européen d'Etudes Spécialisées"/>
+      <short value="Identity of the terminology system"/>
       <definition value="Diplôme Européen d'Etudes Spécialisées"/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -7203,7 +7194,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR58">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR58"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Autre type de diplôme"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -7342,7 +7333,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR58.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Autre type de diplôme"/>
+      <short value="Identity of the terminology system"/>
       <definition value="Autre type de diplôme"/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -7585,7 +7576,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR226">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR226"/>
-      <short value="Code defined by a terminology system"/>
+      <short value="Diplôme de 2ième cycle non qualifiant"/>
       <definition value="A reference to a code defined by a terminology system."/>
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true."/>
       <requirements value="Allows for alternative encodings within a code system, and translations to other code systems."/>
@@ -7724,7 +7715,7 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR226.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme de 2ième cycle non qualifiant"/>
+      <short value="Identity of the terminology system"/>
       <definition value="The identification of the code system that defines the meaning of the symbol in the code."/>
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should reference to some definition that establishes the system clearly and unambiguously."/>
       <requirements value="Need to be unambiguous about the source of the definition of the symbol."/>
@@ -8053,7 +8044,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -8113,7 +8104,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -8212,20 +8203,13 @@
     <element id="Practitioner.identifier.use">
       <path value="Practitioner.identifier.use"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierUse"/>
-        </extension>
         <strength value="required"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/identifier-use"/>
       </binding>
     </element>
     <element id="Practitioner.identifier.type">
       <path value="Practitioner.identifier.type"/>
-      <min value="1"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -8292,9 +8276,6 @@
     <element id="Practitioner.gender">
       <path value="Practitioner.gender"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="AdministrativeGender"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -8320,6 +8301,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR36">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR36"/>
+      <short value="Autre diplôme obtenu"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8329,13 +8311,13 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR36.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Autre diplôme obtenu"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R36-AutreDiplomeObtenu/FHIR/TRE-R36-AutreDiplomeObtenu"/>
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR47">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR47"/>
+      <short value="Commission de qualification"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8345,13 +8327,13 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR47.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Commission de qualification"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R47-CommissionQualification/FHIR/TRE-R47-CommissionQualification"/>
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR48">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR48"/>
+      <short value="Diplôme de l'Etat français"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8361,13 +8343,13 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR48.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme de l'Etat français"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R48-DiplomeEtatFrancais/FHIR/TRE-R48-DiplomeEtatFrancais"/>
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR49">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR49"/>
+      <short value="Diplôme d'Etudes Spécialisées"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8377,7 +8359,6 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR49.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme d'Etudes Spécialisées"/>
       <definition value="Diplôme d'Etudes Spécialisées"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R49-DiplomeEtudeSpecialisee/FHIR/TRE-R49-DiplomeEtudeSpecialisee"/>
@@ -8385,6 +8366,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR50">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR50"/>
+      <short value="DESC Groupe 1 (diplôme)"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8394,13 +8376,13 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR50.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="DESC Groupe 1 (diplôme)"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R50-DESCGroupe1Diplome/FHIR/TRE-R50-DESCGroupe1Diplome"/>
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR51">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR51"/>
+      <short value="DESC Groupe 2 (diplôme)"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8410,13 +8392,13 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR51.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="DESC Groupe 2 (diplôme)"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R51-DESCGroupe2Diplome/FHIR/TRE-R51-DESCGroupe2Diplome"/>
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR52">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR52"/>
+      <short value="Capacité (diplôme)"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8426,13 +8408,13 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR52.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Capacité (diplôme)"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R52-CapaciteDiplome/FHIR/TRE-R52-CapaciteDiplome"/>
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR53">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR53"/>
+      <short value="Diplôme d'un pays de l'EEE"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8442,13 +8424,13 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR53.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme d'un pays de l'EEE"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R53-DiplomePaysEEE/FHIR/TRE-R53-DiplomePaysEEE"/>
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR54">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR54"/>
+      <short value="Diplôme d'Université ou Inter-Universitaire"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8458,7 +8440,6 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR54.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme d'Université ou Inter-Universitaire"/>
       <definition value="Diplôme d'Université ou Inter-Universitaire"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R54-DiplomeUniversiteInterUniversitaire/FHIR/TRE-R54-DiplomeUniversiteInterUniversitare"/>
@@ -8466,6 +8447,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR55">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR55"/>
+      <short value="Certificat d'Etude Spéciale"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8475,7 +8457,6 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR55.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Certificat d'Etude Spéciale"/>
       <definition value="Certificat d'Etude Spéciale"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R55-CertificatEtudeSpeciale/FHIR/TRE-R55-CertificatEtudeSpeciale"/>
@@ -8483,6 +8464,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR56">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR56"/>
+      <short value="Attestation"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8492,13 +8474,13 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR56.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Attestation"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R56-Attestation/FHIR/TRE-R56-Attestation"/>
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR57">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR57"/>
+      <short value="Diplôme Européen d'Etudes Spécialisées"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8508,7 +8490,6 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR57.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme Européen d'Etudes Spécialisées"/>
       <definition value="Diplôme Européen d'Etudes Spécialisées"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R57-DiplomeEuropeenEtudeSpecialisee/FHIR/TRE-R57-DiplomeEuropeenEtudeSpecialisee"/>
@@ -8516,6 +8497,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR58">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR58"/>
+      <short value="Autre type de diplôme"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8525,7 +8507,6 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR58.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Autre type de diplôme"/>
       <definition value="Autre type de diplôme"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R58-AutreTypeDiplome/FHIR/TRE-R58-AutreTypeDiplome"/>
@@ -8533,6 +8514,7 @@
     <element id="Practitioner.qualification.code.coding:degreeR226">
       <path value="Practitioner.qualification.code.coding"/>
       <sliceName value="degreeR226"/>
+      <short value="Diplôme de 2ième cycle non qualifiant"/>
       <min value="0"/>
       <max value="*"/>
       <binding>
@@ -8542,7 +8524,6 @@
     </element>
     <element id="Practitioner.qualification.code.coding:degreeR226.system">
       <path value="Practitioner.qualification.code.coding.system"/>
-      <short value="Diplôme de 2ième cycle non qualifiant"/>
       <min value="1"/>
       <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R226-Dip2iemeCycleNQ/FHIR/TRE-R226-Dip2iemeCycleNQ"/>
     </element>

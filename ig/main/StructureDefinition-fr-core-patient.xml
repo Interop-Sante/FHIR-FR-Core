@@ -10,7 +10,7 @@
   <name value="FRCorePatientProfile"/>
   <title value="FR Core Patient Profile"/>
   <status value="draft"/>
-  <date value="2022-12-23"/>
+  <date value="2023-09-19T07:10:34+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>
@@ -2130,7 +2130,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -2439,7 +2439,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="official"/>
+      <patternCode value="official"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -2489,13 +2489,13 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="INS-NIR"/>
           <display value="NIR"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -2507,9 +2507,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -2557,7 +2554,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="urn:oid:1.2.250.1.213.1.4.8"/>
+      <patternUri value="urn:oid:1.2.250.1.213.1.4.8"/>
       <example>
         <label value="General"/>
         <valueUri value="http://www.acme.com/identifiers/patient"/>
@@ -2671,7 +2668,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -2736,7 +2733,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -2915,7 +2912,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="temp"/>
+      <patternCode value="temp"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -2965,13 +2962,13 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="INS-NIA"/>
           <display value="NIA"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -2983,9 +2980,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -3033,7 +3027,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="urn:oid:1.2.250.1.213.1.4.9"/>
+      <patternUri value="urn:oid:1.2.250.1.213.1.4.9"/>
       <example>
         <label value="General"/>
         <valueUri value="http://www.acme.com/identifiers/patient"/>
@@ -3147,7 +3141,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -3212,7 +3206,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -3391,7 +3385,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="secondary"/>
+      <patternCode value="secondary"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -3441,13 +3435,13 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="INS-C"/>
           <display value="INS calculé"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -3459,9 +3453,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -3509,7 +3500,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="urn:oid:1.2.250.1.213.1.4.2"/>
+      <patternUri value="urn:oid:1.2.250.1.213.1.4.2"/>
       <example>
         <label value="General"/>
         <valueUri value="http://www.acme.com/identifiers/patient"/>
@@ -3623,7 +3614,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -3688,7 +3679,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -3867,7 +3858,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="secondary"/>
+      <patternCode value="secondary"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -3917,13 +3908,13 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="NDP"/>
           <display value="Identifiant au dossier pharmaceutique"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -3985,7 +3976,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="urn:oid:1.2.250.1.176.1.2"/>
+      <patternUri value="urn:oid:1.2.250.1.176.1.2"/>
       <example>
         <label value="General"/>
         <valueUri value="http://www.acme.com/identifiers/patient"/>
@@ -4099,7 +4090,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -4164,7 +4155,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -4343,7 +4334,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="usual"/>
+      <patternCode value="usual"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -4393,13 +4384,13 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="PI"/>
           <display value="Patient internal identifier"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -4574,7 +4565,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -4639,7 +4630,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -4818,7 +4809,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="secondary"/>
+      <patternCode value="secondary"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -4868,13 +4859,13 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="RRI"/>
           <display value="Regional registry ID"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -4886,9 +4877,6 @@
       </constraint>
       <isSummary value="true"/>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -5049,7 +5037,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -5114,7 +5102,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -5405,7 +5393,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="usual"/>
+      <patternCode value="usual"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -5719,7 +5707,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -5899,7 +5887,7 @@
       <type>
         <code value="code"/>
       </type>
-      <fixedCode value="official"/>
+      <patternCode value="official"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -6201,7 +6189,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -6637,7 +6625,7 @@
         <human value="If the Attachment has data, it SHALL have a contentType"/>
         <expression value="data.empty() or contentType.exists()"/>
         <xpath value="not(exists(f:data)) or exists(f:contentType)"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Media"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -7272,7 +7260,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"/>
+      <patternUri value="https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -7849,7 +7837,7 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"/>
+      <patternUri value="https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"/>
       <condition value="ele-1"/>
       <constraint>
         <key value="ele-1"/>
@@ -8379,7 +8367,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -8438,7 +8426,7 @@
         <human value="If present, start SHALL have a lower value than end"/>
         <expression value="start.hasValue().not() or end.hasValue().not() or (start &lt;= end)"/>
         <xpath value="not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) &lt;= xs:dateTime(f:end/@value))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Group"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -8795,7 +8783,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -8850,7 +8838,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -9092,7 +9080,7 @@
         <human value="SHALL have a contained resource if a local reference is provided"/>
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))"/>
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </constraint>
       <isSummary value="true"/>
       <mapping>
@@ -9170,9 +9158,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Patient">
-      <path value="Patient"/>
-    </element>
     <element id="Patient.extension">
       <path value="Patient.extension"/>
       <min value="1"/>
@@ -9272,22 +9257,19 @@
     </element>
     <element id="Patient.identifier:INS-NIR.use">
       <path value="Patient.identifier.use"/>
-      <fixedCode value="official"/>
+      <patternCode value="official"/>
     </element>
     <element id="Patient.identifier:INS-NIR.type">
       <path value="Patient.identifier.type"/>
       <min value="1"/>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="INS-NIR"/>
           <display value="NIR"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -9299,7 +9281,7 @@
       <path value="Patient.identifier.system"/>
       <definition value="Establishes the namespace for the value - that is, a OID that describes a set values that are unique. | Autorité d'affectation des INS-NIR"/>
       <min value="1"/>
-      <fixedUri value="urn:oid:1.2.250.1.213.1.4.8"/>
+      <patternUri value="urn:oid:1.2.250.1.213.1.4.8"/>
     </element>
     <element id="Patient.identifier:INS-NIR.value">
       <path value="Patient.identifier.value"/>
@@ -9315,22 +9297,19 @@
     </element>
     <element id="Patient.identifier:INS-NIA.use">
       <path value="Patient.identifier.use"/>
-      <fixedCode value="temp"/>
+      <patternCode value="temp"/>
     </element>
     <element id="Patient.identifier:INS-NIA.type">
       <path value="Patient.identifier.type"/>
       <min value="1"/>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="INS-NIA"/>
           <display value="NIA"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -9342,7 +9321,7 @@
       <path value="Patient.identifier.system"/>
       <definition value="Establishes the namespace for the value - that is, a OID that describes a set values that are unique. | Autorité d'affectation des INS-NIA"/>
       <min value="1"/>
-      <fixedUri value="urn:oid:1.2.250.1.213.1.4.9"/>
+      <patternUri value="urn:oid:1.2.250.1.213.1.4.9"/>
     </element>
     <element id="Patient.identifier:INS-NIA.value">
       <path value="Patient.identifier.value"/>
@@ -9357,23 +9336,20 @@
     </element>
     <element id="Patient.identifier:INS-C.use">
       <path value="Patient.identifier.use"/>
-      <fixedCode value="secondary"/>
+      <patternCode value="secondary"/>
     </element>
     <element id="Patient.identifier:INS-C.type">
       <path value="Patient.identifier.type"/>
       <definition value="Computed National Health Identifier | Identifiant National de Santé Calculé à partir des éléments de la carte vitale"/>
       <min value="1"/>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="INS-C"/>
           <display value="INS calculé"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -9384,7 +9360,7 @@
     <element id="Patient.identifier:INS-C.system">
       <path value="Patient.identifier.system"/>
       <min value="1"/>
-      <fixedUri value="urn:oid:1.2.250.1.213.1.4.2"/>
+      <patternUri value="urn:oid:1.2.250.1.213.1.4.2"/>
     </element>
     <element id="Patient.identifier:INS-C.value">
       <path value="Patient.identifier.value"/>
@@ -9400,18 +9376,18 @@
     </element>
     <element id="Patient.identifier:NDP.use">
       <path value="Patient.identifier.use"/>
-      <fixedCode value="secondary"/>
+      <patternCode value="secondary"/>
     </element>
     <element id="Patient.identifier:NDP.type">
       <path value="Patient.identifier.type"/>
       <min value="1"/>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="NDP"/>
           <display value="Identifiant au dossier pharmaceutique"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="IdentifierType"/>
@@ -9426,7 +9402,7 @@
     <element id="Patient.identifier:NDP.system">
       <path value="Patient.identifier.system"/>
       <min value="1"/>
-      <fixedUri value="urn:oid:1.2.250.1.176.1.2"/>
+      <patternUri value="urn:oid:1.2.250.1.176.1.2"/>
     </element>
     <element id="Patient.identifier:NDP.value">
       <path value="Patient.identifier.value"/>
@@ -9442,18 +9418,18 @@
     </element>
     <element id="Patient.identifier:PI.use">
       <path value="Patient.identifier.use"/>
-      <fixedCode value="usual"/>
+      <patternCode value="usual"/>
     </element>
     <element id="Patient.identifier:PI.type">
       <path value="Patient.identifier.type"/>
       <min value="1"/>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="PI"/>
           <display value="Patient internal identifier"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="IdentifierType"/>
@@ -9483,22 +9459,19 @@
     </element>
     <element id="Patient.identifier:RRI.use">
       <path value="Patient.identifier.use"/>
-      <fixedCode value="secondary"/>
+      <patternCode value="secondary"/>
     </element>
     <element id="Patient.identifier:RRI.type">
       <path value="Patient.identifier.type"/>
       <min value="1"/>
-      <fixedCodeableConcept>
+      <patternCodeableConcept>
         <coding>
           <system value="http://interopsante.org/CodeSystem/fr-core-v2-0203"/>
           <code value="RRI"/>
           <display value="Regional registry ID"/>
         </coding>
-      </fixedCodeableConcept>
+      </patternCodeableConcept>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="IdentifierType"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
@@ -9540,7 +9513,7 @@
     <element id="Patient.name:usualName.use">
       <path value="Patient.name.use"/>
       <min value="1"/>
-      <fixedCode value="usual"/>
+      <patternCode value="usual"/>
     </element>
     <element id="Patient.name:officialName">
       <path value="Patient.name"/>
@@ -9553,7 +9526,7 @@
     <element id="Patient.name:officialName.use">
       <path value="Patient.name.use"/>
       <min value="1"/>
-      <fixedCode value="official"/>
+      <patternCode value="official"/>
     </element>
     <element id="Patient.name:officialName.family">
       <path value="Patient.name.family"/>
@@ -9642,7 +9615,7 @@
     <element id="Patient.contact.relationship:RolePerson.coding.system">
       <path value="Patient.contact.relationship.coding.system"/>
       <min value="1"/>
-      <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"/>
+      <patternUri value="https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass"/>
     </element>
     <element id="Patient.contact.relationship:RelatedPerson">
       <path value="Patient.contact.relationship"/>
@@ -9661,7 +9634,7 @@
     <element id="Patient.contact.relationship:RelatedPerson.coding.system">
       <path value="Patient.contact.relationship.coding.system"/>
       <min value="1"/>
-      <fixedUri value="https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"/>
+      <patternUri value="https://mos.esante.gouv.fr/NOS/TRE_R216-HL7RoleCode/FHIR/TRE-R216-HL7RoleCode"/>
     </element>
     <element id="Patient.contact.name">
       <path value="Patient.contact.name"/>

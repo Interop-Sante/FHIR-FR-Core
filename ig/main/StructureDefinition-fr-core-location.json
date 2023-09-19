@@ -9,8 +9,8 @@
   "version" : "2.0.0",
   "name" : "FRCoreLocationProfile",
   "title" : "FR Core Location Profile",
-  "status" : "active",
-  "date" : "2022-12-23",
+  "status" : "draft",
+  "date" : "2023-09-19T07:10:34+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",
@@ -676,10 +676,6 @@
       "isModifierReason" : "This is labeled as \"Is Modifier\" because applications should not mistake a temporary id for a permanent one.",
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierUse"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/identifier-use"
       },
@@ -894,7 +890,7 @@
         "human" : "If present, start SHALL have a lower value than end",
         "expression" : "start.hasValue().not() or end.hasValue().not() or (start <= end)",
         "xpath" : "not(exists(f:start/@value)) or not(exists(f:end/@value)) or (xs:dateTime(f:start/@value) <= xs:dateTime(f:end/@value))",
-        "source" : "http://hl7.org/fhir/StructureDefinition/Patient"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Group"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -954,7 +950,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -1007,10 +1003,6 @@
       "isModifierReason" : "This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid",
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "LocationStatus"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/location-status"
       },
@@ -1249,10 +1241,6 @@
       }],
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "LocationMode"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/location-mode"
       },
@@ -1296,10 +1284,6 @@
       }],
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "LocationType"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-type"
       },
@@ -1450,10 +1434,6 @@
       }],
       "isSummary" : true,
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "PhysicalType"
-        }],
         "strength" : "example",
         "valueSet" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-physical-type"
       },
@@ -1825,7 +1805,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "isSummary" : true,
       "mapping" : [{
@@ -1878,7 +1858,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -2421,10 +2401,6 @@
         "source" : "http://hl7.org/fhir/StructureDefinition/Element"
       }],
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "DaysOfWeek"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/days-of-week"
       },
@@ -2639,7 +2615,7 @@
         "human" : "SHALL have a contained resource if a local reference is provided",
         "expression" : "reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids'))",
         "xpath" : "not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])",
-        "source" : "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement"
+        "source" : "http://hl7.org/fhir/StructureDefinition/Observation"
       }],
       "mapping" : [{
         "identity" : "rim",
@@ -2653,10 +2629,6 @@
   },
   "differential" : {
     "element" : [{
-      "id" : "Location",
-      "path" : "Location"
-    },
-    {
       "id" : "Location.extension:usePeriod",
       "path" : "Location.extension",
       "sliceName" : "usePeriod",
@@ -2676,10 +2648,6 @@
       "id" : "Location.identifier.use",
       "path" : "Location.identifier.use",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "IdentifierUse"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/identifier-use"
       }
@@ -2723,10 +2691,6 @@
       "id" : "Location.status",
       "path" : "Location.status",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "LocationStatus"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/location-status"
       }
@@ -2735,10 +2699,6 @@
       "id" : "Location.mode",
       "path" : "Location.mode",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "LocationMode"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/location-mode"
       }
@@ -2748,10 +2708,6 @@
       "path" : "Location.type",
       "max" : "1",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "LocationType"
-        }],
         "strength" : "extensible",
         "valueSet" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-type"
       }
@@ -2776,10 +2732,6 @@
       "id" : "Location.physicalType",
       "path" : "Location.physicalType",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "PhysicalType"
-        }],
         "strength" : "example",
         "valueSet" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-location-physical-type"
       }
@@ -2819,10 +2771,6 @@
       "id" : "Location.hoursOfOperation.daysOfWeek",
       "path" : "Location.hoursOfOperation.daysOfWeek",
       "binding" : {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName",
-          "valueString" : "DaysOfWeek"
-        }],
         "strength" : "required",
         "valueSet" : "http://hl7.org/fhir/ValueSet/days-of-week"
       }
