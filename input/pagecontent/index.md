@@ -1,4 +1,4 @@
-<p style="padding: 5px; border-radius: 5px; border: 2px solid maroon; background: #ffffe6; width: 65%">
+<p style="padding: 5px; border-radius: 5px; border: 2px solid maroon; background: #ffffe6;">
 <b>
 Profils, extensions, jeux de valeurs, et guides de mise en œuvre normalisant l'échange de données administratives sur les patients, les professionnels de santé et les organisations, et les rencontres avec les patients (programmées ou effectives), ainsi que les signes vitaux en France.
 </b><br>
@@ -7,7 +7,7 @@ Profiles, extensions, value sets, code systems and implementation guides standar
 
 </p>
 
-## 1.1 Introduction
+### Introduction
 
 Ce guide de mise en œuvre est fourni pour **soutenir l'utilisation de FHIR® en France**. Il permet de définir les profils, les extensions et les jeux de valeurs normalisant **l'échange de données administratives sur les patients, les professionnels de santé et les organisations, et les rencontres avec les patients (programmées ou effectives), ainsi que les signes vitaux**.
 
@@ -16,7 +16,7 @@ Il s'agit d'une spécification de travail. Sa mise en œuvre est actuellement te
 * Orientations sur les ressources essentielles en France.
 * Extensions nécessaires à l'utilisation locale en France.
 
-## 1.2 Champ d'application
+### Champ d'application
 
 Ce document présente les concepts d'utilisation français définis par :
 
@@ -26,13 +26,13 @@ Ce document présente les concepts d'utilisation français définis par :
 
 Les activités de profilage donnent la priorité aux ressources ayant un niveau de maturité suffisant (>=3). Chaque sujet fonctionnel est traité par un groupe de travail dédié d'Interop'Santé, réunissant des éditeurs de logiciels, des professionnels des établissements de santé et des représentants d'agences gouvernementales. Le consensus sur les ressources de conformité FHIR est établi d'abord au niveau du groupe de travail, puis au niveau des membres.
 
-## 1.3 Standards utilisés
+### Standards utilisés
 
 Le Guide d'implémentation FR Core est **basé sur la version Release 4 de HL7 FHIR** et définit l'ensemble minimum de contraintes sur les ressources FHIR pour créer les profils FR Core. Elles font référence à un certain nombre de ressources du standard ainsi qu’aux spécifications de l’API REST FHIR, basées sur le protocole HTTP. Les syntaxes retenues sont la syntaxe XML et JSON.
 
 En établissant la "base" des normes pour promouvoir l'interopérabilité et l'adoption par le biais d'une mise en œuvre commune, il permet une évolution ultérieure de l'élaboration des normes pour des cas d'utilisation spécifiques.
 
-## 1.4 Gouvernance
+### Gouvernance
 
 Le guide d'implémentation FR Core est géré par HL7 France et IHE France au sein du comité technique FHIR de HL7 France.
 ### Auteurs et contributeurs
