@@ -31,10 +31,6 @@ pages:
 
 menu:
     Accueil: index.html
-    Description des flux:
-        Construction des flux: construction_des_flux.html
-        Flux 01: st_flux1.html
-        Flux 02: st_flux2.html
     Ressources de conformité: artifacts.html
     Autres ressources:
         Sécurité: securite.html
