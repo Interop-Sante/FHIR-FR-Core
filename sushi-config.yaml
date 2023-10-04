@@ -1,6 +1,6 @@
 id: hl7.fhir.fr.core
 canonical: http://hl7.fr/ig/fhir/core
-name: Guide d'implémentation Fr Core
+name: FrCore
 title: Guide d'implémentation Fr Core
 publisher:
   name: Interop'Santé
