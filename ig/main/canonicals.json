@@ -109,7 +109,7 @@
     "type" : "ImplementationGuide",
     "url" : "http://hl7.fr/ig/fhir/core/ImplementationGuide/hl7.fhir.fr.core",
     "version" : "2.0.0",
-    "name" : "GuidedimplmentationFrCore"
+    "name" : "FrCore"
   },
   {
     "id" : "fr-core-address",

@@ -3,7 +3,7 @@
   "id" : "fr-core-title",
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li>Include all codes defined in <code>https://mos.esante.gouv.fr/NOS/TRE_R11-CiviliteExercice/FHIR/TRE-R11-CiviliteExercice</code></li></ul></div>"
   },
   "extension" : [{
     "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -22,7 +22,7 @@
   "name" : "FRCoreValueSetTitle",
   "title" : "FR Core ValueSet Title",
   "status" : "draft",
-  "date" : "2023-09-19T09:52:24+00:00",
+  "date" : "2023-10-09T09:16:22+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",

@@ -3,7 +3,7 @@
   "id" : "fr-core-cog-commune-pays",
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This value set includes codes based on the following rules:</p><ul><li>Include all codes defined in <code>https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM</code></li><li>Include all codes defined in <code>https://mos.esante.gouv.fr/NOS/TRE_R20-Pays/FHIR/TRE-R20-Pays</code></li></ul></div>"
   },
   "extension" : [{
     "url" : "http://hl7.org/fhir/StructureDefinition/valueset-warning",
@@ -14,7 +14,7 @@
   "name" : "FRCoreValueSetCOGCommunePays",
   "title" : "FR Core ValueSet COG commune pays",
   "status" : "draft",
-  "date" : "2023-09-19T09:52:24+00:00",
+  "date" : "2023-10-09T09:16:22+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",

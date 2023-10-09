@@ -1,59 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Bundle xmlns="http://hl7.org/fhir">
-  <id value="70c3d0d7-4305-4234-be72-5345a397b5b1"/>
+  <id value="428e61a8-e3a2-4443-8583-922cb5ea40bf"/>
   <meta>
-    <lastUpdated value="2023-09-19T09:52:24.222+00:00"/>
+    <lastUpdated value="2023-10-09T09:16:22.543+00:00"/>
   </meta>
   <type value="collection"/>
-  <entry>
-    <fullUrl value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-availability-time-day"/>
-    <resource>
-      <ValueSet>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p>This value set contains 0 concepts</p>
-            <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion based on 
-              <a href="http://hl7.org/fhir/R4/codesystem-days-of-week.html">codesystem DaysOfWeek v4.0.1 (CodeSystem)</a>
-            </p>
-            <table class="codes">
-              <tr>
-                <td style="white-space:nowrap">
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>System</b>
-                </td>
-                <td>
-                  <b>Display</b>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <url value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-availability-time-day"/>
-        <version value="2.0.0"/>
-        <name value="FRCoreValueSetAvailabilityTimeDay"/>
-        <title value="First day of the workweek | Premier jour de la semaine de travail "/>
-        <status value="draft"/>
-        <date value="2023-09-19T09:52:24+00:00"/>
-        <expansion>
-          <identifier value="urn:uuid:984eba43-5e87-4c25-b0f9-845fc56b3e8b"/>
-          <timestamp value="2023-09-19T09:58:38+00:00"/>
-          <total value="0"/>
-          <parameter>
-            <name value="excludeNested"/>
-            <valueBoolean value="false"/>
-          </parameter>
-          <parameter>
-            <name value="used-codesystem"/>
-            <valueUri value="http://hl7.org/fhir/days-of-week|4.0.1"/>
-          </parameter>
-        </expansion>
-      </ValueSet>
-    </resource>
-  </entry>
   <entry>
     <fullUrl value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-bp-method"/>
     <resource>
@@ -121,10 +73,10 @@
         <name value="FRCoreValueSetBPMeasurementMethod"/>
         <title value="FR Core ValueSet BP measurement method"/>
         <status value="draft"/>
-        <date value="2023-09-19T09:52:24+00:00"/>
+        <date value="2023-10-09T09:16:22+00:00"/>
         <expansion>
-          <identifier value="urn:uuid:4623f390-a9cf-4cb5-b38e-2e60b860aee8"/>
-          <timestamp value="2023-09-19T09:58:45+00:00"/>
+          <identifier value="urn:uuid:04ca9ec2-3d83-406a-a5ab-1e4235702ffe"/>
+          <timestamp value="2023-10-09T09:17:40+00:00"/>
           <total value="4"/>
           <parameter>
             <name value="excludeNested"/>
@@ -166,6 +118,54 @@
             <code value="10179008"/>
             <display value=" Invasive (qualifier value)"/>
           </contains>
+        </expansion>
+      </ValueSet>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-availability-time-day"/>
+    <resource>
+      <ValueSet>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p>This value set contains 0 concepts</p>
+            <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion based on 
+              <a href="http://hl7.org/fhir/R4/codesystem-days-of-week.html">codesystem DaysOfWeek v4.0.1 (CodeSystem)</a>
+            </p>
+            <table class="codes">
+              <tr>
+                <td style="white-space:nowrap">
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>System</b>
+                </td>
+                <td>
+                  <b>Display</b>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <url value="http://hl7.fr/ig/fhir/core/ValueSet/fr-core-availability-time-day"/>
+        <version value="2.0.0"/>
+        <name value="FRCoreValueSetAvailabilityTimeDay"/>
+        <title value="First day of the workweek | Premier jour de la semaine de travail "/>
+        <status value="draft"/>
+        <date value="2023-10-09T09:16:22+00:00"/>
+        <expansion>
+          <identifier value="urn:uuid:9914bd1d-b5f2-465f-b896-72ef122cf62d"/>
+          <timestamp value="2023-10-09T09:17:43+00:00"/>
+          <total value="0"/>
+          <parameter>
+            <name value="excludeNested"/>
+            <valueBoolean value="false"/>
+          </parameter>
+          <parameter>
+            <name value="used-codesystem"/>
+            <valueUri value="http://hl7.org/fhir/days-of-week|4.0.1"/>
+          </parameter>
         </expansion>
       </ValueSet>
     </resource>

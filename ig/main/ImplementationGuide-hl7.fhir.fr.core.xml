@@ -3,14 +3,14 @@
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="hl7.fhir.fr.core"/>
   <text>
-    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml">Placeholder</div>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><h2>FrCore</h2><p>The official URL for this implementation guide is: </p><pre>http://hl7.fr/ig/fhir/core/ImplementationGuide/hl7.fhir.fr.core</pre></div>
   </text>
   <url value="http://hl7.fr/ig/fhir/core/ImplementationGuide/hl7.fhir.fr.core"/>
   <version value="2.0.0"/>
-  <name value="GuidedimplmentationFrCore"/>
+  <name value="FrCore"/>
   <title value="Guide d'implémentation Fr Core"/>
   <status value="draft"/>
-  <date value="2023-09-19T09:52:24+00:00"/>
+  <date value="2023-10-09T09:16:22+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>

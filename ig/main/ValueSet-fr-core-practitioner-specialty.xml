@@ -3,7 +3,7 @@
 <ValueSet xmlns="http://hl7.org/fhir">
   <id value="fr-core-practitioner-specialty"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">Placeholder</div>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><ul><li>Include all codes defined in <code>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</code></li></ul></div>
   </text>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
     <valueCode value="informative"/>
@@ -23,7 +23,7 @@
   <name value="FRCoreValueSetPractitionerSpecialty"/>
   <title value="FR Core ValueSet Practitioner specialty"/>
   <status value="draft"/>
-  <date value="2023-09-19T09:52:24+00:00"/>
+  <date value="2023-10-09T09:16:22+00:00"/>
   <publisher value="Interop'Santé"/>
   <contact>
     <name value="Interop'Santé"/>

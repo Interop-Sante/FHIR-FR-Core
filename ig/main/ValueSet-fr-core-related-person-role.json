@@ -3,7 +3,7 @@
   "id" : "fr-core-related-person-role",
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li>Include all codes defined in <code>https://mos.esante.gouv.fr/NOS/TRE_R260-HL7RoleClass/FHIR/TRE-R260-HL7RoleClass</code></li></ul></div>"
   },
   "extension" : [{
     "url" : "http://hl7.org/fhir/StructureDefinition/valueset-warning",
@@ -14,7 +14,7 @@
   "name" : "FRCoreValueSetRelatedPersonRole",
   "title" : "FR Core ValueSet Related person role",
   "status" : "draft",
-  "date" : "2023-09-19T09:52:24+00:00",
+  "date" : "2023-10-09T09:16:22+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",

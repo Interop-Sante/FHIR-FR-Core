@@ -3,7 +3,7 @@
   "id" : "fr-core-insee-code",
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li>Include all codes defined in <code>https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM</code></li></ul></div>"
   },
   "url" : "http://hl7.fr/ig/fhir/core/ValueSet/fr-core-insee-code",
   "identifier" : [{
@@ -14,7 +14,7 @@
   "name" : "FRCoreValueSetINSEECode",
   "title" : "FR Core ValueSet INSEE code",
   "status" : "draft",
-  "date" : "2023-09-19T09:52:24+00:00",
+  "date" : "2023-10-09T09:16:22+00:00",
   "publisher" : "Interop'Santé",
   "contact" : [{
     "name" : "Interop'Santé",
